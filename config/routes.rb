@@ -3,11 +3,13 @@ Rails.application.routes.draw do
 
   get "/login", to: "users#login"
   post "/login", to: "users#signin"
-  get "/logout", to: "users#logout"
 
-  resources :users, only: [:new, :create, :show]
+  devise_scope :user do
+    delete '/logout', :to => 'devise/sessions#destroy'
+  end
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions' }
+
 
   resources :trips, except: [:index, :new, :edit] do
     resources :packing_lists, except: [:index, :new, :edit] do
