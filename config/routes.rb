@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
-  root "application#index"
+  root to: "home#index"
 
   get "/login", to: "users#login"
   post "/login", to: "users#signin"
   get "/logout", to: "users#logout"
 
   resources :users, only: [:new, :create, :show]
+
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions' }
 
   resources :trips, except: [:index, :new, :edit] do
     resources :packing_lists, except: [:index, :new, :edit] do
@@ -18,6 +20,4 @@ Rails.application.routes.draw do
       resources :events, only: [:create, :update, :destroy]
     end
   end
-
-  #test
 end
