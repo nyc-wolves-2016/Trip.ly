@@ -2,17 +2,17 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
-  $('.container').on('click', '#new-trip', function(event) {
-    event.preventDefault();
+  $('.container').on('click', '#add-trip', function(event) {
 
+    event.preventDefault();
     var url = $(this).attr('action');
 
     $.ajax({
       method: 'GET',
       url: url
     }).done(function(response){
-      console.log(response)
+      $('.greeting').after(response);
+      $('#add-trip').remove();
     });
   });
-
 });
