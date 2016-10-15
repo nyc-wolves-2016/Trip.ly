@@ -25,7 +25,7 @@ class Trip extends React.Component {
         <div>
           <h1>Resource Lists: </h1>
         </div>
-        
+
       </div>
 
     )

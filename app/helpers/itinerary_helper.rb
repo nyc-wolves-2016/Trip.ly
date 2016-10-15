@@ -1,0 +1,2 @@
+module ItineraryHelper
+end
