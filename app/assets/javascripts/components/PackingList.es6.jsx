@@ -1,25 +1,24 @@
 class PackingList extends React.Component {
   constructor() {
     super();
-    this.state = {items: []}
+    this.handleReturnClick = this.handleReturnClick.bind(this);
   }
 
-  componentDidMount(){
-    let { trip_id, id } = this.props.list;
-    $.ajax({
-      url: "/trips/" + trip_id + "/packing_lists/" + id
-    }).done(function(response){
-      this.setState({ items: response })
-    }.bind(this));
+  handleReturnClick(){
+    this.props.onReturnTripPage();
   }
+
 
   render(){
-    let { trip_id, id, name } = this.props.list;
+    let { name } = this.props.list;
     return(
-      <li><p>Name: {name}</p>
-        {this.state.items.map((item, i) =>
-        <p> {item.name} </p>) }
-      </li>
+      <div>
+        <li><p>Name: {name}</p>
+          {this.props.items.map((item, i) =>
+          <p key={i}> {item.name} </p>) }
+        </li>
+        <button onClick={this.handleReturnClick}>Return To Trip</button>
+      </div>
     )
   }
 }
