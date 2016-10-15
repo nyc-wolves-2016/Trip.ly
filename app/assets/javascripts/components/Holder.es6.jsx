@@ -1,6 +1,15 @@
 class Holder extends React.Component {
+  constructor() {
+    super();
+    this.handleNested = this.handleNested.bind(this);
+  }
+
+  handleNested(response){
+    this.props.onListClick(response);
+  }
+
   render(){
-    let { packing_lists, itinerary, resource_lists } = this.props.allLists;
+    let { trip, packing_lists, itinerary, resource_lists } = this.props.allLists;
 
     return(
       <div>
@@ -8,7 +17,7 @@ class Holder extends React.Component {
 
           <h1>Your Itinerary</h1>
         </div>
-          <PackingLists packing_lists={packing_lists}/>
+          <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists}/>
         <div>
 
           <h1>Resource Lists: </h1>
