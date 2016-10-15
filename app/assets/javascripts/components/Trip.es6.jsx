@@ -2,27 +2,22 @@ class Trip extends React.Component {
 
   constructor(){
     super();
-
   }
 
+
   render(){
-    let { trip, packing_lists } = this.props;
+    let { trip, packing_lists, itinerary, resource_lists } = this.props;
 
     return(
       <div>
         <div>
+          <Itinerary itinerary={itinerary} />
           <h1>Your Itinerary</h1>
 
         </div>
+          <PackingLists packing_lists={packing_lists}/>
         <div>
-          <h1>Packing Lists: </h1>
-          <ul>
-            {packing_lists.map((list, i) =>
-              <PackingList list = {list} key = {i} />
-            )}
-          </ul>
-        </div>
-        <div>
+          <ResourceLists resource_lists={resource_lists} />
           <h1>Resource Lists: </h1>
         </div>
 
