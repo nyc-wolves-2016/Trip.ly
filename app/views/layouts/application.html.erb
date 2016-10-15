@@ -7,13 +7,21 @@
     <title><%= content_for?(:title) ? yield(:title) : "Trip.ly" %></title>
 
     <%= stylesheet_link_tag    "application" %>
-    <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
   </head>
 
   <body>
-    <%= render 'layouts/messages' %>
-    <%= yield %>
-
+    <ul>
+      <li><%= link_to "Register", new_user_registration_path %></li>
+    <li><%= link_to "Sign in ", new_user_session_path %></li>
+    <li><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></li>
+    <li><a href="users/<%= current_user.id %>">Dashboard</a></li>
+    <li><%= link_to "Log out", logout_path, method: "delete" %>
+    </ul>
+    <div class="container">
+      <%= render 'layouts/messages' %>
+      <%= yield %>
+    </div>
   </body>
 </html>

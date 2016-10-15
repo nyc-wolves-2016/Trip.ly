@@ -1,4 +1,8 @@
 class TripsController < ApplicationController
+  def new
+    @trip = Trip.new
+    render "trips/_form", layout: false
+  end
 
   def show
     @trip = Trip.find(params[:id]).as_json
@@ -7,4 +11,19 @@ class TripsController < ApplicationController
     @itinerary = Trip.find(params[:id]).itineraries.as_json
   end
 
+  def create
+    @user = current_user
+    @trip = @user.trips.new(trip_params)
+    if @trip.save
+      flash[:success] = "Trip Added!"
+      redirect_to @trip
+    else
+      render "/users/show"
+    end
+  end
+
+  private
+    def trip_params
+      params.require(:trip).permit(:city, :country, :start_date, :end_date)
+    end
 end
