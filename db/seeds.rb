@@ -27,12 +27,12 @@ end
 
 trips.each  do |trip|
   trip.packing_lists.each do |list|
-    Item.create!(packing_list: list, name: Faker::Commerce.product_name)
+    5.times { Item.create!(packing_list: list, name: Faker::Commerce.product_name) }
   end
   trip.resource_lists.each do |list|
-    Resource.create!(resource_list: list, name: Faker::Hipster.sentence(3), link: "http://kayak.com", details: Faker::Lorem.sentence(3))
+    5.times { Resource.create!(resource_list: list, name: Faker::Hipster.sentence(3), link: "http://kayak.com", details: Faker::Lorem.sentence(3)) }
   end
   trip.itineraries.each do |itinerary|
-    Event.create!(itinerary: itinerary, name: Faker::GameOfThrones.city, date: Faker::Date.between(2.days.ago, Date.today), start_time: Time.parse("#{rand(1..22)}:00"))
+    2.times { Event.create!(itinerary: itinerary, name: Faker::GameOfThrones.city, date: Faker::Date.between(2.days.ago, Date.today), start_time: Time.parse("#{rand(1..22)}:00")) }
   end
 end
