@@ -12,7 +12,6 @@ class ResourceListPreview extends React.Component {
       url: "/trips/" + trip.id + "/resource_lists/" + listID
     }).done(function(response) {
       this.props.onResourceListClick(response);
-      debugger;
     }.bind(this));
   }
 
