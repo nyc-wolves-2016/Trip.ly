@@ -1,0 +1,19 @@
+<h1 class="greeting">Welcome, <%= @user.first_name %></h1>
+<form id="add-trip" method="GET" action="/trips/new">
+  <button type="submit">Add a Trip</button>
+</form>
+
+<div>
+  <ul>Upcoming Trips
+    <% upcoming_trips(@user).each do |trip| %>
+      <li><a href="/trips/<%= trip.id %>"><%= trip.city %></a></li>
+    <% end %>
+  <ul>
+</div>
+<div>
+  <ul>Past Trips
+    <% past_trips(@user).each do |trip| %>
+      <li><a href="/trips/<%= trip.id %>"><%= trip.city %></a></li>
+    <% end %>
+  <ul>
+</div>
