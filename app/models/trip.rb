@@ -6,4 +6,7 @@ class Trip < ApplicationRecord
   has_one :itinerary
 
   validates :city, :start_date, :end_date, presence: true
+
+  
+
 end
