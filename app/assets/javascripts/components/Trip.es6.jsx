@@ -2,50 +2,33 @@ class Trip extends React.Component {
 
   constructor(){
     super();
-    this.handleClickAddPacking = this.handleClickAddPacking.bind(this);
-  }
 
-  // handlClickAddPacking(event) {
-  //   event.preventDefault();
-  //
-  // }
+  }
 
   render(){
-    return(
-      <p>Test HI!</p>
+    let { trip, packing_lists } = this.props;
 
-      <PackingPreview /*packingLists = {this.state.trip.packing_lists}*/ />
+    return(
+      <div>
+        <div>
+          <h1>Your Itinerary</h1>
+
+        </div>
+        <div>
+          <h1>Packing Lists: </h1>
+          <ul>
+            {packing_lists.map((list, i) =>
+              <PackingList list = {list} key = {i} />
+            )}
+          </ul>
+        </div>
+        <div>
+          <h1>Resource Lists: </h1>
+        </div>
+        
+      </div>
 
     )
-  }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
->>>>>>> remove all info from trip component
+}
 }

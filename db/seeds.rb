@@ -27,7 +27,7 @@ end
 
 trips.each  do |trip|
   trip.packing_lists.each do |list|
-    Item.create!(packing_list: list, name: Faker::Commerce.product_name)
+    5.times { Item.create!(packing_list: list, name: Faker::Commerce.product_name) }
   end
   trip.resource_lists.each do |list|
     Resource.create!(resource_list: list, name: Faker::Hipster.sentence(3), link: "http://kayak.com", details: Faker::Lorem.sentence(3))
