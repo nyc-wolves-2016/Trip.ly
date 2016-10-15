@@ -2,6 +2,7 @@ class Trip extends React.Component {
 
   constructor(){
     super();
+    this.state = {holder: true, packingLists: false};
   }
 
 
@@ -10,19 +11,10 @@ class Trip extends React.Component {
 
     return(
       <div>
-        <div>
-          <Itinerary itinerary={itinerary} />
-          <h1>Your Itinerary</h1>
+        { this.state.holder ? <Holder allLists={this.props}/> : null }
 
-        </div>
-          <PackingLists packing_lists={packing_lists}/>
-        <div>
-          <ResourceLists resource_lists={resource_lists} />
-          <h1>Resource Lists: </h1>
-        </div>
-
+        <PackingLists packing_lists={packing_lists}/>
       </div>
-
     )
 
 }

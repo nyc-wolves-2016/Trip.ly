@@ -7,7 +7,7 @@ class PackingLists extends React.Component {
         <ul>
           {packing_lists.map((list, i) =>
             <li>
-              <PackingListLink list={list} key={i}/>
+              <PackingList list={list} key={i}/>
             </li>
           )}
         </ul>
