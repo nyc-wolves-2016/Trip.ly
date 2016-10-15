@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions', registrations: 'users/registrations' }
 
+  get "/users/:user_id", to: "users#show"
 
   resources :trips, except: [:index, :new, :edit] do
     resources :packing_lists, except: [:index, :new, :edit] do
