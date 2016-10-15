@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     delete '/logout', :to => 'devise/sessions#destroy'
   end
 
-  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions' }
+  devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions', registrations: 'users/registrations' }
 
 
   resources :trips, except: [:index, :new, :edit] do
