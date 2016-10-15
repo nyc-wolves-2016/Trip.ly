@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   def new
     @trip = Trip.new
+    render "trips/_form", layout: false
   end
 
   def show
@@ -15,7 +16,7 @@ class TripsController < ApplicationController
     @trip = @user.trips.new(trip_params)
     if @trip.save
       flash[:success] = "Trip Added!"
-      redirect_to "/users/#{user.id}"
+      redirect_to @trip
     else
       render "/users/show"
     end
