@@ -7,4 +7,8 @@ class TripsController < ApplicationController
     @itinerary = Trip.find(params[:id]).itineraries.as_json
   end
 
+  def create
+
+  end   
+
 end

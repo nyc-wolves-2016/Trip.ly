@@ -1,1 +1,20 @@
 <h1>Welcome, <%= @user.first_name %></h1>
+
+<div>
+<%= render 'trips/form' %>
+</div>
+
+<div>
+  <ul>Upcoming Trips
+    <% upcoming_trips(@user).each do |trip| %>
+      <li><%= trip.city %></li>
+    <% end %>
+  <ul>
+</div>
+<div>
+  <ul>Past Trips
+    <% past_trips(@user).each do |trip| %>
+      <li><%= trip.city %></li>
+    <% end %>
+  <ul>
+</div>
