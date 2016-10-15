@@ -15,7 +15,8 @@ class Trip extends React.Component {
     this.setState({
       holder: false,
       packingList: true,
-      items: item_list
+      items: item_list[1],
+      list: item_list[0]
     })
   }
 
@@ -25,7 +26,7 @@ class Trip extends React.Component {
     return(
       <div>
         { this.state.holder ? <Holder onListClick={this.handleListClick} allLists={this.props}/> : null }
-        { this.state.packingList ? <PackingList items={this.state.items}/> : null }
+        { this.state.packingList ? <PackingList list={this.state.list} items={this.state.items}/> : null }
 
       </div>
     )

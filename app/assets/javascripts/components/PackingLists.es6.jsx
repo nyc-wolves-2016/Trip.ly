@@ -23,8 +23,8 @@ class PackingLists extends React.Component {
         <h1>Packing Lists: </h1>
         <ul>
           {packing_lists.map((list, i) =>
-            <li>
-              <a href={list.id} onClick={this.handleClick}>{list.name}</a>
+            <li key={i}>
+              <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
             </li>
           )}
         </ul>

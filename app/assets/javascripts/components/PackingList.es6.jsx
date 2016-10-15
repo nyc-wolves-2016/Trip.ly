@@ -7,11 +7,11 @@ class PackingList extends React.Component {
 
 
   render(){
-    let { name } = this.props.items;
+    let { name } = this.props.list;
     return(
       <li><p>Name: {name}</p>
         {this.props.items.map((item, i) =>
-        <p> {item.name} </p>) }
+        <p key={i}> {item.name} </p>) }
       </li>
     )
   }
