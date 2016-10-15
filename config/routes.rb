@@ -10,7 +10,6 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions', registrations: 'users/registrations' }
 
-
   resources :trips, except: [:index, :new, :edit] do
     resources :packing_lists, except: [:index, :new, :edit] do
       resources :items, only: [:create, :update, :destroy]
@@ -22,4 +21,5 @@ Rails.application.routes.draw do
       resources :events, only: [:create, :update, :destroy]
     end
   end
+
 end
