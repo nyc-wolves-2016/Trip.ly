@@ -18,4 +18,34 @@ class Trip extends React.Component {
 
     )
   }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> remove all info from trip component
 }
