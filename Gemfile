@@ -26,7 +26,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'foundation-rails'
 
 gem 'devise'
-
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 # Use Capistrano for deployment
