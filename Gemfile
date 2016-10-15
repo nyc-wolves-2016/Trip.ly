@@ -28,7 +28,7 @@ gem 'foundation-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
-
+gem 'faker'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
@@ -37,7 +37,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   gem 'rspec-rails'
   gem 'rails-controller-testing'
-  gem 'faker'
+
   gem 'pry-rails'
 end
 
