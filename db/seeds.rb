@@ -32,7 +32,9 @@ trips.each  do |trip|
   trip.resource_lists.each do |list|
     5.times { Resource.create!(resource_list: list, name: Faker::Hipster.sentence(3), link: "http://kayak.com", details: Faker::Lorem.sentence(3)) }
   end
-  trip.itineraries.each do |itinerary|
+
+end
+
+Itinerary.all.each do |itinerary|
     2.times { Event.create!(itinerary: itinerary, name: Faker::GameOfThrones.city, date: Faker::Date.between(2.days.ago, Date.today), start_time: Time.parse("#{rand(1..22)}:00")) }
-  end
 end
