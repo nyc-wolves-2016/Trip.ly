@@ -1,6 +1,6 @@
 <h1 class="greeting">Welcome, <%= @user.first_name %></h1>
 
-<!--  MOVE TO PARTIAL  -->
+<!--  NEEDS TO BE REFACTORED  -->
 <% if @trip.errors.any? %>
   <div id="error_explanation">
     <h2>
@@ -16,29 +16,35 @@
 <% end %>
 
 
-<form id="add-trip" method="GET" action="/trips/new">
+<form class="trips-list" id="add-trip" method="GET" action="/trips/new">
   <button type="submit">Add a Trip</button>
 </form>
 
-<div>
-  <ul>Upcoming Trips
+<div class="trips-list">
+  <ul class="upcoming">Upcoming Trips
     <% upcoming_trips(@user).each do |trip| %>
-      <li>
+      <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-          <button type="submit">Edit</button>
+          <input type="button" type="submit" value= "Edit">
         </form>
+        <%= button_to 'Delete', trip_path(trip),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %>
         <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
       </li>
     <% end %>
   <ul>
 </div>
-<div>
-  <ul>Past Trips
+<div class="trips-list">
+  <ul class="past">Past Trips
     <% past_trips(@user).each do |trip| %>
-      <li>
+      <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-          <button type="submit">Edit</button>
+          <input type="button" type="submit" value= "Edit">
         </form>
+        <%= button_to 'Delete', trip_path(trip),
+             method: :delete,
+             data: { confirm: 'Are you sure?' } %>
         <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
       </li>
     <% end %>

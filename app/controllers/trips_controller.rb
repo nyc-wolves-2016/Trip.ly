@@ -13,14 +13,25 @@ class TripsController < ApplicationController
 
   def create
     @user = current_user
-    @trip = @user.trips.new(trip_params)
-    if @trip.save
-      Itinerary.create(trip_id: @trip.id)
-      flash[:success] = "Trip Added!"
-      redirect_to @trip
-    else
-      render '/users/show'
-    end
+      # if request.xhr?
+      #   @trip = @user.trips.new(user: @user, city: params[:city], country: params[:country], start_date: params[:start_date], end_date: params[:end_date])
+      #   if @trip.save?
+      #     Itinerary.create(trip_id: @trip.id)
+      #     render "trips/_new", layout: false, locals: {trip: @trip}
+      #   else
+      #     halt 422, "Oops, there was an error with the submission."
+      #   end
+      # else
+
+        @trip = @user.trips.new(trip_params)
+        if @trip.save
+          Itinerary.create(trip_id: @trip.id)
+          flash[:success] = "Trip Added!"
+          redirect_to @trip
+        else
+          render '/users/show'
+        end
+      # end
   end
 
   def edit
@@ -34,18 +45,17 @@ class TripsController < ApplicationController
 
     if @trip.update(trip_params)
       flash[:success] = "Trip Updated!"
-      redirect_to @trip
+      redirect_to "/users/#{current_user.id}"
     else
       render "/trips/show"
     end
   end
 
   def destroy
-    @user = current_user
     @trip = Trip.find_by(id: params[:id])
     @trip.destroy
 
-    redirect_to @user
+    redirect_to "/users/#{current_user.id}"
   end
 
   private
