@@ -19,7 +19,7 @@ class PackingListsController < ApplicationController
   def destroy
     @list = PackingList.find(params[:id])
     @list.destroy
-    head :no_content
+    render json: PackingList.where(trip_id: params[:trip_id])
   end
 
   private

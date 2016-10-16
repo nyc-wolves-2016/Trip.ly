@@ -32,8 +32,10 @@ class PackingLists extends React.Component {
       method: 'delete',
       data: id
     })
-    .done(function() {
+    .done(function(response) {
+      console.log(response);
       debugger;
+      this.setState({lists: lists})
       this.forceUpdate();
     }.bind(this));
   }
@@ -58,10 +60,10 @@ class PackingLists extends React.Component {
           {packing_lists.map((list, i) =>
             <li key={i}>
             <div>
-              <input id="edit-item-submit" type="button" value="Edit Item" onClick={this.onButtonClick}/>
+              <input id="edit-item-submit" type="button" value="Edit List" onClick={this.onButtonClick}/>
             </div>
             <div>
-              <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, list.id)} data={this.props}/>
+              <input id="delete-item-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
             </div>
             <a href={list.id} onClick={this.handleClick}>{list.name}</a>
             </li>
