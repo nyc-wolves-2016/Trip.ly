@@ -16,9 +16,9 @@ class AddResourceListForm extends React.Component {
     event.preventDefault();
     let { trip } = this.props;
     var name = this.state.name;
-    var trip_id = trip.id
-    var list = { name, trip_id }
-    var data = { list }
+    var trip_id = trip.id;
+    var list = { name, trip_id };
+    var data = { list };
     $.ajax({
       url: "/trips/" + trip.id + "/resource_lists",
       method: "post",
@@ -35,7 +35,6 @@ class AddResourceListForm extends React.Component {
   render() {
     return(
       <div>
-        <h3>Add a resource list:</h3>
         <form className="resource-list-form" onSubmit={this.handleNewListSubmit}>
         <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
         <input type="submit" value="Submit"/>
