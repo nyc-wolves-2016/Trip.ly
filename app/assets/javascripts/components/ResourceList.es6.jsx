@@ -16,7 +16,8 @@ class ResourceList extends React.Component {
       <div>
         <li><h2>Name: {name}</h2>
           {this.props.resources.map((resource, i) =>
-            resource.link === null ? <p key={i}>{resource.name}</p> : <p key={i}><a href={resource.link}> {resource.name} </a></p> 
+            resource.link === null ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>
+
           ) }
         </li>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
