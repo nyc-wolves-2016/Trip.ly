@@ -10,18 +10,15 @@ class ResourceList extends React.Component {
 
 
   render(){
-    let { name, link, details } = this.props.rlist;
-    if (link === null){
-      var x = "#"
-    } else {
-      var x = link
-    }
+    let { name } = this.props.rlist;
 
     return(
       <div>
-        <li><h2><a href={x}>Name: {name}</a></h2>
+        <li><h2>Name: {name}</h2>
           {this.props.resources.map((resource, i) =>
-          <p key={i}> {resource.name} </p>) }
+            resource.link === null ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>
+
+          ) }
         </li>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
