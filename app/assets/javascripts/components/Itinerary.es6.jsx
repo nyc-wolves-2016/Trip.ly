@@ -38,16 +38,16 @@ class Itinerary extends React.Component {
         <h1>Itinerary blah blah</h1>
         <ul>
           {this.props.events.map((event, i ) =>
-          <Event key={i} data={event}/>
+          <Event key={i} data={event} itinerary={this.props}/>
           )}
         </ul>
         <div>
           <input id="event-submit" type="button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
           <div id="add-event-form" className="hidden">
-            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/> :
-            <button onClick={this.handleReturnClick}>Return To Trip</button>
+            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/>
           </div>
+          <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
   }
