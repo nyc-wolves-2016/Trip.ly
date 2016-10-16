@@ -15,6 +15,7 @@ class TripsController < ApplicationController
     @user = current_user
     @trip = @user.trips.new(trip_params)
     if @trip.save
+      Itinerary.create(trip_id: @trip.id)
       flash[:success] = "Trip Added!"
       redirect_to @trip
     else
