@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2]
 
-  has_many :trips
+  has_many :trips, dependent: :destroy
   has_many :packing_lists, through: :trips
   has_many :resource_lists, through: :trips
   has_many :itineraries, through: :trips
