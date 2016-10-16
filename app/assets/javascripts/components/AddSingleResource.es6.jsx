@@ -41,6 +41,9 @@ class AddSingleResource extends React.Component {
     })
     .done(function(response) {
       this.props.onAddNewResource(response);
+      $("#add-resource-form").addClass("hidden");
+      $("#add-resource-button").removeClass("hidden");
+      $(".new-resource-form").trigger("reset");
     }.bind(this));
   }
 

@@ -14,16 +14,20 @@ class ResourceList extends React.Component {
     this.forceUpdate();
   }
 
+  handleButtonClick() {
+    $("#add-resource-form").removeClass("hidden");
+    $("#add-resource-button").addClass("hidden");
+  }
 
   render(){
     let { name } = this.props.rlist;
     return(
       <div>
         <h2>Name: {name}</h2>
-        {/* <div id="add-resource-button">
+        <div id="add-resource-button">
           <input type="button" value="Add Resource" onClick={this.handleButtonClick} />
-        </div> */}
-        <div id="add-resource-form">
+        </div>
+        <div id="add-resource-form" className="hidden">
           <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource}/>
         </div>
         <li>
