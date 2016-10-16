@@ -3,13 +3,19 @@ class ResourceListPreview extends React.Component {
     super();
     this.state = {
       editResourceListForm: false,
-      resource_list: []
+      resource_list: [],
+      resource_lists: []
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleAddNewList = this.handleAddNewList.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleEditList = this.handleEditList.bind(this);
 
+  }
+
+  componentDidMount() {
+    this.setState({resource_lists: this.props.resource_lists});
   }
 
   handleClick(event){
@@ -25,6 +31,11 @@ class ResourceListPreview extends React.Component {
 
   handleAddNewList(new_list){
     this.props.resource_lists.push(new_list);
+    this.forceUpdate();
+  }
+
+  handleEditList(lists) {
+    this.setState({resource_lists: lists})
     this.forceUpdate();
   }
 
@@ -44,18 +55,18 @@ class ResourceListPreview extends React.Component {
         editResourceListForm: true,
         resource_list: response[0]
       });
-      console.log(this.state);
     }.bind(this));
   }
 
 
   render() {
-    let { resource_lists, trip } = this.props;
+    let { trip } = this.props;
+    let { resource_lists } = this.state;
     return(
       <div>
         <h1>Resource Lists: </h1>
         <div id="edit-resource-list-form" >
-          { this.state.editResourceListForm ? <EditResourceListForm list={this.state.resource_list}/> : null }
+          { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList}/> : null }
         </div>
         <ul>
           {resource_lists.map((list, i) =>

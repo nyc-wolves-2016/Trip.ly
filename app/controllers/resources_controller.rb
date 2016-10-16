@@ -9,6 +9,7 @@ class ResourcesController < ApplicationController
     end
   end
 
+
   private
   def resource_params
     params.require(:resource).permit(:name, :details, :link, :resource_list_id)

@@ -16,6 +16,13 @@ class ResourceListsController < ApplicationController
     render json: info
   end
 
+  def update
+    resource_list = ResourceList.find_by(id: params[:id])
+    resource_list.update(list_params)
+    resource_lists = Trip.find(params[:trip_id]).resource_lists.as_json
+    render json: resource_lists
+  end
+
   private
   def list_params
     params.require(:list).permit(:name, :trip_id)
