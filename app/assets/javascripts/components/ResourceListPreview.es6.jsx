@@ -37,6 +37,7 @@ class ResourceListPreview extends React.Component {
   handleEditList(lists) {
     this.setState({resource_lists: lists})
     this.forceUpdate();
+    this.setState({editResourceListForm: false});
   }
 
   handleButtonClick() {
