@@ -1,9 +1,15 @@
 class ResourceListPreview extends React.Component {
   constructor(){
     super();
+    this.state = {
+      editResourceListForm: false,
+      resource_list: []
+    }
     this.handleClick = this.handleClick.bind(this);
     this.handleAddNewList = this.handleAddNewList.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.handleEditClick = this.handleEditClick.bind(this);
+
   }
 
   handleClick(event){
@@ -27,15 +33,37 @@ class ResourceListPreview extends React.Component {
     $("#add-resource-list-button").addClass("hidden");
   }
 
+  handleEditClick(event) {
+    event.preventDefault();
+    let { trip } = this.props;
+    var listID= $(event.target).attr('href');
+    $.ajax({
+      url: "/trips/" + trip.id + "/resource_lists/" + listID
+    }).done(function(response) {
+      this.setState({
+        editResourceListForm: true,
+        resource_list: response[0]
+      });
+      console.log(this.state);
+    }.bind(this));
+  }
+
+
   render() {
     let { resource_lists, trip } = this.props;
     return(
       <div>
         <h1>Resource Lists: </h1>
+        <div id="edit-resource-list-form" >
+          { this.state.editResourceListForm ? <EditResourceListForm list={this.state.resource_list}/> : null }
+        </div>
         <ul>
           {resource_lists.map((list, i) =>
             <li key={i}>
               <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
+              <div className="edit-list-button">
+                <input href={list.id} type="button" value="Edit List" onClick={this.handleEditClick}/>
+              </div>
             </li>
           )}
         </ul>
