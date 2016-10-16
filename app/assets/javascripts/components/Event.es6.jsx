@@ -1,30 +1,32 @@
 class Event extends React.Component {
   constructor() {
     super();
-    this.onButtonClick = this.onButtonClick.bind(this);
-    this.handleEventEdit = this.handleEventEdit.bind(this);
+    this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
+    // this.handleEventEdit = this.handleEventEdit.bind(this);
   }
 
-  onButtonClick() {
-    $("#edit-event-form").removeClass("hidden");
-    $(".event-edit").addClass("hidden");
-  }
+  handleEditButtonClick(event) {
+    event.preventDefault();
+    var url = $(event.target).attr('href');
+    $.ajax({
+      url: url
+    })
+    .done(function(response) {
+      this.props.onEventEditClick(response);
+    }.bind(this))
 
-  handleEventEdit() {
   }
 
   render() {
-    let { name, location, details, contact_info, date, start_time, end_time } = this.props.data;
+    let { name, location, details, contact_info, date, start_time, end_time, id } = this.props.data;
     // debugger;
     // TRY MOVING THE FORM/BUTTON NEXT TO THE EVENT COMPONENT IN ITINERARY
     return(
       <div>
         <div>
-          <input className="event-edit" type="button" value="Edit Event" onClick={this.onButtonClick}/>
+          <a className="event-edit" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleEditButtonClick}>Edit Event</a>
         </div>
-        <div id="edit-event-form" className="hidden">
-          <EditEventForm data={this.props} onEventEdit={this.handleEventEdit}/>
-        </div>
+
           <li>
             <p>Name: {name}</p>
             <ul>

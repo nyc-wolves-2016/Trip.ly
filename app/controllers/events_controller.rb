@@ -9,6 +9,11 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find_by(id: params[:id])
+    render json: @event.as_json
+  end
+
   def update
     @event = Event.find_by(id: params[:id])
     if @event

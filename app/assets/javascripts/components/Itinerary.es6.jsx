@@ -1,12 +1,15 @@
 class Itinerary extends React.Component {
   constructor() {
     super();
-    // this.state = {
-    //   showForm: false
-    // };
+    this.state = {
+      event: {},
+      editEvent: false
+    };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
     this.handleReturnClick = this.handleReturnClick.bind(this);
+    this.handleEventEdit = this.handleEventEdit.bind(this);
+    this.handleEventEditSubmit = this.handleEventEditSubmit.bind(this);
   }
 
   handleReturnClick(){
@@ -19,10 +22,27 @@ class Itinerary extends React.Component {
   }
 
   handleEventSubmit(response){
+    // debugger;
     this.props.events.push(response);
     this.forceUpdate();
   }
 
+  handleEventEdit(response) {
+    // debugger;
+    // $(".event-edit").addClass("hidden");
+    this.setState({
+      event: response,
+      editEvent: true
+    });
+  }
+
+  handleEventEditSubmit(response) {
+    this.setState({
+      editEvent: false
+    })
+    debugger;
+    // this.forceUpdate();
+  }
   // componentDidMount(){
     // let { trip_id, id } = this.props.itinerary;
     // $.ajax({
@@ -32,15 +52,17 @@ class Itinerary extends React.Component {
     // }.bind(this));
   // }
   render() {
-    // let { trip_id, id, name } = this.props.itinerary;
+    let { trip_id, id, name } = this.props.itinerary;
     return(
       <div>
         <h1>Itinerary blah blah</h1>
         <ul>
           {this.props.events.map((event, i ) =>
-          <Event key={i} data={event} itinerary={this.props}/>
+          <Event key={i} onEventEditClick={this.handleEventEdit} data={event} itinerary={this.props}/>
           )}
         </ul>
+          { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }
+
         <div>
           <input id="event-submit" type="button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
