@@ -9,7 +9,9 @@ class Trip extends React.Component {
       holder: true,
       packingList: false,
       resourceList: false,
-      itinerary: false
+      itinerary: false,
+      rlist: [],
+      list: []
     };
     this.handleItineraryClick = this.handleItineraryClick.bind(this);
     this.handleListClick = this.handleListClick.bind(this);
