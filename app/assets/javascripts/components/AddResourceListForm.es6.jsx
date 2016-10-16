@@ -26,6 +26,9 @@ class AddResourceListForm extends React.Component {
     })
     .done(function(response) {
       this.props.onAddNewList(response);
+      $("#add-resource-list-form").addClass("hidden");
+      $("#add-resource-list-button").removeClass("hidden");
+      $(".resource-list-form").trigger("reset");
     }.bind(this));
   }
 

@@ -3,6 +3,7 @@ class ResourceListPreview extends React.Component {
     super();
     this.handleClick = this.handleClick.bind(this);
     this.handleAddNewList = this.handleAddNewList.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
   }
 
   handleClick(event){
@@ -21,6 +22,11 @@ class ResourceListPreview extends React.Component {
     this.forceUpdate();
   }
 
+  handleButtonClick() {
+    $("#add-resource-list-form").removeClass("hidden");
+    $("#add-resource-list-button").addClass("hidden");
+  }
+
   render() {
     let { resource_lists, trip } = this.props;
     return(
@@ -33,7 +39,10 @@ class ResourceListPreview extends React.Component {
             </li>
           )}
         </ul>
-        <div>
+        <div id="add-resource-list-button">
+          <input type="button" value="Add Resource List" onClick={this.handleButtonClick} />
+        </div>
+        <div id="add-resource-list-form" className="hidden">
           <AddResourceListForm trip={trip} onAddNewList = {this.handleAddNewList}/>
         </div>
       </div>
