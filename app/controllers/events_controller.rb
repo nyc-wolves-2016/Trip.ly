@@ -18,7 +18,8 @@ class EventsController < ApplicationController
     @event = Event.find_by(id: params[:id])
     if @event
       @event.update_attributes(event_params)
-      render json: @event.as_json
+      @events = Event.where(itinerary_id: params[:itinerary_id])
+      render json: @events.as_json
     else
       @errors = @event.errors.messages
     end
