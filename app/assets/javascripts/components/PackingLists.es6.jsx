@@ -1,9 +1,17 @@
 class PackingLists extends React.Component {
   constructor(){
     super();
+    this.state = {
+      packing_lists: []
+    }
     this.handleClick = this.handleClick.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
+    this.handleListDelete = this.handleListDelete.bind(this);
+  }
+
+  componentDidMount() {
+    this.setState({packing_lists: this.props.packing_lists})
   }
 
   handleClick(event){
@@ -24,8 +32,6 @@ class PackingLists extends React.Component {
   }
 
   handleDelete(id) {
-    // this.props.handleDelete(id);
-    // debugger;
     var url = "/trips/" + this.props.trip.id + "/packing_lists/" + id
     $.ajax({
       url: url,
@@ -33,15 +39,18 @@ class PackingLists extends React.Component {
       data: id
     })
     .done(function(response) {
-      console.log(response);
-      debugger;
-      this.setState({lists: lists})
-      this.forceUpdate();
+      this.setState({packing_lists: response});
+      this.handleListDelete(response);
     }.bind(this));
   }
 
+  handleListDelete(response) {
+    return this.state;
+    this.forceUpdate();
+  }
+
   handleListSubmit(response){
-    this.props.packing_lists.push(response);
+    this.state.packing_lists.push(response);
     this.forceUpdate();
   }
 
@@ -57,7 +66,7 @@ class PackingLists extends React.Component {
           <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit}/>
         </div>
         <ul>
-          {packing_lists.map((list, i) =>
+          {this.state.packing_lists.map((list, i) =>
             <li key={i}>
             <div>
               <input id="edit-item-submit" type="button" value="Edit List" onClick={this.onButtonClick}/>

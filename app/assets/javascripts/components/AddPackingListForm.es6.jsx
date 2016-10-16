@@ -5,7 +5,6 @@ class AddPackingListForm extends React.Component {
   }
 
   handleSubmit(event) {
-
     event.preventDefault();
     var url = "/trips/" + this.props.data.trip.id + "/packing_lists";
     var name = this.refs.nameBox.value;
