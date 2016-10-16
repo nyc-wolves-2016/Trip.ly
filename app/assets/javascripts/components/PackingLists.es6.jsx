@@ -24,7 +24,6 @@ class PackingLists extends React.Component {
   }
 
   handleListSubmit(response){
-    debugger;
     this.props.packing_lists.push(response);
     this.forceUpdate();
   }
@@ -43,7 +42,7 @@ class PackingLists extends React.Component {
         <ul>
           {packing_lists.map((list, i) =>
             <li key={i}>
-              <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
+              <a href={list.id} onClick={this.handleClick}>{list.name}</a>
             </li>
           )}
         </ul>

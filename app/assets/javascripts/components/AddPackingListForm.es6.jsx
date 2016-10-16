@@ -1,7 +1,7 @@
 class AddPackingListForm extends React.Component {
   constructor() {
     super();
-    this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(event) {
@@ -10,7 +10,7 @@ class AddPackingListForm extends React.Component {
     var url = "/trips/" + this.props.data.trip.id + "/packing_lists";
     var name = this.refs.nameBox.value;
     var trip_id = this.props.data.trip.id
-    var list = { name, trip_id};
+    var list = { name, trip_id };
     var data = { list };
     $.ajax({
       url: url,
@@ -18,7 +18,6 @@ class AddPackingListForm extends React.Component {
       data: data
     })
     .done(function(response) {
-      debugger;
       this.props.onListSubmit(response);
       $("#add-list-form").addClass("hidden");
       $("#list-submit").removeClass("hidden");
