@@ -18,7 +18,7 @@ class ResourceListPreview extends React.Component {
   }
 
   handleAddNewList(new_list){
-    this.props.resource_lists.push(new_list)
+    this.props.resource_lists.push(new_list);
     this.forceUpdate();
   }
 
@@ -43,7 +43,7 @@ class ResourceListPreview extends React.Component {
           <input type="button" value="Add Resource List" onClick={this.handleButtonClick} />
         </div>
         <div id="add-resource-list-form" className="hidden">
-          <AddResourceListForm trip={trip} onAddNewList = {this.handleAddNewList}/>
+          <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList}/>
         </div>
       </div>
     )

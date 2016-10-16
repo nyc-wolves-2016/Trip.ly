@@ -1,11 +1,11 @@
 class ResourceListsController < ApplicationController
 
   def create
-    @resource_list = ResourceList.new(list_params)
-    if @resource_list.save
-      render json: @resource_list.as_json
+    resource_list = ResourceList.new(list_params)
+    if resource_list.save
+      render json: resource_list.as_json
     else
-      @errors = @resource_list.errors.messages
+      @errors = resource_list.errors.messages
     end
   end
 

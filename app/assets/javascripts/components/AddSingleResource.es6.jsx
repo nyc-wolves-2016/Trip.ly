@@ -35,8 +35,13 @@ class AddSingleResource extends React.Component {
     var resource = { name, link, details, resource_list_id };
     var data = { resource };
     $.ajax({
-      url: "/trips/" + resource_list.trip_id + "/resource_lists/" + resource_list.id + "/resources"
+      url: "/trips/" + resource_list.trip_id + "/resource_lists/" + resource_list.id + "/resources",
+      method: "post",
+      data: data
     })
+    .done(function(response) {
+      this.props.onAddNewResource(response);
+    }.bind(this));
   }
 
   render() {
