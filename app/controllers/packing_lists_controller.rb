@@ -12,8 +12,14 @@ class PackingListsController < ApplicationController
     if @list.save
       render json: @list.as_json
     else
-      @errors = @list.errors.messages
+      render json: { errors: @list.errors.messages }, status: 422
     end
+  end
+
+  def destroy
+    @list = PackingList.find(params[:id])
+    @list.destroy
+    head :no_content
   end
 
   private

@@ -11,7 +11,6 @@ class AddItemForm extends React.Component {
     var packing_list_id = this.props.data.id;
     var item = { name, packing_list_id };
     var data = { item };
-    // debugger;
     $.ajax({
       url: url,
       method: "post",

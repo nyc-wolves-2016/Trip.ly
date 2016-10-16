@@ -16,7 +16,6 @@ class PackingList extends React.Component {
   }
 
   handleItemSubmit(response){
-    debugger;
     this.props.items.push(response);
     this.forceUpdate();
   }

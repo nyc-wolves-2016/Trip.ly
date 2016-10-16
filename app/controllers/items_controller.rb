@@ -5,7 +5,7 @@ class ItemsController < ApplicationController
     if @item.save
       render json: @item.as_json
     else
-      @errors = @item.errors.messages
+      render json: { errors: @item.errors.messages }, status: 422
     end
   end
 
