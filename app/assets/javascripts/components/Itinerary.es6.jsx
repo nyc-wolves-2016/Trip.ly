@@ -45,7 +45,7 @@ class Itinerary extends React.Component {
         <div>
           <input type="button" value="Add Event" onClick={this.onButtonClick}/>
           {this.state.showForm ?
-            <AddEventForm data={this.props.data} onEventSubmit={this.handleEventSubmit}/> :
+            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/> :
             null
           }
         </div>
