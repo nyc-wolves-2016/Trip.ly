@@ -9,6 +9,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def destroy
+    @item = Item.find(params[:id])
+    @item.destroy
+    render json: Item.where(packing_list_id: params[:packing_list_id])
+  end
+
   private
     def item_params
       params.require(:item).permit(:name, :packing_list_id)

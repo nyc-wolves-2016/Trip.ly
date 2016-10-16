@@ -45,7 +45,6 @@ class PackingLists extends React.Component {
   }
 
   handleListDelete(response) {
-    return this.state;
     this.forceUpdate();
   }
 
@@ -69,10 +68,10 @@ class PackingLists extends React.Component {
           {this.state.packing_lists.map((list, i) =>
             <li key={i}>
             <div>
-              <input id="edit-item-submit" type="button" value="Edit List" onClick={this.onButtonClick}/>
+              <input id="edit-list-submit" type="button" value="Edit List" onClick={this.onButtonClick}/>
             </div>
             <div>
-              <input id="delete-item-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
+              <input id="delete-list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
             </div>
             <a href={list.id} onClick={this.handleClick}>{list.name}</a>
             </li>
