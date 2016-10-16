@@ -20,7 +20,7 @@ Rails.application.routes.draw do
     resources :resource_lists, except: [:index, :new, :edit] do
       resources :resources, only: [:create, :update, :destroy]
     end
-    resources :itineraries, except: [:index, :new, :edit, :update] do
+    resources :itineraries, except: [:new, :edit, :update] do
       resources :events, only: [:create, :update, :destroy]
     end
   end
