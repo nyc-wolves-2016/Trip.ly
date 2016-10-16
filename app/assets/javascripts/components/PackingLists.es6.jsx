@@ -25,7 +25,7 @@ class PackingLists extends React.Component {
 
   handleDelete(id) {
     // this.props.handleDelete(id);
-    debugger;
+    // debugger;
     var url = "/trips/" + this.props.trip.id + "/packing_lists/" + id
     $.ajax({
       url: url,
