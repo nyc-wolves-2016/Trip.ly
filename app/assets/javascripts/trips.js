@@ -3,7 +3,6 @@
 $(document).ready(function() {
   $('.container').on('click', '#new-trip', function(event) {
     event.preventDefault();
-    debugger;
     var url = $(this).attr('action');
 
     $.ajax({

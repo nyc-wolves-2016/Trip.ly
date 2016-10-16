@@ -15,4 +15,19 @@ $(document).ready(function() {
       $('#add-trip').remove();
     });
   });
+
+  $('.container').on('click', '#edit-trip', function(event) {
+    event.preventDefault();
+    var url = $(this).attr('action');
+
+    $.ajax({
+      method: 'GET',
+      url: url
+    }).done(function(response){
+      debugger;
+
+      $('.greeting').after(response);
+      $('#edit-trip').remove();
+    });
+  });
 });

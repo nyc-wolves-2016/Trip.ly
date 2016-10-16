@@ -1,4 +1,21 @@
 <h1 class="greeting">Welcome, <%= @user.first_name %></h1>
+
+<!--  MOVE TO PARTIAL  -->
+<% if @trip.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@trip.errors.count, "error") %> prohibited
+      this trip from being saved:
+    </h2>
+    <ul>
+      <% @trip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+
 <form id="add-trip" method="GET" action="/trips/new">
   <button type="submit">Add a Trip</button>
 </form>
@@ -6,14 +23,24 @@
 <div>
   <ul>Upcoming Trips
     <% upcoming_trips(@user).each do |trip| %>
-      <li><a href="/trips/<%= trip.id %>"><%= trip.city %></a></li>
+      <li>
+        <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
+          <button type="submit">Edit</button>
+        </form>
+        <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
+      </li>
     <% end %>
   <ul>
 </div>
 <div>
   <ul>Past Trips
     <% past_trips(@user).each do |trip| %>
-      <li><a href="/trips/<%= trip.id %>"><%= trip.city %></a></li>
+      <li>
+        <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
+          <button type="submit">Edit</button>
+        </form>
+        <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
+      </li>
     <% end %>
   <ul>
 </div>

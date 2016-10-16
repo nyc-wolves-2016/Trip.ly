@@ -19,8 +19,33 @@ class TripsController < ApplicationController
       flash[:success] = "Trip Added!"
       redirect_to @trip
     else
-      render "/users/show"
+      render '/users/show'
     end
+  end
+
+  def edit
+    @trip = Trip.find_by(id: params[:id])
+    render "trips/_form", layout: false
+  end
+
+  def update
+    @user = current_user
+    @trip = Trip.find_by(id: params[:id])
+
+    if @trip.update(trip_params)
+      flash[:success] = "Trip Updated!"
+      redirect_to @trip
+    else
+      render "/trips/show"
+    end
+  end
+
+  def destroy
+    @user = current_user
+    @trip = Trip.find_by(id: params[:id])
+    @trip.destroy
+
+    redirect_to @user
   end
 
   private
