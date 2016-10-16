@@ -2,11 +2,15 @@ class Itinerary extends React.Component {
   constructor() {
     super();
     this.state = {
-      events: [],
       showForm: false
     };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
+    this.handleReturnClick = this.handleReturnClick.bind(this);
+  }
+
+  handleReturnClick(){
+    this.props.onReturnTripPage();
   }
 
   onButtonClick() {
@@ -16,25 +20,25 @@ class Itinerary extends React.Component {
   }
 
   handleEventSubmit(response){
-    this.state.events.push(response);
+    this.props.events.push(response);
     this.forceUpdate();
   }
 
-  componentDidMount(){
+  // componentDidMount(){
     // let { trip_id, id } = this.props.itinerary;
-    $.ajax({
-      url: "/trips/" + this.props.data.trip_id + "/itineraries/" + this.props.data.id
-    }).done(function(response) {
-      this.setState({events: response })
-    }.bind(this));
-  }
+    // $.ajax({
+    //   url: "/trips/" + this.props.data.trip_id + "/itineraries/" + this.props.data.id
+    // }).done(function(response) {
+    //   this.setState({events: response })
+    // }.bind(this));
+  // }
   render() {
     // let { trip_id, id, name } = this.props.itinerary;
     return(
       <div>
-        <h1>Itinerary</h1>
+        <h1>Itinerary blah blah</h1>
         <ul>
-          {this.state.events.map((event, i ) =>
+          {this.props.events.map((event, i ) =>
           <Event key={i} data={event}/>
           )}
         </ul>
@@ -45,6 +49,7 @@ class Itinerary extends React.Component {
             null
           }
         </div>
+        <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
   }

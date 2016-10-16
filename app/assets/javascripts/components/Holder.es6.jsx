@@ -3,6 +3,11 @@ class Holder extends React.Component {
     super();
     this.handleNested = this.handleNested.bind(this);
     this.handleNestedResource = this.handleNestedResource.bind(this);
+    this.handleNestedItinerary = this.handleNestedItinerary.bind(this);
+  }
+
+  handleNestedItinerary(response){
+    this.props.onItineraryClick(response);
   }
 
   handleNested(response){
@@ -19,14 +24,13 @@ class Holder extends React.Component {
     return(
       <div>
         <div>
-
-          <h1>Your Itinerary</h1>
+          <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/>
         </div>
           <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists}/>
           <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={resource_lists}/>
         <div>
 
-          
+
         </div>
 
       </div>
