@@ -1,9 +1,9 @@
 class Itinerary extends React.Component {
   constructor() {
     super();
-    this.state = {
-      showForm: false
-    };
+    // this.state = {
+    //   showForm: false
+    // };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
     this.handleReturnClick = this.handleReturnClick.bind(this);
@@ -14,9 +14,8 @@ class Itinerary extends React.Component {
   }
 
   onButtonClick() {
-    this.setState({
-      showForm: true,
-    });
+    $("#add-event-form").removeClass("hidden");
+    $("#event-submit").addClass("hidden");
   }
 
   handleEventSubmit(response){
@@ -43,13 +42,12 @@ class Itinerary extends React.Component {
           )}
         </ul>
         <div>
-          <input type="button" value="Add Event" onClick={this.onButtonClick}/>
-          {this.state.showForm ?
-            <AddEventForm data={this.props.data} onEventSubmit={this.handleEventSubmit}/> :
-            null
-          }
+          <input id="event-submit" type="button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
-        <button onClick={this.handleReturnClick}>Return To Trip</button>
+          <div id="add-event-form" className="hidden">
+            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/> :
+            <button onClick={this.handleReturnClick}>Return To Trip</button>
+          </div>
       </div>
     )
   }

@@ -37,7 +37,8 @@ def self.find_for_google_oauth2(access_token, signed_in_resource=nil)
       if registered_user
         return registered_user
       else
-        user = User.create(name: data["name"],
+        user = User.create(first_name: data["first_name"],
+          last_name: data["last_name"],
           provider:access_token.provider,
           email: data["email"],
           uid: access_token.uid ,

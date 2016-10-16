@@ -6,7 +6,7 @@ class AddEventForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    var url = "/trips/" + this.props.data.trip_id + "/itineraries/" + this.props.data.id +"/events"
+    var url = "/trips/" + this.props.data.itinerary.trip_id + "/itineraries/" + this.props.data.itinerary.id +"/events"
     var name = this.refs.nameBox.value;
     var location = this.refs.locationBox.value;
     var details = this.refs.detailsBox.value;
@@ -14,7 +14,7 @@ class AddEventForm extends React.Component {
     var date = this.refs.dateBox.value;
     var start_time = this.refs.startTimeBox.value;
     var end_time = this.refs.endTimeBox.value;
-    var itinerary_id = this.props.data.id
+    var itinerary_id = this.props.data.itinerary.id
     var event = { name, location, details, contact_info, date, start_time, end_time, itinerary_id };
     var data = { event }
     $.ajax({
@@ -24,6 +24,9 @@ class AddEventForm extends React.Component {
     })
     .done(function(response) {
       this.props.onEventSubmit(response);
+      $("#add-event-form").addClass("hidden");
+      $("#event-submit").removeClass("hidden");
+      $(".event-form").trigger("reset");
     }.bind(this))
 
   }
@@ -32,7 +35,7 @@ class AddEventForm extends React.Component {
 
     return(
       <div>
-        <form className="eventForm" ref="eventForm"  onSubmit={this.handleSubmit}>
+        <form className="event-form" ref="eventForm"  onSubmit={this.handleSubmit}>
           <input type="text" ref="nameBox" name="event[name]" placeholder="Name" />
           <input type="text" ref="locationBox" name="event[location]" placeholder="Location" />
           <input type="text" ref="detailsBox" name="event[details]" placeholder="Details" />
