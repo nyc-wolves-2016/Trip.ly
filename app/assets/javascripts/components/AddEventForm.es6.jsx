@@ -24,6 +24,9 @@ class AddEventForm extends React.Component {
     })
     .done(function(response) {
       this.props.onEventSubmit(response);
+      $("#add-event-form").addClass("hidden");
+      $("#event-submit").removeClass("hidden");
+      $(".event-form").trigger("reset");
     }.bind(this))
 
   }
@@ -32,7 +35,7 @@ class AddEventForm extends React.Component {
 
     return(
       <div>
-        <form className="eventForm" ref="eventForm"  onSubmit={this.handleSubmit}>
+        <form className="event-form" ref="eventForm"  onSubmit={this.handleSubmit}>
           <input type="text" ref="nameBox" name="event[name]" placeholder="Name" />
           <input type="text" ref="locationBox" name="event[location]" placeholder="Location" />
           <input type="text" ref="detailsBox" name="event[details]" placeholder="Details" />
