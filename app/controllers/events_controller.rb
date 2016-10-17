@@ -9,6 +9,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def destroy
+    @event = Event.find_by(id: params[:id])
+    if @event
+      @event.destroy
+      @events = Event.where(itinerary_id: params[:itinerary_id])
+      render json: @events.as_json
+    else
+      @errors = @event.errors.messages
+    end
+  end
+
   def show
     @event = Event.find_by(id: params[:id])
     render json: @event.as_json

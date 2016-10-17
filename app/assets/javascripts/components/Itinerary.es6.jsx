@@ -11,12 +11,21 @@ class Itinerary extends React.Component {
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleEventEdit = this.handleEventEdit.bind(this);
     this.handleEventEditSubmit = this.handleEventEditSubmit.bind(this);
+    this.handleEventDelete = this.handleEventDelete.bind(this);
   }
 
   componentDidMount(){
     this.setState({
       events: this.props.events
     })
+  }
+
+  handleEventDelete(response) {
+    this.setState({
+      events: response
+    })
+    debugger;
+    this.forceUpdate();
   }
 
   handleReturnClick(){
@@ -43,7 +52,7 @@ class Itinerary extends React.Component {
   }
 
   handleEventEditSubmit(response) {
-    debugger;
+    // debugger;
     this.setState({
       editEvent: false,
       events: response
@@ -58,7 +67,7 @@ class Itinerary extends React.Component {
         <h1>Itinerary blah blah</h1>
         <ul>
           {this.state.events.map((event, i ) =>
-          <Event key={i} onEventEditClick={this.handleEventEdit} data={event} itinerary={this.props}/>
+          <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.events} itinerary={this.props}/>
           )}
         </ul>
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }
