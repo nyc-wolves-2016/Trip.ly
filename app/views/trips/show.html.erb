@@ -1,5 +1,9 @@
 
 
+<div id="weather">
+  <p class="hidden"><%= @trip_object.city %>, <%= @trip_object.country %></p>
+</div>
+
 <div class="weather_display">
   <% city = format_location(@trip_object.city) %>
   <% country = format_location(@trip_object.country) %>

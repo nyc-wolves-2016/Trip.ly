@@ -37,7 +37,9 @@ module TripsHelper
 
 end
 
-
+# data_uri = "http://api.wunderground.com/api/c8a8f3d709e1774d/forecast/q/NY/New_York.json"
+# JSON.parse(data_uri.open{|file| file.readlines }.join)
+ # #
  # city = TripsHelper.format_location("New York")
  # country = TripsHelper.format_location("NY")
  # data = TripsHelper.parser(city, country)
