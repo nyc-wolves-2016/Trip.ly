@@ -6,7 +6,6 @@ class AddEventForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    debugger;
     var url = "/trips/" + this.props.data.itinerary.trip_id + "/itineraries/" + this.props.data.itinerary.id +"/events"
     var name = this.refs.nameBox.value;
     var location = this.refs.locationBox.value;
@@ -24,6 +23,7 @@ class AddEventForm extends React.Component {
       data: data
     })
     .done(function(response) {
+      debugger;
       this.props.onEventSubmit(response);
       $("#add-event-form").addClass("hidden");
       $("#event-submit").removeClass("hidden");

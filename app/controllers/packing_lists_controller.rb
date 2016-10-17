@@ -6,7 +6,7 @@ class PackingListsController < ApplicationController
       packing_lists = Trip.find(params[:trip_id]).packing_lists
       render json: packing_lists
     else
-      render json: @list.errors, status: 422
+      render json: @errors = @list.errors.messages, status: 422
     end
   end
 
