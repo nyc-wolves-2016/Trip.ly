@@ -23,7 +23,6 @@ class AddEventForm extends React.Component {
       data: data
     })
     .done(function(response) {
-      debugger;
       this.props.onEventSubmit(response);
       $("#add-event-form").addClass("hidden");
       $("#event-submit").removeClass("hidden");
