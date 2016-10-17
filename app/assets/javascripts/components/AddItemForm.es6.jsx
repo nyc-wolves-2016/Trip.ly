@@ -18,8 +18,6 @@ class AddItemForm extends React.Component {
     })
     .done(function(response) {
       this.props.onItemSubmit(response);
-      $("#add-item-form").addClass("hidden");
-      $("#item-submit").removeClass("hidden");
       $(".item-form").trigger("reset");
     }.bind(this))
   }

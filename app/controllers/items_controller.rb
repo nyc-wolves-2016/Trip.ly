@@ -3,7 +3,7 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      render json: @item.as_json
+      render json: PackingList.find(params[:packing_list_id]).items
     else
       render json: { errors: @item.errors.messages }, status: 422
     end

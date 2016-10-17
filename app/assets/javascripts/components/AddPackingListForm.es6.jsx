@@ -18,11 +18,13 @@ class AddPackingListForm extends React.Component {
     })
     .done(function(response) {
       this.props.onListSubmit(response);
-      $("#add-list-form").addClass("hidden");
-      $("#list-submit").removeClass("hidden");
       $(".list-form").trigger("reset");
     }.bind(this))
+    .fail(function(response) {
+      this.props.onListSubmitErrors(response.responseJSON.name);
+    }.bind(this))
   }
+
   render() {
     return(
       <div>
