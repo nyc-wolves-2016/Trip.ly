@@ -11,7 +11,6 @@ class ResourceListPreview extends React.Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleEditList = this.handleEditList.bind(this);
-
   }
 
   componentDidMount() {
@@ -37,6 +36,7 @@ class ResourceListPreview extends React.Component {
   handleEditList(lists) {
     this.setState({resource_lists: lists})
     this.forceUpdate();
+    this.setState({editResourceListForm: false});
   }
 
   handleButtonClick() {

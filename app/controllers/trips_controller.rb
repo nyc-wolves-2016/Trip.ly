@@ -5,6 +5,7 @@ class TripsController < ApplicationController
   end
 
   def show
+    @trip_object = Trip.find(params[:id])
     @trip = Trip.find(params[:id]).as_json
     @packing_lists = Trip.find(params[:id]).packing_lists.as_json
     @resource_lists = Trip.find(params[:id]).resource_lists.as_json
