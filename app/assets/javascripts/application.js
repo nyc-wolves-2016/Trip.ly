@@ -28,12 +28,15 @@ $(document).ready(function() {
     unit: 'f',
     success: function(weather) {
       html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<ul class="heading"><li>'+weather.city+', '+weather.region+'</li>';
       html += '<li class="currently">'+weather.currently+'</li>';
-      html += '<li>'+weather.alt.temp+'&deg;C</li></ul>';
+      html += '<li class="heading">'+weather.alt.temp+'&deg;C</li></ul>';
 
       for(var i=0;i<weather.forecast.length;i++) {
-        html += '<p>'+weather.forecast[i].day+' '+weather.forecast[i].low+'F  '+weather.forecast[i].high+'F<p class="test">'+weather.forecast[i].text+'</p></p>';
+        html += '<ul class="test"><li class="test">'+weather.forecast[i].day+'</li>';
+        html += '<li>'+weather.forecast[i].low+'F</li>';
+        html += '<li>'+weather.forecast[i].high+'F</li>';
+        html += '<li>'+weather.forecast[i].text+'</li></ul>';
 
       }
 

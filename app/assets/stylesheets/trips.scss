@@ -24,13 +24,13 @@
   text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.15);
 }
 
-#weather ul {
+.heading ul {
   margin: 0;
   padding: 0;
 
 }
 
-#weather li {
+.heading li {
   background: #fff;
   background: rgba(255,255,255,0.90);
   padding: 10px;
@@ -38,18 +38,14 @@
   border-radius: 5px;
 }
 
-#weather p {
-  padding-top: 5px;
-  display: inline-block;
-  width: 30px;
-
-}
 #weather .test {
+  list-style-type: none;
   padding-top: 5px;
   display: inline-block;
-  width: 20px;
+  width: 55px;
 
 }
+
 
 #weather .currently {
   margin: 0 20px;
