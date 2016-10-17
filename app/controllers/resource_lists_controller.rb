@@ -23,6 +23,12 @@ class ResourceListsController < ApplicationController
     render json: resource_lists
   end
 
+  def destroy
+    resource_list = ResourceList.find_by(id: params[:id])
+    resource_list.destroy
+    render json: ResourceList.where(trip_id: params[:trip_id])
+  end
+
   private
   def list_params
     params.require(:list).permit(:name, :trip_id)

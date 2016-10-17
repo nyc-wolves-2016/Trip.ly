@@ -11,6 +11,7 @@ class ResourceListPreview extends React.Component {
     this.handleButtonClick = this.handleButtonClick.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleEditList = this.handleEditList.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -34,9 +35,10 @@ class ResourceListPreview extends React.Component {
   }
 
   handleEditList(lists) {
-    this.setState({resource_lists: lists})
-    this.forceUpdate();
-    this.setState({editResourceListForm: false});
+    this.setState({
+      resource_lists: lists,
+      editResourceListForm: false
+    })
   }
 
   handleButtonClick() {
@@ -58,6 +60,19 @@ class ResourceListPreview extends React.Component {
     }.bind(this));
   }
 
+  handleDelete(event) {
+    event.preventDefault();
+    let { trip } = this.props;
+    var listID = $(event.target).attr('href');
+    $.ajax({
+      url: "/trips/" + trip.id + "/resource_lists/" + listID,
+      method: "delete"
+    })
+    .done(function(response) {
+      this.setState({ resource_lists: response });
+    }.bind(this));
+  }
+
 
   render() {
     let { trip } = this.props;
@@ -74,6 +89,9 @@ class ResourceListPreview extends React.Component {
               <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
               <div className="edit-list-button">
                 <input href={list.id} type="button" value="Edit List" onClick={this.handleEditClick}/>
+              </div>
+              <div className="delete-list-button">
+                <input href={list.id} type="button" value="Delete List" onClick={this.handleDelete}/>
               </div>
             </li>
           )}
