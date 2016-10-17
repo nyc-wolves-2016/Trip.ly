@@ -6,7 +6,6 @@ class ShareItinerary extends React.Component {
     }
   }
 
-
   componentDidMount(){
     let { trip_id } = this.props.itinerary;
     $.ajax({
@@ -17,9 +16,18 @@ class ShareItinerary extends React.Component {
       })
     }.bind(this));
   }
+
+
   render() {
+
+      if (this.state.events.length === 0) {
+        var displayItit = "hidden"
+      } else {
+        var displayItit = ""
+      }
+
     return(
-      <div>
+      <div className= { displayItit }>
         <h2>Itinerary</h2>
         <ul>
         {this.state.events.map((event, i ) =>

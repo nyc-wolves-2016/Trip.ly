@@ -11,6 +11,10 @@ class Trip < ApplicationRecord
 
   after_create :generate_key
 
+  def name
+    self.city.split(',')[0]
+  end   
+
   def all_resources
     all_resources = []
     self.resource_lists.each do |list|
