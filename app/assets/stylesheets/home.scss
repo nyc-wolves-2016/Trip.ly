@@ -15,7 +15,8 @@
 #homepage-video-content {
   position: absolute;
   top: 50%;
-  left: 50%;
+  left:50%;
+  width: 50%;
   z-index: 2;
   border: 1px solid black;
   color: $white;
@@ -62,6 +63,17 @@ $text-color: #fff;
     font-size: 100px;
   }
 }
+
+.full-height {
+  height: 100%;
+}
+
+.sticky-footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}
+
 
 .footer {
   h4 {

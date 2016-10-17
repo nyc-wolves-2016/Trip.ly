@@ -22,7 +22,7 @@ class Holder extends React.Component {
     let { trip, packing_lists, itinerary, resource_lists } = this.props.allLists;
 
     return(
-      <div>
+      <div className="row">
         <div>
           <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/>
         </div>
