@@ -4,7 +4,7 @@ class ResourceList extends React.Component {
     this.state = {
       editResourceForm: false,
       resource: {},
-      resources: []
+      rlresources: []
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
@@ -13,7 +13,7 @@ class ResourceList extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({ resources: this.props.resources });
+    this.setState({ rlresources: this.props.resources });
   }
 
   handleReturnClick(){
@@ -26,9 +26,11 @@ class ResourceList extends React.Component {
   }
 
   handleUpdateResources(resources) {
-    this.setState({resources: resources});
+    this.setState({
+      rlresources: resources,
+      editResourceForm: false
+    });
     this.forceUpdate();
-    this.setState({editResourceForm: false});
   }
 
   handleButtonClick() {
@@ -66,7 +68,7 @@ class ResourceList extends React.Component {
           { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} /> : null }
         </div>
         <li>
-          {this.state.resources.map((resource, i) =>
+          {this.state.rlresources.map((resource, i) =>
             <div>
               {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
               <div>

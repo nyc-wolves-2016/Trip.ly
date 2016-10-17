@@ -9,10 +9,16 @@ class ItemsController < ApplicationController
     end
   end
 
+  def show
+    item = Item.find_by(id: params[:id])
+    render json: item
+  end
+
   def update
     item = Item.find(params[:id])
     item.update(item_params)
-    items = PackingList.find(params[:packing_list_id])
+    items = PackingList.find(params[:packing_list_id]).items.as_json
+    render json: items
   end
 
   def destroy
