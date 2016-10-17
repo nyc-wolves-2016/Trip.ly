@@ -35,7 +35,8 @@ class AddEventForm extends React.Component {
 
     return(
       <div>
-        <form className="event-form" ref="eventForm"  onSubmit={this.handleSubmit}>
+        <fieldset className="event-form fieldset" ref="eventForm"  onSubmit={this.handleSubmit}>
+          <legend>Add an Event</legend>
           <input type="text" ref="nameBox" name="event[name]" placeholder="Name" />
           <input type="text" ref="locationBox" name="event[location]" placeholder="Location" />
           <input type="text" ref="detailsBox" name="event[details]" placeholder="Details" />
@@ -43,8 +44,8 @@ class AddEventForm extends React.Component {
           <input type="date" ref="dateBox" name="event[date]" placeholder="Date" />
           <input type="time" ref="startTimeBox" name="event[start_time]" placeholder="Start Time" />
           <input type="time" ref="endTimeBox" name="event[end_time]" placeholder="End Time" />
-          <input type="submit" value="Submit"/>
-        </form>
+          <input className="expanded button" type="submit" value="Submit"/>
+        </fieldset>
       </div>
     )
   }
