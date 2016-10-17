@@ -7,15 +7,15 @@ upcoming_end = Date.parse("15th Feb 2017")
 soon_start = Date.parse("16th Oct 2016")
 soon_end = Date.parse("27th Oct 2016")
 
-cities = ["Milan", "Prato", "Rome", "Florence", "Venice", "Turin", "Alba", "Naples", "Lecce"]
+cities = ["Milan, IT", "San Pedro de Macoris", "Glastonbury, Connecticut, US", "Florence, IT", "Venice, California, US", "Turin, IT", "Alba, IT", "Naples, IT", "Lecce, IT"]
 
 2.times { User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, password: "password", email: Faker::Internet.email)}
 
-4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, country:"Italy", start_date: past_start, end_date: past_end ) }
+4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, start_date: past_start, end_date: past_end ) }
 
-4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, country:"Italy", start_date: upcoming_start, end_date: upcoming_end ) }
+4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, start_date: upcoming_start, end_date: upcoming_end ) }
 
-4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, country:"Italy", start_date: soon_start, end_date: soon_end ) }
+4.times {Trip.create!(user_id: rand(1..2), city: cities.sample, start_date: soon_start, end_date: soon_end ) }
 
 trips = Trip.all
 

@@ -32,10 +32,10 @@ $(document).ready(function() {
       html += '<li class="currently">'+weather.currently+'</li>';
       html += '<li class="heading">'+weather.alt.temp+'&deg;C</li></ul>';
 
-      for(var i=0;i<weather.forecast.length;i++) {
+      for(var i=0;i<6;i++) {
         html += '<ul class="test"><li class="test">'+weather.forecast[i].day+'</li>';
-        html += '<li>'+weather.forecast[i].low+'F</li>';
         html += '<li>'+weather.forecast[i].high+'F</li>';
+        html += '<li>'+weather.forecast[i].low+'F</li>';
         html += '<li><img src="'+weather.forecast[i].thumbnail+'"></li></ul>';
 
       }
