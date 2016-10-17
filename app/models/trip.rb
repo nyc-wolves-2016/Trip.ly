@@ -10,6 +10,16 @@ class Trip < ApplicationRecord
 
   after_create :generate_key
 
+  def all_resources
+    all_resources = []
+    self.resource_lists.each do |list|
+      list.resources.each do |resource|
+        all_resources << resource
+      end
+    end
+    all_resources
+  end
+
 private
 
   def generate_key

@@ -20,7 +20,7 @@ class ShareItinerary extends React.Component {
   render() {
     return(
       <div>
-        <h1>Itinerary</h1>
+        <h2>Itinerary</h2>
         <ul>
         {this.state.events.map((event, i ) =>
         <ShareEvent key={i} data={event}/>

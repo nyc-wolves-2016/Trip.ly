@@ -62,7 +62,7 @@ class TripsController < ApplicationController
   def share
     @trip = Trip.find_by(key: params[:key])
     @itinerary = @trip.itinerary.as_json
-    @resource_lists = @trip.resource_lists.as_json
+    @resources = @trip.all_resources.as_json
 
   end
 
