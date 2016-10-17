@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions' }
 
+  get "/users/google", to: "users#google"
   get "/users/:user_id", to: "users#show"
 
   put "trips/:trip_id/packing_lists/:packing_list_id/items/:id/complete", to: "items#complete"

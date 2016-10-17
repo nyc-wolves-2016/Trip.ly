@@ -2,10 +2,45 @@ class AddEventForm extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this)
+    this.checkGoogleStatus = this.checkGoogleStatus.bind(this)
+    this.addToCalendar = this.addToCalendar.bind()
+  }
+
+  checkGoogleStatus() {
+    $.ajax({
+      url: "/users/google"
+    })
+    .done(function(response){
+      return response
+    }.bind(this))
+  };
+
+  addToCalendar() {
+    debugger;
+    var url = "https://www.googleapis.com/calendar/v3/calendars/calendarId/events"
+    var data = {
+       "end": {
+        "date": "2016-10-21"
+       },
+       "start": {
+        "date": "2016-10-21"
+       },
+       "summary": "Graduation",
+       "location": "dbc"
+      }
+    $.ajax({
+      url: url,
+      method: "post",
+      data: data
+    })
   }
 
   handleSubmit(event) {
     event.preventDefault();
+    var status = this.checkGoogleStatus();
+    if (status) {
+      this.addToCalendar();
+    }
     var url = "/trips/" + this.props.data.itinerary.trip_id + "/itineraries/" + this.props.data.itinerary.id +"/events"
     var name = this.refs.nameBox.value;
     var location = this.refs.locationBox.value;
@@ -24,9 +59,10 @@ class AddEventForm extends React.Component {
     })
     .done(function(response) {
       this.props.onEventSubmit(response);
-      $("#add-event-form").addClass("hidden");
-      $("#event-submit").removeClass("hidden");
+      // $("#add-event-form").addClass("hidden");
+      // $("#event-submit").removeClass("hidden");
       $(".event-form").trigger("reset");
+
     }.bind(this))
 
   }
@@ -35,8 +71,7 @@ class AddEventForm extends React.Component {
 
     return(
       <div>
-        <fieldset className="event-form fieldset" ref="eventForm"  onSubmit={this.handleSubmit}>
-          <legend>Add an Event</legend>
+        <form className="event-form" ref="eventForm"  onSubmit={this.handleSubmit}>
           <input type="text" ref="nameBox" name="event[name]" placeholder="Name" />
           <input type="text" ref="locationBox" name="event[location]" placeholder="Location" />
           <input type="text" ref="detailsBox" name="event[details]" placeholder="Details" />
@@ -44,8 +79,8 @@ class AddEventForm extends React.Component {
           <input type="date" ref="dateBox" name="event[date]" placeholder="Date" />
           <input type="time" ref="startTimeBox" name="event[start_time]" placeholder="Start Time" />
           <input type="time" ref="endTimeBox" name="event[end_time]" placeholder="End Time" />
-          <input className="expanded button" type="submit" value="Submit"/>
-        </fieldset>
+          <input type="submit" value="Submit"/>
+        </form>
       </div>
     )
   }
