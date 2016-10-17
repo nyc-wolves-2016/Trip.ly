@@ -4,7 +4,6 @@ class CreateTrips < ActiveRecord::Migration[5.0]
       t.string :city, null: false
       t.date :start_date, null: false
       t.date :end_date, null: false
-      t.string :key
       t.references :user
 
       t.timestamps
