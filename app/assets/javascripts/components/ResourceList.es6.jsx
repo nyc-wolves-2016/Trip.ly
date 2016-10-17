@@ -1,8 +1,13 @@
 class ResourceList extends React.Component {
   constructor() {
     super();
+    this.state = {
+      editResourceForm: false,
+      resource: {}
+    }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
+    this.handleEditResource = this.handleEditResource.bind(this);
   }
 
   handleReturnClick(){
@@ -19,6 +24,22 @@ class ResourceList extends React.Component {
     $("#add-resource-button").addClass("hidden");
   }
 
+  handleEditResource(event) {
+    event.preventDefault();
+    let { rlist } = this.props;
+    debugger;
+    var resourceID = $(event.target).attr('href');
+    $.ajax({
+      url: "/trips/" + rlist.trip_id + "/resource_lists/" + rlist.id + "/resources/" + resourceID
+    })
+    .done(function(response) {
+      this.setState({ editResourceForm: true,
+                      resource: response
+      });
+    })
+
+  }
+
   render(){
     let { name } = this.props.rlist;
     return(
@@ -30,10 +51,17 @@ class ResourceList extends React.Component {
         <div id="add-resource-form" className="hidden">
           <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource}/>
         </div>
+        <div id="edit-resource-form" >
+          { this.state.editResourceForm ? <EditSingleResource resource={this.state.resource} /> : null }
+        </div>
         <li>
           {this.props.resources.map((resource, i) =>
-            resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>
-
+            <div>
+              {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
+              <div>
+                <input href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} />
+              </div>
+            </div>
           ) }
         </li>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
