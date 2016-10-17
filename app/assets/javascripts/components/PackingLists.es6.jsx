@@ -54,7 +54,6 @@ class PackingLists extends React.Component {
       editList: false,
       packing_lists: lists
     })
-    this.forceUpdate();
   }
 
   handleAddClick() {
@@ -77,7 +76,6 @@ class PackingLists extends React.Component {
     })
     .done(function(response) {
       this.setState({packing_lists: response});
-      this.forceUpdate();
     }.bind(this));
   }
 
