@@ -2,16 +2,20 @@ class PackingList extends React.Component {
   constructor() {
     super();
     this.state = {
-      items: []
+      editItemForm: false,
+      item: {},
+      plitems: []
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleItemSubmit = this.handleItemSubmit.bind(this);
     this.handleItemDelete = this.handleItemDelete.bind(this);
+    this.handleEditItem = this.handleEditItem.bind(this);
+    this.handleUpdateItems = this.handleUpdateItems.bind(this);
   }
 
   componentDidMount() {
-    this.setState({items: this.props.items})
+    this.setState({plitems: this.props.items})
   }
 
   handleReturnClick(){
@@ -28,6 +32,27 @@ class PackingList extends React.Component {
     this.forceUpdate();
   }
 
+  handleEditItem(event) {
+    event.preventDefault();
+    let { list } = this.props;
+    var itemID = $(event.target).attr('href');
+    $.ajax({
+      url: "/trips/" + list.trip_id + "/packing_lists/" + list.id + "/items/" + itemID
+    }).done(function(response) {
+      this.setState({ editItemForm: true,
+                      item: response
+                    })
+    }.bind(this))
+  }
+
+  handleUpdateItems(items) {
+    this.setState({
+      plitems: items,
+      editItemForm: false
+    });
+    this.forceUpdate();
+  }
+
   handleDelete(id) {
     var url = "/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + id
     $.ajax({
@@ -36,7 +61,7 @@ class PackingList extends React.Component {
       data: id
     })
     .done(function(response) {
-      this.setState({items: response});
+      this.setState({plitems: response});
       this.handleItemDelete(response);
     }.bind(this));
   }
@@ -56,17 +81,20 @@ class PackingList extends React.Component {
         <div id="add-item-form" className="hidden">
           <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/>
         </div>
+        <div id="edit-item-form">
+          { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems}/> : null }
+        </div>
         <ul>
-          {this.state.items.map((item, i) =>
+          {this.state.plitems.map((item, i) =>
           <li key={i}>
           <div>
-            <input id="edit-item-submit" type="button" value="Complete Item" onClick={this.onButtonClick}/>
+            <input id="edit-item-submit" type="button" value="Complete Item" />
           </div>
           <div>
-            <input id="edit-item-submit" type="button" value="Edit Item" onClick={this.onButtonClick}/>
+            <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
           </div>
           <div>
-            <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} data={this.props}/>
+            <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
           </div> {item.name} </li>) }
         </ul>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
