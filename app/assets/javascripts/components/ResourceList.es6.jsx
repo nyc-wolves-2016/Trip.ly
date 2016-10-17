@@ -31,7 +31,6 @@ class ResourceList extends React.Component {
       rlresources: resources,
       editResourceForm: false
     });
-    this.forceUpdate();
   }
 
   handleButtonClick() {
@@ -63,7 +62,6 @@ class ResourceList extends React.Component {
       })
       .done(function(response) {
         this.setState({ rlresources: response})
-        this.forceUpdate();
       }.bind(this))
     }
 

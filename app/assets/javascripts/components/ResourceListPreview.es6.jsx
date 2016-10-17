@@ -35,9 +35,10 @@ class ResourceListPreview extends React.Component {
   }
 
   handleEditList(lists) {
-    this.setState({resource_lists: lists})
-    this.forceUpdate();
-    this.setState({editResourceListForm: false});
+    this.setState({
+      resource_lists: lists,
+      editResourceListForm: false
+    })
   }
 
   handleButtonClick() {
@@ -69,7 +70,6 @@ class ResourceListPreview extends React.Component {
     })
     .done(function(response) {
       this.setState({ resource_lists: response });
-      this.forceUpdate();
     }.bind(this));
   }
 
