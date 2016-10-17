@@ -59,6 +59,13 @@ class TripsController < ApplicationController
     redirect_to "/users/#{current_user.id}"
   end
 
+  def share
+    @trip = Trip.find_by(key: params[:key])
+    @itinerary = @trip.itinerary.as_json
+    @resources = @trip.all_resources.as_json
+
+  end
+
   private
     def trip_params
       params.require(:trip).permit(:city, :country, :start_date, :end_date)

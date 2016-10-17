@@ -76,6 +76,7 @@ ActiveRecord::Schema.define(version: 20161014193811) do
     t.string   "country"
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
+    t.string   "key"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
