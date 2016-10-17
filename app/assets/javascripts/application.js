@@ -36,7 +36,7 @@ $(document).ready(function() {
         html += '<ul class="test"><li class="test">'+weather.forecast[i].day+'</li>';
         html += '<li>'+weather.forecast[i].low+'F</li>';
         html += '<li>'+weather.forecast[i].high+'F</li>';
-        html += '<li><img src="'+weather.forecast[i].text+'"></li></ul>';
+        html += '<li><img src="'+weather.forecast[i].thumbnail+'"></li></ul>';
 
       }
 
