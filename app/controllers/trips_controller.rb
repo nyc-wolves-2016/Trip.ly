@@ -61,6 +61,7 @@ class TripsController < ApplicationController
 
   def share
     @trip = Trip.find_by(key: params[:key])
+    
   end
 
   private
