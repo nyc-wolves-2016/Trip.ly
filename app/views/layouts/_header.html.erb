@@ -1,50 +1,10 @@
-<!-- <div class="off-canvas-wrapper">
-  <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>-->
-    <!-- off-canvas title bar for 'small' screen -->
-    <!-- <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
-      <div class="title-bar-right">
-        <span class="title-bar-title"><i class="fa fa-suitcase" aria-hidden="true"></i><span class="header-logo">Trip.ly</span>
-        <button class="menu-icon" type="button" data-open="offCanvasRight"></button>
-      </div>
-    </div> -->
-
-    <!-- off-canvas right menu -->
-    <!-- <div class="off-canvas position-right" id="offCanvasRight" data-off-canvas data-position="right">
-      <ul class="vertical dropdown menu" data-dropdown-menu>
-        <li><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i><span class="header-logo">Trip.ly</span></a></li>
-      <% if user_signed_in? %>
-        <li><a href="/users/<%= current_user.id %>">Dashboard</a></li>
-        <li><%= link_to "Log out", logout_path, method: "delete" %>
-      <% else %>
-        <li><%= link_to "Register", new_user_registration_path %></li>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
-      <% end %>
-      </ul>
-    </div> -->
-
-  <!-- "wider" top-bar menu for 'medium' and up -->
-<!-- <div id="widemenu" class="top-bar">
-  <div class="top-bar-right">
-    <ul class="menu" data-dropdown-menu>
-      <li class="menu-text">Foundation</li>
-      <li><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i><span class="header-logo">Trip.ly</span></a></li>
-    <% if user_signed_in? %>
-      <li><a href="/users/<%= current_user.id %>">Dashboard</a></li>
-      <li><%= link_to "Log out", logout_path, method: "delete" %>
-    <% else %>
-      <li><%= link_to "Register", new_user_registration_path %></li>
-      <li><%= link_to "Sign In", new_user_session_path %></li>
-    <% end %>
-    </ul>
-  </div> -->
-
   <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
 
       <!-- off-canvas title bar for 'small' screen -->
       <div class="title-bar" data-responsive-toggle="widemenu" data-hide-for="medium">
         <div class="title-bar-left">
-          <span class="title-bar-title"><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i>Trip.ly</a></span></span>
+          <span class="title-bar-title header-logo"><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i>Trip.ly</a></span></span>
         </div>
         <div class="title-bar-right">
           <span class="title-bar-title"></span>
@@ -66,9 +26,10 @@
       </div>
 
       <!-- "wider" top-bar menu for 'medium' and up -->
-      <div id="widemenu" class="top-bar">
+      <div data-sticky-container>
+      <div id="widemenu" data-sticky data-options="marginTop:0;" class="top-bar">
         <div class="top-bar-title">
-            <li class="menu-text"><span class="header-logo"><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i>Trip.ly</a></span></li>
+            <span class="menu-text header-logo"><a href="/"><i class="fa fa-suitcase" aria-hidden="true"></i>Trip.ly</a></span>
         </div>
         <div class="top-bar-right">
           <ul class="dropdown menu" data-dropdown-menu>
@@ -84,3 +45,4 @@
           </ul>
         </div>
       </div>
+    </div>
