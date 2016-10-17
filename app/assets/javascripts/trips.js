@@ -1,5 +1,3 @@
-// Place all the behaviors and hooks related to the matching controller here.
-// All this logic will automatically be available in application.js.
 $(document).ready(function() {
   $('.container').on('click', '#new-trip', function(event) {
     event.preventDefault();
@@ -12,14 +10,6 @@ $(document).ready(function() {
       console.log(response)
     });
   });
-
-    // Autocomplete for cities input using geoNames API
-
-    // $(document).on('keyup', "input", function(event) {
-    //   event.preventDefault();
-    //   debugger;
-    //
-    // })
 
     $(document).delegate("#trip_city", 'focus', function(event) {
       $(this).autocomplete({
@@ -36,28 +26,21 @@ $(document).ready(function() {
               username: "demo"
             },
             success: function( data ) {
-              if( typeof(data.status) != 'undefined' ){ //An error occured
+              if( typeof(data.status) != 'undefined' ){ 
                 var errorObject = data;
-                //Now we have access to errorObject.status, errorObject.status.message and so on
-                //Let's do something with the error object
-                return; //Stop parsing function
+              
+                return; 
               }
               response( $.map( data.geonames, function( item ) {
                 return {
                   label: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
-                  // value: item.name +  ", " + item.countryCode,
                   value: item.name + (item.adminName1 ? ", " + item.adminName1 : "") + ", " + item.countryCode,
                 }
               }));
             },
           });
       },
-      //Start Search after user types...
       minLength: 2,
       });
     });
-
-
-
-
 });
