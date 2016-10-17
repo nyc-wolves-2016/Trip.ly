@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :trips, except: [:index] do
     resources :packing_lists, except: [:index, :new, :edit] do
-      resources :items, only: [:create, :update, :destroy]
+      resources :items, only: [:show, :create, :update, :destroy]
     end
     resources :resource_lists, except: [:index, :new, :edit] do
       resources :resources, only: [:show, :create, :update, :destroy]

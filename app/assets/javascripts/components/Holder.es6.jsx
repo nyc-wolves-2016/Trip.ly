@@ -26,7 +26,7 @@ class Holder extends React.Component {
         <div>
           <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/>
         </div>
-          <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists}/>
+          <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists} handleDelete={this.handleDelete} />
           <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={resource_lists}/>
         <div>
 
