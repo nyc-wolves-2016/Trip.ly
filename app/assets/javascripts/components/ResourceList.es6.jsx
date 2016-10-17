@@ -69,7 +69,7 @@ class ResourceList extends React.Component {
         </div>
         <li>
           {this.state.rlresources.map((resource, i) =>
-            <div>
+            <div key={i}>
               {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
               <div>
                 <input href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} />
