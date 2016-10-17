@@ -4,7 +4,11 @@
   <p class="hidden"><%= @trip_object.city %></p>
 </div>
 
-<a href="mailto:?subject=Check%20out%20my%20trip%20details%20on%20Trip.ly!&amp;body=Check%20out%20my%20trip%20itinerary%20and%20resources%20for%20%3C%25%3D%20%40trip_object.city%20%25%3E%20here%3A%0Ahttp%3A%2F%2Ftrip-ly.herokuapp.com%2Ftrips%2Fshare%3Fkey%3D%3C%25%3D%20%40trip_object.key%25%3E">Share Trip Details</a>
+<a href="mailto:?subject=Check out my trip details on Trip.ly!&amp;body=Check my trip itinerary and resources for <%= @trip_object.city %> at  http://trip-ly.herokuapp.com/trips/share?key=<%= @trip_object.key%>"
+   title="Share by Email">
+Share Trip Details
+</a>
+
 
 
 <%= react_component 'Trip', { trip: @trip, packing_lists: @packing_lists, resource_lists: @resource_lists, itinerary: @itinerary } %>
