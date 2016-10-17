@@ -9,6 +9,12 @@ class ItemsController < ApplicationController
     end
   end
 
+  def update
+    item = Item.find(params[:id])
+    item.update(item_params)
+    items = PackingList.find(params[:packing_list_id])
+  end
+
   def destroy
     @item = Item.find(params[:id])
     @item.destroy

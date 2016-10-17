@@ -18,14 +18,6 @@ class Holder extends React.Component {
     this.props.onResourceListClick(response);
   }
 
-
-  removeList(id) {
-    var newList = this.props.allLists.packing_lists.filter((list) => { return list.id != id;
-    });
-
-    this.setState({ lists: newList });
-  }
-
   render(){
     let { trip, packing_lists, itinerary, resource_lists } = this.props.allLists;
 

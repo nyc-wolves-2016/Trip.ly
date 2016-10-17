@@ -24,7 +24,7 @@ class PackingList extends React.Component {
   }
 
   handleItemSubmit(response){
-    this.props.items.push(response);
+    this.state.items.push(response);
     this.forceUpdate();
   }
 
@@ -59,6 +59,9 @@ class PackingList extends React.Component {
         <ul>
           {this.state.items.map((item, i) =>
           <li key={i}>
+          <div>
+            <input id="edit-item-submit" type="button" value="Complete Item" onClick={this.onButtonClick}/>
+          </div>
           <div>
             <input id="edit-item-submit" type="button" value="Edit Item" onClick={this.onButtonClick}/>
           </div>

@@ -2,16 +2,22 @@ class PackingLists extends React.Component {
   constructor(){
     super();
     this.state = {
-      packing_lists: []
+      packing_lists: [],
+      list: {},
+      editList: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
     this.handleListDelete = this.handleListDelete.bind(this);
+    this.handleListEdit = this.handleListEdit.bind(this);
+    this.handleListEditSubmit = this.handleListEditSubmit.bind(this);
   }
 
   componentDidMount() {
-    this.setState({packing_lists: this.props.packing_lists})
+    this.setState({
+      packing_lists: this.props.packing_lists
+    })
   }
 
   handleClick(event){
@@ -48,6 +54,22 @@ class PackingLists extends React.Component {
     this.forceUpdate();
   }
 
+  handleListEdit() {
+    this.setState({
+      editList: true
+    })
+    this.forceUpdate();
+    debugger;
+  }
+
+  handleListEditSubmit(response){
+    this.setState({
+      editList: false,
+      packing_lists: response
+    })
+    this.forceUpdate();
+  }
+
   handleListSubmit(response){
     this.state.packing_lists.push(response);
     this.forceUpdate();
@@ -65,10 +87,13 @@ class PackingLists extends React.Component {
           <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit}/>
         </div>
         <ul>
+        { this.state.editList ? <EditPackingListForm list={this.state.list}  onListEditSubmit={this.handleListSubmit}/> : null }
           {this.state.packing_lists.map((list, i) =>
             <li key={i}>
-            <div>
-              <input id="edit-list-submit" type="button" value="Edit List" onClick={this.onButtonClick}/>
+            <div id="edit-packing-list-form">
+
+
+              <input id="edit-list-submit" type="button" value="Edit List" onClick={this.handleListEdit} data={this.props}/>
             </div>
             <div>
               <input id="delete-list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
