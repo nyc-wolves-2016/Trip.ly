@@ -28,7 +28,7 @@ class PackingList extends React.Component {
   }
 
   handleItemSubmit(response){
-    this.state.items.push(response);
+    this.state.plitems.push(response);
     this.forceUpdate();
   }
 

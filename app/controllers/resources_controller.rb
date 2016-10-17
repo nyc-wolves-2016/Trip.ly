@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
 
   def show
     resource = Resource.find_by(id: params[:id]).as_json
-    render json: resource 
+    render json: resource
   end
 
   def update
@@ -21,6 +21,11 @@ class ResourcesController < ApplicationController
     render json: resources
   end
 
+  def destroy
+    resource = Resource.find_by(id: params[:id])
+    resource.destroy
+    render json: Resource.where(resource_list_id: params[:resource_list_id])
+  end
 
   private
   def resource_params
