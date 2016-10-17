@@ -9,7 +9,6 @@ class PackingLists extends React.Component {
     this.handleClick = this.handleClick.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
-    this.handleListDelete = this.handleListDelete.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleListUpdateSubmit = this.handleListUpdateSubmit.bind(this);
   }
@@ -70,16 +69,11 @@ class PackingLists extends React.Component {
     $.ajax({
       url: url,
       method: 'delete',
-      data: id
     })
     .done(function(response) {
       this.setState({packing_lists: response});
-      this.handleListDelete(response);
+      this.forceUpdate();
     }.bind(this));
-  }
-
-  handleListDelete(response) {
-    this.forceUpdate();
   }
 
   render() {
