@@ -73,7 +73,6 @@ ActiveRecord::Schema.define(version: 20161014193811) do
 
   create_table "trips", force: :cascade do |t|
     t.string   "city",       null: false
-    t.string   "country"
     t.date     "start_date", null: false
     t.date     "end_date",   null: false
     t.string   "key"

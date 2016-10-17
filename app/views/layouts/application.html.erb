@@ -11,21 +11,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "Trip.ly" %></title>
-    <script src="https://use.fontawesome.com/1593c6697e.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
-    
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://use.fontawesome.com/1593c6697e.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
   </head>
 
   <body>
     <%= render "layouts/header" %>
-          <div class="off-canvas-content row" data-off-canvas-content>
+          <div class="off-canvas-content" data-off-canvas-content>
               <%= render 'layouts/messages' %>
               <%= yield %>
 
@@ -34,5 +35,6 @@
           <!-- Closing div tags for navigation menu -->
         </div>
       </div>
+
   </body>
 </html>
