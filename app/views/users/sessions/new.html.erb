@@ -1,14 +1,23 @@
-<h2>Log in</h2>
+<h2>Sign in</h2>
+
+<%- if devise_mapping.omniauthable? %>
+  <%- resource_class.omniauth_providers.each do |provider| %>
+    <%= link_to image_tag("/images/btn_google_signin_dark_normal_web.png", border:0), omniauth_authorize_path(resource_name, provider) %><br />
+  <% end -%>
+<% end -%>
+
+<div class="signup-or-separator">
+<span class="h6 signup-or-separator-text">or</span>
+<hr>
+</div>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
   </div>
 
   <% if devise_mapping.rememberable? -%>
@@ -19,8 +28,9 @@
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Sign In", class: "hollow button" %>
   </div>
 <% end %>
-
+<hr>
+</div>
 <%= render "users/shared/links" %>
