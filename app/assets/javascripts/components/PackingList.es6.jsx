@@ -30,8 +30,7 @@ class PackingList extends React.Component {
       this.setState({
         plitems: response
       })
-      debugger;
-      this.forceUpdate();
+      // this.forceUpdate();
     }.bind(this))
   }
 
@@ -45,7 +44,7 @@ class PackingList extends React.Component {
   }
 
   handleItemSubmit(response){
-    this.state.items.push(response);
+    this.state.plitems.push(response);
     this.forceUpdate();
   }
 
@@ -90,7 +89,6 @@ class PackingList extends React.Component {
   render(){
     let { name } = this.props.list;
     // debugger;
-    // var url = "/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + key
     return(
       <div>
         <h1>Packing List Name: {name}</h1>
@@ -106,15 +104,16 @@ class PackingList extends React.Component {
         <ul>
           {this.state.plitems.map((item, i) =>
           <li key={i}>
-          <div>
-            <a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a>
-          </div>
-          <div>
-            <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
-          </div>
-          <div>
-            <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
-          </div> {item.name} </li>) }
+            { !item.packed ? <div><a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a></div> : null }
+            <div>
+              <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
+            </div>
+            <div>
+              <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
+            </div>
+            <span style={{"text-decoration": item.packed ? "line-through" : ""}}>{item.name}</span>
+          </li>
+        )}
         </ul>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
