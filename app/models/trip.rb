@@ -1,3 +1,4 @@
+require 'securerandom'
 class Trip < ApplicationRecord
   belongs_to :user
 
@@ -9,6 +10,10 @@ class Trip < ApplicationRecord
   validates :key, uniqueness: true
 
   after_create :generate_key
+
+  def name
+    self.city.split(',')[0]
+  end   
 
   def all_resources
     all_resources = []
@@ -23,7 +28,7 @@ class Trip < ApplicationRecord
 private
 
   def generate_key
-    update_column :key, SecureRandom.hex(5)
+    update_column :key, SecureRandom.hex(7)
   rescue ActiveRecord::RecordNotUnique => e
     token_attempts ||= 0
     token_attempts += 1
