@@ -73,7 +73,7 @@ class Itinerary extends React.Component {
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }
 
         <div>
-          <input id="event-submit" type="button" value="Add Event" onClick={this.onButtonClick}/>
+          <input id="event-submit" className="expanded button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
           <div id="add-event-form" className="hidden">
             <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/>
