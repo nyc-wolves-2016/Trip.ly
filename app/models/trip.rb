@@ -24,7 +24,7 @@ class Trip < ApplicationRecord
 private
 
   def generate_key
-    update_column :key, SecureRandom.hex(5)
+    update_column :key, SecureRandom.hex(7)
   rescue ActiveRecord::RecordNotUnique => e
     token_attempts ||= 0
     token_attempts += 1
