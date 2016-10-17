@@ -10,6 +10,7 @@ class ResourceList extends React.Component {
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
     this.handleEditResource = this.handleEditResource.bind(this);
     this.handleUpdateResources = this.handleUpdateResources.bind(this);
+    this.handleDeleteResource = this.handleDeleteResource.bind(this);
   }
 
   componentDidMount() {
@@ -50,8 +51,21 @@ class ResourceList extends React.Component {
                       resource: response
       });
     }.bind(this))
-
   }
+
+    handleDeleteResource(event) {
+      event.preventDefault();
+      let { rlist } = this.props;
+      var resourceID = $(event.target).attr('href');
+      $.ajax({
+        url: "/trips/" + rlist.trip_id + "/resource_lists/" + rlist.id + "/resources/" + resourceID,
+        method: "delete"
+      })
+      .done(function(response) {
+        this.setState({ rlresources: response})
+        this.forceUpdate();
+      }.bind(this))
+    }
 
   render(){
     let { name } = this.props.rlist;
@@ -73,6 +87,9 @@ class ResourceList extends React.Component {
               {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
               <div>
                 <input href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} />
+              </div>
+              <div>
+                <input href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}/>
               </div>
             </div>
           ) }
