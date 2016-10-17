@@ -21,7 +21,6 @@ class AddPackingListForm extends React.Component {
       $(".list-form").trigger("reset");
     }.bind(this))
     .fail(function(response) {
-      debugger;
       this.props.onListSubmitErrors(response.responseJSON.name);
     }.bind(this))
   }
