@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   root to: "home#index"
 
+  get "trips/share", to: "trips#share"
+  
   devise_scope :user do
     get "/register", to: "devise/registrations#new"
     post "/register", to: "devise/registrations#create"
@@ -12,6 +14,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: "users/omniauth_callbacks", sessions: 'users/sessions' }
 
   get "/users/:user_id", to: "users#show"
+
+
 
   put "trips/:trip_id/packing_lists/:packing_list_id/items/:id/complete", to: "items#complete"
 
@@ -26,5 +30,7 @@ Rails.application.routes.draw do
       resources :events, only: [:create, :show, :update, :destroy]
     end
   end
+
+
 
 end
