@@ -1,1 +1,9 @@
+
+
+<div id="weather">
+  <p class="hidden"><%= @trip_object.city %>, <%= @trip_object.country %></p>
+</div>
+
+
+
 <%= react_component 'Trip', { trip: @trip, packing_lists: @packing_lists, resource_lists: @resource_lists, itinerary: @itinerary } %>
