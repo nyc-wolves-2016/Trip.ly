@@ -1,3 +1,40 @@
+@import 'settings';
+@import 'foundation';
 // Place all the styles related to the Home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#homepage-video {
+  width: 100%;
+}
+
+// #homepage-video-content {
+//   position: absolute;
+//   top: 0;
+//   right: 0;
+//   bottom: 0;
+//   left: 0;
+//   z-index: 2;
+//   padding: 80px 20px;
+//   text-align: center;
+// }
+
+.main-section {
+  background: #ccc;
+  padding: 20px;
+}
+
+.top-bar, .menu li{
+  background-color: $black;
+}
+
+.header-logo, .header-logo a {
+  font-size: 18px;
+  color: $white;
+}
+
+.hollow.button {
+  margin-right: 7px;
+}
+
+.hollow.button
