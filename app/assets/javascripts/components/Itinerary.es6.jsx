@@ -2,7 +2,7 @@ class Itinerary extends React.Component {
   constructor() {
     super();
     this.state = {
-      events: [],
+      ievents: [],
       event: {},
       editEvent: false
     };
@@ -16,13 +16,13 @@ class Itinerary extends React.Component {
 
   componentDidMount(){
     this.setState({
-      events: this.props.events
+      ievents: this.props.events
     })
   }
 
   handleEventDelete(response) {
     this.setState({
-      events: response
+      ievents: response
     })
     debugger;
     this.forceUpdate();
@@ -55,7 +55,7 @@ class Itinerary extends React.Component {
     // debugger;
     this.setState({
       editEvent: false,
-      events: response
+      ievents: response
     })
     this.forceUpdate();
   }
@@ -66,8 +66,8 @@ class Itinerary extends React.Component {
       <div>
         <h1>Itinerary blah blah</h1>
         <ul>
-          {this.state.events.map((event, i ) =>
-          <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.events} itinerary={this.props}/>
+          {this.state.ievents.map((event, i ) =>
+          <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
           )}
         </ul>
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }

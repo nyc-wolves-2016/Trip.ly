@@ -6,6 +6,7 @@ class AddEventForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    debugger;
     var url = "/trips/" + this.props.data.itinerary.trip_id + "/itineraries/" + this.props.data.itinerary.id +"/events"
     var name = this.refs.nameBox.value;
     var location = this.refs.locationBox.value;
