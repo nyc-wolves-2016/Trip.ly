@@ -1,1 +1,19 @@
+
+
+<div class="weather_display">
+  <% city = format_location(@trip_object.city) %>
+  <% country = format_location(@trip_object.country) %>
+  <% data = parser(city, country) %>
+  <% results = format_results(data) %>
+
+  <ul>
+    <% results.each do |info| %>
+    <li> <%= info %></li>
+
+    <% end %>
+  </ul>
+
+
+</div>
+
 <%= react_component 'Trip', { trip: @trip, packing_lists: @packing_lists, resource_lists: @resource_lists, itinerary: @itinerary } %>
