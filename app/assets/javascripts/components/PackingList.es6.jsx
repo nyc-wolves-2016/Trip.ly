@@ -12,10 +12,27 @@ class PackingList extends React.Component {
     this.handleItemDelete = this.handleItemDelete.bind(this);
     this.handleEditItem = this.handleEditItem.bind(this);
     this.handleUpdateItems = this.handleUpdateItems.bind(this);
+    this.handleItemComplete = this.handleItemComplete.bind(this);
   }
 
   componentDidMount() {
     this.setState({plitems: this.props.items})
+  }
+
+  handleItemComplete(event) {
+    event.preventDefault();
+    var url = $(event.target).attr('href');
+    $.ajax({
+      url: url,
+      method: "put"
+    })
+    .done(function(response){
+      this.setState({
+        plitems: response
+      })
+      debugger;
+      this.forceUpdate();
+    }.bind(this))
   }
 
   handleReturnClick(){
@@ -72,6 +89,8 @@ class PackingList extends React.Component {
 
   render(){
     let { name } = this.props.list;
+    // debugger;
+    // var url = "/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + key
     return(
       <div>
         <h1>Packing List Name: {name}</h1>
@@ -88,7 +107,7 @@ class PackingList extends React.Component {
           {this.state.plitems.map((item, i) =>
           <li key={i}>
           <div>
-            <input id="edit-item-submit" type="button" value="Complete Item" />
+            <a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a>
           </div>
           <div>
             <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>

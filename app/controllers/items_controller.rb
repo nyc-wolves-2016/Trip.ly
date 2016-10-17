@@ -9,6 +9,13 @@ class ItemsController < ApplicationController
     end
   end
 
+  def complete
+    item = Item.find(params[:id])
+    item.update_attributes(packed: true)
+    items = PackingList.find(params[:packing_list_id]).items.as_json
+    render json: items
+  end
+
   def show
     item = Item.find_by(id: params[:id])
     render json: item
