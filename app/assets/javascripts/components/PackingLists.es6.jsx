@@ -6,6 +6,7 @@ class PackingLists extends React.Component {
       packing_list: [],
       editList: false,
       addList: false,
+      anyErrors: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
@@ -19,11 +20,11 @@ class PackingLists extends React.Component {
     this.setState({
       packing_lists: this.props.packing_lists
     })
-    this.props.onResetErrors();
   }
 
   handleNestedErrors(response) {
     this.props.onErrors(response);
+    this.setState({anyErrors: true});
   }
 
   handleClick(event){
@@ -64,8 +65,7 @@ class PackingLists extends React.Component {
   }
 
   handleListSubmit(lists){
-    this.setState({packing_lists: lists, addList: false });
-    this.props.onResetErrors();
+    this.setState({packing_lists: lists, addList: false, anyErrors: false });
   }
 
   handleDelete(id) {
@@ -88,10 +88,10 @@ class PackingLists extends React.Component {
           <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
         <div id="add-errors">
-          { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-list-form">
-          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors}/> : null }
+          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors} /> : null }
         </div>
         <ul>
         { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit}/> : null }

@@ -6,6 +6,7 @@ class ResourceListPreview extends React.Component {
       resource_list: [],
       resource_lists: [],
       addResourceList: false,
+      anyErrors: false,
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
@@ -23,6 +24,7 @@ class ResourceListPreview extends React.Component {
 
   handleNestedErrors(response) {
     this.props.onErrors(response);
+    this.setState({anyErrors: true});
   }
 
   handleClick(event){
@@ -41,8 +43,7 @@ class ResourceListPreview extends React.Component {
   }
 
   handleListSubmit(lists) {
-    this.setState({resource_lists: lists, addResourceList: false});
-    this.props.onResetErrors();
+    this.setState({resource_lists: lists, addResourceList: false, anyErrors: false});
   }
 
   handleEditList(lists) {
@@ -104,7 +105,7 @@ class ResourceListPreview extends React.Component {
           <input className="hollow button" type="button" value="Add Resource List" onClick={this.handleAddClick} />
         </div>
         <div id="add-errors">
-          { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-resource-list-form">
           { this.state.addResourceList ? <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList} onErrors={this.handleNestedErrors} onListSubmit={  this.handleListSubmit}/> : null }

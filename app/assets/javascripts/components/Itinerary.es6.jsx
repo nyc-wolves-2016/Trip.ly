@@ -5,8 +5,9 @@ class Itinerary extends React.Component {
       ievents: [],
       event: {},
       addEvent: false,
-      editEvent: false,
       anyForms: false
+      editEvent: false,
+      anyErrors: false
     };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
@@ -22,7 +23,6 @@ class Itinerary extends React.Component {
     this.setState({
       ievents: this.props.events
     })
-    this.props.onResetErrors();
     this.props.onResetForm();
   }
 
@@ -32,13 +32,13 @@ class Itinerary extends React.Component {
 
   handleNestedErrors(response) {
     this.props.onErrors(response);
+    this.setState({anyErrors: true});
   }
 
   handleEventDelete(response) {
     this.setState({
       ievents: response
     })
-    // debugger;
     this.forceUpdate();
   }
 
@@ -54,14 +54,14 @@ class Itinerary extends React.Component {
   }
 
   handleEventSubmit(response){
-    // debugger;
-    this.props.onResetErrors();
     this.setState({
       ievents: response,
       addEvent: false,
       anyForms: false
     });
+    this.props.events.push(response);
     this.forceUpdate();
+    this.setState({anyErrors: false});
   }
 
   handleEventEdit(response) {
@@ -98,7 +98,7 @@ class Itinerary extends React.Component {
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
 
         <div id="add-list-errors">
-          { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
 
           { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/></div> }
