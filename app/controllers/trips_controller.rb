@@ -1,7 +1,11 @@
 class TripsController < ApplicationController
   def new
-    @trip = Trip.new
-    render "trips/_form", layout: false
+    if !user_signed_in?
+      not_found
+    else
+      @trip = Trip.new
+      render "trips/_form", layout: false
+    end
   end
 
   def show
@@ -21,6 +25,9 @@ class TripsController < ApplicationController
   end
 
   def create
+    if !user_signed_in?
+      not_found
+    else
     @user = current_user
         @trip = @user.trips.new(trip_params)
         if @trip.save
@@ -30,16 +37,30 @@ class TripsController < ApplicationController
         else
           render '/users/show'
         end
+    end
   end
 
   def edit
     @trip = Trip.find_by(id: params[:id])
-    render "trips/_form", layout: false
+    if !user_signed_in?
+      not_found
+    elsif @trip.user_id != current_user.id
+      not_found
+    else
+      render "trips/_form", layout: false
+    end
   end
 
   def update
+
+    if !user_signed_in?
+      not_found
+    end
     @user = current_user
     @trip = Trip.find_by(id: params[:id])
+    if @trip.user_id != current_user.id
+      not_found
+    end
 
     if @trip.update(trip_params)
       flash[:success] = "Trip Updated!"
@@ -51,15 +72,27 @@ class TripsController < ApplicationController
 
   def destroy
     @trip = Trip.find_by(id: params[:id])
-    @trip.destroy
+    if !user_signed_in?
+      not_found
+    elsif @trip.user_id != current_user.id
+      not_found
+    else
+      @trip.destroy
+    end
 
     redirect_to "/users/#{current_user.id}"
   end
 
   def share
     @trip = Trip.find_by(key: params[:key])
-    @itinerary = @trip.itinerary.as_json
-    @resources = @trip.all_resources.as_json
+    if !user_signed_in?
+      not_found
+    elsif @trip.user_id != current_user.id
+      not_found
+    else
+      @itinerary = @trip.itinerary.as_json
+      @resources = @trip.all_resources.as_json
+    end
   end
 
   private
