@@ -6,7 +6,7 @@ class ItemsController < ApplicationController
       packing_list = PackingList.find(@item.packing_list_id)
       trip = Trip.find(packing_list.trip_id)
 
-      if !user_signed_in || trip.user.id != current_user.id
+      if !user_signed_in? || trip.user.id != current_user.id
         not_found
       end
       render json: PackingList.find(params[:packing_list_id]).items
@@ -32,7 +32,7 @@ class ItemsController < ApplicationController
     packing_list = PackingList.find(item.packing_list_id)
     trip = Trip.find(packing_list.trip_id)
 
-    if !user_signed_in || trip.user.id != current_user.id
+    if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
     item.update(item_params)
@@ -45,7 +45,7 @@ class ItemsController < ApplicationController
     packing_list = PackingList.find(@item.packing_list_id)
     trip = Trip.find(packing_list.trip_id)
 
-    if !user_signed_in || trip.user.id != current_user.id
+    if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
     @item.destroy

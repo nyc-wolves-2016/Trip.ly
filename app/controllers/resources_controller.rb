@@ -6,7 +6,7 @@ class ResourcesController < ApplicationController
       resource_list = ResourceList.find(resource.resource_list_id)
       trip = Trip.find(resource_list.trip_id)
 
-      if !user_signed_in || trip.user.id != current_user.id
+      if !user_signed_in? || trip.user.id != current_user.id
         not_found
       end
       render json: resource.as_json
@@ -25,7 +25,7 @@ class ResourcesController < ApplicationController
     resource_list = ResourceList.find(resource.resource_list_id)
     trip = Trip.find(resource_list.trip_id)
 
-    if !user_signed_in || trip.user.id != current_user.id
+    if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
     resource.update(resource_params)
@@ -38,7 +38,7 @@ class ResourcesController < ApplicationController
     resource_list = ResourceList.find(resource.resource_list_id)
     trip = Trip.find(resource_list.trip_id)
 
-    if !user_signed_in || trip.user.id != current_user.id
+    if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
     resource.destroy
