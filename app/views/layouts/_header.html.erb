@@ -34,11 +34,11 @@
         <div class="top-bar-right">
           <ul class="dropdown menu" data-dropdown-menu>
           <% if user_signed_in? %>
-            <li><a class="hollow button" href="/users/<%= current_user.id %>">Dashboard</a></li>
-            <li><%= link_to "Log out", logout_path, method: "delete", class: "hollow button"  %>
+            <li><a class="white hollow button" href="/users/<%= current_user.id %>">Dashboard</a></li>
+            <li><%= link_to "Log out", logout_path, method: "delete", class: "white hollow button"  %>
           <% else %>
-            <li><%= link_to "Register", new_user_registration_path, class: "hollow button" %></li>
-            <li><%= link_to "Sign In", new_user_session_path, class: "hollow button" %></li>
+            <li><%= link_to "Register", new_user_registration_path, class: "white hollow button" %></li>
+            <li><%= link_to "Sign In", new_user_session_path, class: "white hollow button" %></li>
           <% end %>
               </ul>
             </li>

@@ -2,9 +2,11 @@
 // All this logic will automatically be available in application.js.
 $(function() {
   if(document.getElementById("homepage-video")!=null) {
-    document.getElementById("homepage-video").playbackRate = 0.5;
+    document.getElementById("homepage-video").playbackRate = 0.75;
     document.getElementById("homepage-video").play();
     document.getElementById('homepage-video').addEventListener('ended',myHandler,false);
+
+    $("div.hidden").fadeIn(4000).removeClass("hidden");
 
     function myHandler(e) {
       setTimeout(function(){

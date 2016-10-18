@@ -1,36 +1,42 @@
-<h2>Sign in</h2>
+<div class="row">
 
-<%- if devise_mapping.omniauthable? %>
-  <%- resource_class.omniauth_providers.each do |provider| %>
-    <%= link_to image_tag("/images/btn_google_signin_dark_normal_web.png", border:0), omniauth_authorize_path(resource_name, provider) %><br />
-  <% end -%>
-<% end -%>
-
-<div class="signup-or-separator">
-<span class="h6 signup-or-separator-text">or</span>
-<hr>
-</div>
-
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
-  </div>
-
-  <div class="field">
-    <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="medium-8 large-6 large-offset-3 medium-offset-2 column">
+    <h2>Sign in</h2>
+    <div class="google-sign-in">
+    <%- if devise_mapping.omniauthable? %>
+      <%- resource_class.omniauth_providers.each do |provider| %>
+        <%= link_to image_tag("/images/btn_google_signin_light_normal_web.png", border:0), omniauth_authorize_path(resource_name, provider) %>
+      <% end -%>
+    <% end -%>
     </div>
-  <% end -%>
+    <div class="signup-or-separator">
+    <span class="h6 signup-or-separator-text">or</span>
+    <hr>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Sign In", class: "hollow button" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="field">
+        <%= f.email_field :email, autofocus: true, placeholder: "Email" %>
+      </div>
+
+      <div class="field">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? -%>
+        <div class="field">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end -%>
+
+      <div class="actions shared-links">
+        <%= f.submit "Sign In", class: "hollow button" %>
+      </div>
+    <% end %>
+    <hr>
+    <div class="shared-links">
+    <%= render "users/shared/links" %>
+    </div>
   </div>
-<% end %>
-<hr>
 </div>
-<%= render "users/shared/links" %>
