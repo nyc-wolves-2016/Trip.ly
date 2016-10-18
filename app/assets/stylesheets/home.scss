@@ -54,7 +54,7 @@ $text-color: #fff;
 
 // footer CSS
 
-.footer {
+footer {
   background-color: $black;
   padding: 2rem 4rem;
   text-align: center;
@@ -75,7 +75,7 @@ $text-color: #fff;
 }
 
 
-.footer {
+footer {
   h4 {
     color: $text-color;
     font-size: 1em;
@@ -91,7 +91,7 @@ $text-color: #fff;
 }
 
 @media only screen and (min-width: 40.063em) {
-.footer {
+footer {
   .columns:nth-child(n+2) {
     border-left: 1px solid scale-color($text-color, $lightness: -30%);
     min-height: 180px;

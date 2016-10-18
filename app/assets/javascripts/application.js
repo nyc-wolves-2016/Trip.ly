@@ -18,7 +18,7 @@
 //= require react
 //= require react_ujs
 //= require components
-//= javascripts/stickyFooter
+
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
