@@ -25,7 +25,7 @@
     <% upcoming_trips(@user).each do |trip| %>
       <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-          <button class="fa fa-pencil-square-o" type="submit" value= "Edit">Edit</button
+          <button class="fa fa-pencil-square-o" type="submit" value= "Edit">Edit</button>
         </form>
         <%= button_to 'Delete', trip_path(trip),
              method: :delete,
