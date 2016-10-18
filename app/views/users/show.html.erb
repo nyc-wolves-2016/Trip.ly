@@ -2,6 +2,7 @@
   <h1 class="userwelcome">Welcome, <%= @user.first_name %></h1>
 </div>
 
+
 <div class="user-profile row">
   <div class="large-8 large-centered column">
     <h1 class="greeting center-text">Welcome, <%= @user.first_name %></h1>
@@ -10,7 +11,6 @@
 
 <div class="row">
 
-
 <div class="row">
   <div class="small-10 medium-8 large-8 column small-centered medium-centered large-centered">
     <form class="trips-list" id="add-trip">
@@ -18,8 +18,6 @@
     </form>
   </div>
 </div>
-
-
 
   <%= form_for @trip do |f| %>
   <% if @trip.errors.any? %>
