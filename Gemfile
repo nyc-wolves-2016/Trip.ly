@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 gem 'react-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -26,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'foundation-rails'
 
+gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'

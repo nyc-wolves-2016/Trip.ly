@@ -18,3 +18,5 @@
 
 # Ignore secrets.yml
 secrets.yml
+
+.env 
