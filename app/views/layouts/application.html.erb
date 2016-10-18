@@ -25,16 +25,17 @@
   </head>
 
   <body>
+
     <%= render "layouts/header" %>
           <div class="off-canvas-content" data-off-canvas-content>
               <%= render 'layouts/messages' %>
               <%= yield %>
 
           </div>
-          <%= render "layouts/footer" %>
+
           <!-- Closing div tags for navigation menu -->
         </div>
       </div>
-
+<%= render "layouts/footer" %>
   </body>
 </html>

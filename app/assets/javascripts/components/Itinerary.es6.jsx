@@ -63,8 +63,8 @@ class Itinerary extends React.Component {
   render() {
     let { trip_id, id, name } = this.props.itinerary;
     return(
-      <div>
-        <h1>Itinerary blah blah</h1>
+      <div className="row">
+        <h1>Itinerary</h1>
         <ul>
           {this.state.ievents.map((event, i ) =>
           <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
@@ -73,12 +73,12 @@ class Itinerary extends React.Component {
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }
 
         <div>
-          <input id="event-submit" className="expanded button" value="Add Event" onClick={this.onButtonClick}/>
+          <input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
           <div id="add-event-form" className="hidden">
             <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/>
           </div>
-          <button onClick={this.handleReturnClick}>Return To Trip</button>
+          <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
   }

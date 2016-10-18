@@ -97,7 +97,7 @@ class ResourceListPreview extends React.Component {
           )}
         </ul>
         <div id="add-resource-list-button">
-          <input type="button" value="Add Resource List" onClick={this.handleButtonClick} />
+          <input className="hollow button" type="button" value="Add Resource List" onClick={this.handleButtonClick} />
         </div>
         <div id="add-resource-list-form" className="hidden">
           <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList}/>

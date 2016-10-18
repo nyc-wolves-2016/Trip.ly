@@ -85,7 +85,7 @@ class PackingLists extends React.Component {
       <div>
         <h1>Packing Lists: </h1>
         <div>
-          <input id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
+          <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
         <div id="add-list-errors">
           { this.state.anyErrors ? <AddListErrors errors={this.state.errors}/> : null }
@@ -98,10 +98,10 @@ class PackingLists extends React.Component {
           {this.state.packing_lists.map((list, i) =>
             <li key={i}>
             <div id="edit-packing-list-form">
-              <input href={list.id} id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
+              <input href={list.id} className="hollow button" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
             </div>
             <div>
-              <input id="delete-list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
+              <input className="hollow button" id="delete-list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
             </div>
             <a href={list.id} onClick={this.handleClick}>{list.name}</a>
             </li>

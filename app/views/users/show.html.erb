@@ -1,4 +1,4 @@
-<h1 class="greeting">Welcome, <%= @user.first_name %></h1>
+<div class="row"><h1 class="greeting">Welcome, <%= @user.first_name %></h1>
 
 <!--  NEEDS TO BE REFACTORED  -->
 <% if @trip.errors.any? %>
@@ -17,15 +17,15 @@
 
 
 <form class="trips-list" id="add-trip" method="GET" action="/trips/new">
-  <button type="submit">Add a Trip</button>
+  <button class="hollow button" type="submit">Add a Trip</button>
 </form>
 
 <div class="trips-list">
-  <ul class="upcoming">Upcoming Trips
+  <ul class="upcoming"><h5>Upcoming Trips</h5>
     <% upcoming_trips(@user).each do |trip| %>
       <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-          <input type="button" type="submit" value= "Edit">
+          <button class="fa fa-pencil-square-o" type="submit" value= "Edit">Edit</button
         </form>
         <%= button_to 'Delete', trip_path(trip),
              method: :delete,
@@ -36,7 +36,7 @@
   <ul>
 </div>
 <div class="trips-list">
-  <ul class="past">Past Trips
+  <ul class="past"><h5>Past Trips</h5>
     <% past_trips(@user).each do |trip| %>
       <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
@@ -49,4 +49,5 @@
       </li>
     <% end %>
   <ul>
+</div>
 </div>
