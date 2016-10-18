@@ -72,7 +72,8 @@ class PackingList extends React.Component {
   handleUpdateItems(items) {
     this.setState({
       plitems: items,
-      editItemForm: false
+      editItemForm: false,
+      anyErrors: false
     });
   }
 
@@ -103,7 +104,7 @@ class PackingList extends React.Component {
           { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <div id="edit-item-form">
-          { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems}/> : null }
+          { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <ul>
           {this.state.plitems.map((item, i) =>

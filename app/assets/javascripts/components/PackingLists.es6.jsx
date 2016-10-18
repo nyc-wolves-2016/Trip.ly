@@ -56,7 +56,8 @@ class PackingLists extends React.Component {
   handleListUpdateSubmit(lists){
     this.setState({
       editList: false,
-      packing_lists: lists
+      packing_lists: lists,
+      anyErrors: false
     })
   }
 
@@ -94,7 +95,7 @@ class PackingLists extends React.Component {
           { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <ul>
-        { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit}/> : null }
+        { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors}/> : null }
           {this.state.packing_lists.map((list, i) =>
             <li key={i}>
             <div id="edit-packing-list-form">
