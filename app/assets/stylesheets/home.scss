@@ -13,8 +13,8 @@
 
 
 #homepage-video-content {
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: -50%;
   left:50%;
   width: 50%;
   z-index: 2;
@@ -33,7 +33,7 @@
 
 /* Navigation */
 .top-bar, .menu li{
-  background-color: $black;
+  background-color: $peterriver;
 }
 
 .header-logo, .header-logo a {

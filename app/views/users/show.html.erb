@@ -21,7 +21,7 @@
 </form>
 
 <div class="trips-list">
-  <ul class="upcoming">Upcoming Trips
+  <ul class="upcoming"><h5>Upcoming Trips</h5>
     <% upcoming_trips(@user).each do |trip| %>
       <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
@@ -36,7 +36,7 @@
   <ul>
 </div>
 <div class="trips-list">
-  <ul class="past">Past Trips
+  <ul class="past"><h5>Past Trips</h5>
     <% past_trips(@user).each do |trip| %>
       <li >
         <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
