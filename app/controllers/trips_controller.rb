@@ -14,15 +14,16 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id]).as_json
 
     if @user
-        @owner = Trip.find_by(user_id: @user.id)
+        @owner = Trip.find_by(user_id: @user.id).user
     end
+    binding.pry
+
 
     if @owner
       if current_user.id != @owner.id
         not_found
       end
     end
-
     @packing_lists = Trip.find(params[:id]).packing_lists.as_json
     @resource_lists = Trip.find(params[:id]).resource_lists.as_json
     @itinerary = Trip.find(params[:id]).itinerary.as_json
