@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
       end
       render json: resource.as_json
     else
-      @errors = resource.errors.messages
+      render json: @errors = resource.errors.messages, status: 422
     end
   end
 
