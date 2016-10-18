@@ -13,23 +13,36 @@
 
 
 #homepage-video-content {
-  position: relative;
-  top: -50%;
-  left:50%;
-  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+  right: 25%;
+  bottom: 50%;
   z-index: 2;
-  border: 1px solid black;
   color: $white;
+  text-align: center;
+  text-transform: capitalize;
+}
+#homepage-video-content h1 {
+    text-shadow: 2px 2px 4px #000000;
 }
 
-// .main-section {
-//   background: #ccc;
-//   padding: 20px;
-// }
+@media screen and (max-width: 39.9375em) {
+  #homepage-video-content {
+    position: absolute;
+    top: 15%;
+    left: 30%;
+    z-index: 2;
+    color: $white;
+    text-align: center;
+    text-transform: capitalize;
+  }
+}
+
 
 /* Navigation */
 .top-bar, .menu li{
-  background-color: $black;
+  background-color: $darker-gray;
 }
 
 .header-logo, .header-logo a {
@@ -51,7 +64,7 @@ $text-color: #fff;
 // footer CSS
 
 footer {
-  background-color: $black;
+  background-color: $darker-gray;
   padding: 2rem 4rem;
   text-align: center;
   color: $text-color;
@@ -86,7 +99,10 @@ footer {
   }
 }
 
+
+
 @media only screen and (min-width: 40.063em) {
+
 footer {
   .columns:nth-child(n+2) {
     border-left: 1px solid scale-color($text-color, $lightness: -30%);
