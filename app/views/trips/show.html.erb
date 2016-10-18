@@ -1,6 +1,9 @@
-<div id="weather">
-  <p class="hidden"><%= @trip_object.city %></p>
-</div>
+<% if @trip_object.two_months? %>
+  <div id="weather">
+    <p class="hidden"><%= @trip_object.city %></p>
+  </div>
+<% end %>
+
 <div class="row">
 <a class="hollow button" href="mailto:?subject=Check out my <%= @trip_object.name %> trip details on Trip.ly!&amp;body=Check out my trip itinerary and resources for <%= @trip_object.name %> at  http://trip-ly.herokuapp.com/trips/share?key=<%= @trip_object.key%>"
    title="Share by Email">

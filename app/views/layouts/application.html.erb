@@ -18,15 +18,15 @@
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
-
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%=ENV["GOOGLE_PLACES_KEY"]%>&amp;libraries=places"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="https://use.fontawesome.com/1593c6697e.js"></script>
-    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
   </head>
 
   <body>
-    <script src="/assets/stickyFooter.js"></script>
 
+    <script type="text/javascript" src="/scripts/stickyFooter.js"></script>
     <%= render "layouts/header" %>
           <div class="off-canvas-content" data-off-canvas-content>
               <%= render 'layouts/messages' %>
