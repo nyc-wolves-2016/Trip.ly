@@ -85,7 +85,7 @@ class PackingLists extends React.Component {
       <div>
         <h1>Packing Lists: </h1>
         <div>
-          <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.onButtonClick}/>
+          <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
         <div id="add-list-errors">
           { this.state.anyErrors ? <AddListErrors errors={this.state.errors}/> : null }
