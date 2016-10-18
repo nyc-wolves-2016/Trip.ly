@@ -9,9 +9,9 @@ class TripsController < ApplicationController
   end
 
   def show
-    # binding.pry
-    @trip_object = Trip.find(params[:id])
-    @trip = Trip.find(params[:id]).as_json
+
+    @trip_object = Trip.find_by(id: params[:id])
+    @trip = @trip_object.as_json
 
     if !user_signed_in?
       not_found

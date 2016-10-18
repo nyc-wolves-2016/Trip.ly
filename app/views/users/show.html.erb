@@ -3,10 +3,10 @@
 <!--  NEEDS TO BE REFACTORED  -->
 <% if @trip.errors.any? %>
   <div id="error_explanation">
-    <h2>
+    <p>
       <%= pluralize(@trip.errors.count, "error") %> prohibited
       this trip from being saved:
-    </h2>
+    <p>
     <ul>
       <% @trip.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -30,7 +30,7 @@
         <%= button_to 'Delete', trip_path(trip),
              method: :delete,
              data: { confirm: 'Are you sure?' } %>
-        <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
+        <a href="/trips/<%= trip.id %>"><%= trip.name %></a>
       </li>
     <% end %>
   <ul>
@@ -45,7 +45,7 @@
         <%= button_to 'Delete', trip_path(trip),
              method: :delete,
              data: { confirm: 'Are you sure?' } %>
-        <a href="/trips/<%= trip.id %>"><%= trip.city %></a>
+        <a href="/trips/<%= trip.id %>"><%= trip.name %></a>
       </li>
     <% end %>
   <ul>

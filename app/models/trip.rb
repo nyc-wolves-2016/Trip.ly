@@ -13,7 +13,11 @@ class Trip < ApplicationRecord
 
   def name
     self.city.split(',')[0]
-  end   
+  end
+
+  def two_months?
+    self.start_date - Date.today < 60
+  end
 
   def all_resources
     all_resources = []
