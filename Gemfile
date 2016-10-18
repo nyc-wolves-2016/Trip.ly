@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+
 gem 'react-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
@@ -15,6 +16,8 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
+gem 'rails-jquery-autocomplete'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -24,6 +27,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 gem 'foundation-rails'
 
+gem 'dotenv-rails'
 gem 'devise'
 gem 'omniauth'
 gem 'omniauth-google-oauth2'
