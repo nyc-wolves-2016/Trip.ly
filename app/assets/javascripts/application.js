@@ -28,7 +28,7 @@ $(document).ready(function() {
     unit: 'f',
     success: function(weather) {
       html = '<h2>'+weather.temp+'&deg;'+weather.units.temp+'</h2>';
-      html += '<ul class="heading"><li>'+weather.city+', '+weather.region+'</li>';
+      html += '<ul class="heading"><li>'+weather.city+'</li>';
       html += '<li class="currently">'+weather.currently+'</li>';
       html += '<li class="heading">'+weather.alt.temp+'&deg;C</li></ul>';
 

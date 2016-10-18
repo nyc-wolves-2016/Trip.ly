@@ -14,15 +14,15 @@ class TripsController < ApplicationController
     @trip = Trip.find(params[:id]).as_json
 
     if @user
-        @owner = Trip.find_by(user_id: @user.id)
+        @owner = Trip.find_by(user_id: @user.id).user
     end
+
 
     if @owner
       if current_user.id != @owner.id
         not_found
       end
     end
-
     @packing_lists = Trip.find(params[:id]).packing_lists.as_json
     @resource_lists = Trip.find(params[:id]).resource_lists.as_json
     @itinerary = Trip.find(params[:id]).itinerary.as_json
@@ -30,16 +30,6 @@ class TripsController < ApplicationController
 
   def create
     @user = current_user
-      # if request.xhr?
-      #   @trip = @user.trips.new(user: @user, city: params[:city], country: params[:country], start_date: params[:start_date], end_date: params[:end_date])
-      #   if @trip.save?
-      #     Itinerary.create(trip_id: @trip.id)
-      #     render "trips/_new", layout: false, locals: {trip: @trip}
-      #   else
-      #     halt 422, "Oops, there was an error with the submission."
-      #   end
-      # else
-
         @trip = @user.trips.new(trip_params)
         if @trip.save
           Itinerary.create(trip_id: @trip.id)
@@ -48,7 +38,6 @@ class TripsController < ApplicationController
         else
           render '/users/show'
         end
-      # end
   end
 
   def edit
@@ -79,7 +68,6 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(key: params[:key])
     @itinerary = @trip.itinerary.as_json
     @resources = @trip.all_resources.as_json
-
   end
 
   private
