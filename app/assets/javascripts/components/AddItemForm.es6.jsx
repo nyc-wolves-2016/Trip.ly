@@ -20,7 +20,11 @@ class AddItemForm extends React.Component {
       this.props.onItemSubmit(response);
       $(".item-form").trigger("reset");
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
+
   render() {
     return(
       <div>

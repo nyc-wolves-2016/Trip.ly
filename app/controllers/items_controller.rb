@@ -11,7 +11,7 @@ class ItemsController < ApplicationController
       end
       render json: PackingList.find(params[:packing_list_id]).items
     else
-      render json: { errors: @item.errors.messages }, status: 422
+      render json: @errors = @item.errors.messages, status: 422
     end
   end
 

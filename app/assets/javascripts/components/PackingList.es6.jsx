@@ -6,6 +6,7 @@ class PackingList extends React.Component {
       item: {},
       plitems: [],
       addItemForm: false,
+      anyErrors: false
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleItemSubmit = this.handleItemSubmit.bind(this);
@@ -13,10 +14,16 @@ class PackingList extends React.Component {
     this.handleUpdateItems = this.handleUpdateItems.bind(this);
     this.handleItemComplete = this.handleItemComplete.bind(this);
     this.handleAddItemClick = this.handleAddItemClick.bind(this);
+    this.handleNestedErrors = this.handleNestedErrors.bind(this)
   }
 
   componentDidMount() {
     this.setState({plitems: this.props.items})
+  }
+
+  handleNestedErrors(response) {
+    this.props.onErrors(response);
+    this.setState({anyErrors: true})
   }
 
   handleItemComplete(event) {
@@ -42,7 +49,11 @@ class PackingList extends React.Component {
   }
 
   handleItemSubmit(response){
-    this.setState({plitems: response, addItemForm: false})
+    this.setState({
+      plitems: response,
+      addItemForm: false,
+      anyErrors: false
+    })
   }
 
   handleEditItem(event) {
@@ -85,8 +96,11 @@ class PackingList extends React.Component {
         <div>
           <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
         </div>
+        <div id="add-errors">
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+        </div>
         <div className="hollow button" id="add-item-form" >
-          { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/> : null }
+          { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <div id="edit-item-form">
           { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems}/> : null }
