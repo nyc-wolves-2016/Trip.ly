@@ -3,9 +3,10 @@ class ResourceListsController < ApplicationController
   def create
     resource_list = ResourceList.new(list_params)
     if resource_list.save
-      render json: resource_list.as_json
+      resource_lists = Trip.find(params[:trip_id]).resource_lists
+      render json: resource_lists
     else
-      @errors = resource_list.errors.messages
+      render json: @errors = resource_list.errors.messages, status: 422
     end
   end
 
@@ -18,9 +19,12 @@ class ResourceListsController < ApplicationController
 
   def update
     resource_list = ResourceList.find_by(id: params[:id])
-    resource_list.update(list_params)
-    resource_lists = Trip.find(params[:trip_id]).resource_lists.as_json
-    render json: resource_lists
+    if resource_list.update(list_params)
+      resource_lists = Trip.find(params[:trip_id]).resource_lists.as_json
+      render json: resource_lists
+    else
+      render json: @errors = resource_list.errors.messages, status: 422
+    end
   end
 
   def destroy

@@ -32,7 +32,11 @@ class EditPackingListForm extends React.Component {
     .done(function(response) {
       this.props.onListUpdateSubmit(response);
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
+
   render() {
     let { name } = this.props
     return(

@@ -32,6 +32,9 @@ class EditItemForm extends React.Component {
     .done(function(response) {
       this.props.onUpdateItems(response);
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
   render() {
     return(

@@ -11,7 +11,7 @@ class ResourcesController < ApplicationController
       end
       render json: resource.as_json
     else
-      @errors = resource.errors.messages
+      render json: @errors = resource.errors.messages, status: 422
     end
   end
 
@@ -28,9 +28,13 @@ class ResourcesController < ApplicationController
     if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
-    resource.update(resource_params)
-    resources = ResourceList.find(params[:resource_list_id]).resources.as_json
-    render json: resources
+    
+    if resource.update(resource_params)
+      resources = ResourceList.find(params[:resource_list_id]).resources.as_json
+      render json: resources
+    else
+      render json: @errors = resource.errors.messages, status: 422
+    end
   end
 
   def destroy

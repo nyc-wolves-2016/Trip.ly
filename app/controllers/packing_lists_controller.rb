@@ -19,9 +19,12 @@ class PackingListsController < ApplicationController
 
   def update
     packing_list = PackingList.find(params[:id])
-    packing_list.update(list_params)
-    packing_lists = Trip.find(params[:trip_id]).packing_lists
-    render json: packing_lists
+    if packing_list.update(list_params)
+      packing_lists = Trip.find(params[:trip_id]).packing_lists
+      render json: packing_lists
+    else
+      render json: @errors = packing_list.errors.messages, status: 422
+    end
   end
 
   def destroy

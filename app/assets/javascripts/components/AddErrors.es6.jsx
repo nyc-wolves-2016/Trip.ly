@@ -4,8 +4,8 @@ class AddErrors extends React.Component {
     return(
       <div>
         <ul>
-          {Object.keys(errors).map(function(key) {
-            return <li>{key} {errors[key]}</li>;
+          {Object.keys(errors).map(function(key, i) {
+            return <li key={i}>{key} {errors[key]}</li>;
           })}
         </ul>
       </div>

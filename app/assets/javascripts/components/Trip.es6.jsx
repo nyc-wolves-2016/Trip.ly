@@ -13,17 +13,20 @@ class Trip extends React.Component {
       rlist: [],
       list: [],
       errors: {},
-      anyErrors: false,
       anyForms: false
     };
+
     this.handleItineraryClick = this.handleItineraryClick.bind(this);
     this.handleListClick = this.handleListClick.bind(this);
     this.handleResourceListClick = this.handleResourceListClick.bind(this);
     this.handleReturnTripPage = this.handleReturnTripPage.bind(this);
     this.handleErrors = this.handleErrors.bind(this);
-    this.handleResetErrors = this.handleResetErrors.bind(this);
     this.handleForms = this.handleForms.bind(this);
     this.handleResetForms = this.handleResetForms.bind(this);
+  }
+
+  handleErrors(response) {
+    this.setState({errors: response})
   }
 
   handleResetForms() {
@@ -36,17 +39,6 @@ class Trip extends React.Component {
     this.setState({
       anyForms: true
     })
-  }
-
-  handleResetErrors(){
-    this.setState({
-      errors: {},
-      anyErrors: false
-    })
-  }
-
-  handleErrors(errors){
-    this.setState({ errors: errors, anyErrors: true })
   }
 
   handleItineraryClick(itinerary_events){
@@ -92,15 +84,14 @@ class Trip extends React.Component {
       <div>
 
         { this.state.holder ? <Holder onListClick={this.handleListClick}
-        onItineraryClick={this.handleItineraryClick} onResourceListClick={this.handleResourceListClick} allLists={this.props} onResetErrors={this.handleResetErrors} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors}/> : null }
-        { this.state.itinerary ? <Itinerary onReturnTripPage={this.handleReturnTripPage} events={this.state.events} itinerary={this.props.itinerary} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors} onResetErrors={this.handleResetErrors} anyForms={this.state.anyForms} onForm={this.handleForms} onFormReset={this.handleResetForms} /> : null }
-        { this.state.packingList ? <PackingList onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors}/> : null }
+        onItineraryClick={this.handleItineraryClick} onResourceListClick={this.handleResourceListClick} allLists={this.props} onErrors={this.handleErrors} errors={this.state.errors} /> : null }
+        { this.state.itinerary ? <Itinerary onReturnTripPage={this.handleReturnTripPage} events={this.state.events} itinerary={this.props.itinerary} onErrors={this.handleErrors} errors={this.state.errors} anyForms={this.state.anyForms} onForm={this.handleForms} onResetForm={this.handleResetForms} /> : null }
+        { this.state.packingList ? <PackingList onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items} onErrors={this.handleErrors} errors={this.state.errors} /> : null }
         { this.state.resourceList ? <ResourceList
           onReturnTripPage={this.handleReturnTripPage}
           rlist={this.state.rlist}
           resources={this.state.resources} onErrors={this.handleErrors} errors={this.state.errors}/> : null }
       </div>
     )
-
-}
+  }
 }

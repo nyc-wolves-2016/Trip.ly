@@ -4,17 +4,24 @@ class ResourceList extends React.Component {
     this.state = {
       editResourceForm: false,
       resource: {},
-      rlresources: []
+      rlresources: [],
+      anyErrors: false
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
     this.handleEditResource = this.handleEditResource.bind(this);
     this.handleUpdateResources = this.handleUpdateResources.bind(this);
     this.handleDeleteResource = this.handleDeleteResource.bind(this);
+    this.handleNestedErrors = this.handleNestedErrors.bind(this);
   }
 
   componentDidMount() {
     this.setState({ rlresources: this.props.resources });
+  }
+
+  handleNestedErrors(response) {
+    this.props.onErrors(response);
+    this.setState({anyErrors: true})
   }
 
   handleReturnClick(){
@@ -24,12 +31,14 @@ class ResourceList extends React.Component {
   handleAddNewResource(new_resource) {
     this.props.resources.push(new_resource);
     this.forceUpdate();
+    this.setState({anyErrors: false})
   }
 
   handleUpdateResources(resources) {
     this.setState({
       rlresources: resources,
-      editResourceForm: false
+      editResourceForm: false,
+      anyErrors: false
     });
   }
 
@@ -73,11 +82,14 @@ class ResourceList extends React.Component {
         <div id="add-resource-button">
           <input type="button" value="Add Resource" onClick={this.handleButtonClick} />
         </div>
+        <div id="add-errors">
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+        </div>
         <div id="add-resource-form" className="hidden">
-          <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource}/>
+          <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource} onErrors={this.handleNestedErrors}/>
         </div>
         <div id="edit-resource-form" >
-          { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} /> : null }
+          { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <li>
           {this.state.rlresources.map((resource, i) =>
