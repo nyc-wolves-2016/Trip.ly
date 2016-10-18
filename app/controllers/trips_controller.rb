@@ -16,7 +16,6 @@ class TripsController < ApplicationController
     if @user
         @owner = Trip.find_by(user_id: @user.id).user
     end
-    binding.pry
 
 
     if @owner
