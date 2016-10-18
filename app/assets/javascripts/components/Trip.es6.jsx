@@ -11,12 +11,27 @@ class Trip extends React.Component {
       resourceList: false,
       itinerary: false,
       rlist: [],
-      list: []
+      list: [],
+      errors: {},
+      anyErrors: false
     };
     this.handleItineraryClick = this.handleItineraryClick.bind(this);
     this.handleListClick = this.handleListClick.bind(this);
     this.handleResourceListClick = this.handleResourceListClick.bind(this);
     this.handleReturnTripPage = this.handleReturnTripPage.bind(this);
+    this.handleErrors = this.handleErrors.bind(this);
+    this.handleResetErrors = this.handleResetErrors.bind(this);
+  }
+
+  handleResetErrors(){
+    this.setState({
+      errors: {},
+      anyErrors: false
+    })
+  }
+
+  handleErrors(errors){
+    this.setState({ errors: errors, anyErrors: true })
   }
 
   handleItineraryClick(itinerary_events){
@@ -62,13 +77,13 @@ class Trip extends React.Component {
       <div>
 
         { this.state.holder ? <Holder onListClick={this.handleListClick}
-        onItineraryClick={this.handleItineraryClick} onResourceListClick={this.handleResourceListClick} allLists={this.props}/> : null }
-        { this.state.itinerary ? <Itinerary onReturnTripPage={this.handleReturnTripPage} events={this.state.events} itinerary={this.props.itinerary} /> : null }
-        { this.state.packingList ? <PackingList onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items}/> : null }
+        onItineraryClick={this.handleItineraryClick} onResourceListClick={this.handleResourceListClick} allLists={this.props} onResetErrors={this.handleResetErrors} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors}/> : null }
+        { this.state.itinerary ? <Itinerary onReturnTripPage={this.handleReturnTripPage} events={this.state.events} itinerary={this.props.itinerary} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors} onResetErrors={this.handleResetErrors}/> : null }
+        { this.state.packingList ? <PackingList onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items} onErrors={this.handleErrors} errors={this.state.errors} anyErrors={this.state.anyErrors}/> : null }
         { this.state.resourceList ? <ResourceList
           onReturnTripPage={this.handleReturnTripPage}
           rlist={this.state.rlist}
-          resources={this.state.resources}/> : null }
+          resources={this.state.resources} onErrors={this.handleErrors} errors={this.state.errors}/> : null }
       </div>
     )
 

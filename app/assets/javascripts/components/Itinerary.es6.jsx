@@ -12,12 +12,18 @@ class Itinerary extends React.Component {
     this.handleEventEdit = this.handleEventEdit.bind(this);
     this.handleEventEditSubmit = this.handleEventEditSubmit.bind(this);
     this.handleEventDelete = this.handleEventDelete.bind(this);
+    this.handleNestedErrors = this.handleNestedErrors.bind(this);
   }
 
   componentDidMount(){
     this.setState({
       ievents: this.props.events
     })
+    this.props.onResetErrors();
+  }
+
+  handleNestedErrors(response) {
+    this.props.onErrors(response);
   }
 
   handleEventDelete(response) {
@@ -75,8 +81,11 @@ class Itinerary extends React.Component {
         <div>
           <input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/>
         </div>
+        <div id="add-list-errors">
+          { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+        </div>
           <div id="add-event-form" className="hidden">
-            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit}/>
+            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/>
           </div>
           <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
