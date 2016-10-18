@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      render json: @event.as_json
+      @events = Event.where(itinerary_id: @event.itinerary_id).sort_by{|event| event.date}
+      render json: @events.as_json
     else
       render json: @errors = @event.errors.messages, status: 422
     end

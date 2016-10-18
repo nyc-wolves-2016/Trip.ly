@@ -45,7 +45,9 @@ class Itinerary extends React.Component {
 
   handleEventSubmit(response){
     // debugger;
-    this.props.events.push(response);
+    this.setState({
+      ievents: response
+    });
     this.forceUpdate();
   }
 
