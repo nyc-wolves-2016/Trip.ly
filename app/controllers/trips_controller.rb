@@ -30,16 +30,6 @@ class TripsController < ApplicationController
 
   def create
     @user = current_user
-      # if request.xhr?
-      #   @trip = @user.trips.new(user: @user, city: params[:city], country: params[:country], start_date: params[:start_date], end_date: params[:end_date])
-      #   if @trip.save?
-      #     Itinerary.create(trip_id: @trip.id)
-      #     render "trips/_new", layout: false, locals: {trip: @trip}
-      #   else
-      #     halt 422, "Oops, there was an error with the submission."
-      #   end
-      # else
-
         @trip = @user.trips.new(trip_params)
         if @trip.save
           Itinerary.create(trip_id: @trip.id)
@@ -48,7 +38,6 @@ class TripsController < ApplicationController
         else
           render '/users/show'
         end
-      # end
   end
 
   def edit
@@ -79,7 +68,6 @@ class TripsController < ApplicationController
     @trip = Trip.find_by(key: params[:key])
     @itinerary = @trip.itinerary.as_json
     @resources = @trip.all_resources.as_json
-
   end
 
   private
