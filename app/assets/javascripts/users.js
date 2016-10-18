@@ -10,7 +10,7 @@ $(document).ready(function() {
     $.ajax({
       method: 'GET',
       url: url
-    }).done(function(response){
+    }).done(function(response)
       $('.greeting').after(response);
       $('#add-trip').remove();
     });
