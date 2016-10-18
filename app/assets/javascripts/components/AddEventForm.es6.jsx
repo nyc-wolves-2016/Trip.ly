@@ -28,6 +28,9 @@ class AddEventForm extends React.Component {
       $("#event-submit").removeClass("hidden");
       $(".event-form").trigger("reset");
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
 
   }
 

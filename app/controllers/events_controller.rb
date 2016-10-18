@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     if @event.save
       render json: @event.as_json
     else
-      render json: @errors = @event.errors.messages
+      render json: @errors = @event.errors.messages, status: 422
     end
   end
 

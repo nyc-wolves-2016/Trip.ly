@@ -6,21 +6,23 @@ class PackingLists extends React.Component {
       packing_list: [],
       editList: false,
       addList: false,
-      errors: [],
-      anyErrors: false
     }
     this.handleClick = this.handleClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleListUpdateSubmit = this.handleListUpdateSubmit.bind(this);
-    this.handleListSubmitErrors = this.handleListSubmitErrors.bind(this);
+    this.handleNestedErrors = this.handleNestedErrors.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       packing_lists: this.props.packing_lists
     })
+  }
+
+  handleNestedErrors(response) {
+    this.props.onErrors(response);
   }
 
   handleClick(event){
@@ -64,10 +66,6 @@ class PackingLists extends React.Component {
     this.setState({packing_lists: response, addList: false, anyErrors: false });
   }
 
-  handleListSubmitErrors(errors){
-    this.setState({ errors: errors, anyErrors: true })
-  }
-
   handleDelete(id) {
     var url = "/trips/" + this.props.trip.id + "/packing_lists/" + id
     $.ajax({
@@ -88,10 +86,10 @@ class PackingLists extends React.Component {
           <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
         <div id="add-list-errors">
-          { this.state.anyErrors ? <AddListErrors errors={this.state.errors}/> : null }
+          { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-list-form">
-          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onListSubmitErrors={this.handleListSubmitErrors}/> : null }
+          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <ul>
         { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit}/> : null }
