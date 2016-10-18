@@ -68,7 +68,8 @@ class Itinerary extends React.Component {
     // debugger;
     this.setState({
       event: response,
-      editEvent: true
+      editEvent: true,
+      anyForms: true
     });
   }
 
@@ -77,7 +78,8 @@ class Itinerary extends React.Component {
     this.props.onResetErrors();
     this.setState({
       editEvent: false,
-      ievents: response
+      ievents: response,
+      anyForms: false
     })
     this.forceUpdate();
   }
