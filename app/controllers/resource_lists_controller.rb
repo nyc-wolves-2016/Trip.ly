@@ -3,9 +3,10 @@ class ResourceListsController < ApplicationController
   def create
     resource_list = ResourceList.new(list_params)
     if resource_list.save
-      render json: resource_list.as_json
+      resource_lists = Trip.find(params[:trip_id]).resource_lists
+      render json: resource_lists
     else
-      @errors = resource_list.errors.messages
+      render json: @errors = resource_list.errors.messages, status: 422
     end
   end
 

@@ -19,6 +19,7 @@ class PackingLists extends React.Component {
     this.setState({
       packing_lists: this.props.packing_lists
     })
+    this.props.onResetErrors();
   }
 
   handleNestedErrors(response) {
@@ -62,8 +63,9 @@ class PackingLists extends React.Component {
     this.setState({ addList: true })
   }
 
-  handleListSubmit(response){
-    this.setState({packing_lists: response, addList: false, anyErrors: false });
+  handleListSubmit(lists){
+    this.setState({packing_lists: lists, addList: false });
+    this.props.onResetErrors();
   }
 
   handleDelete(id) {
@@ -85,7 +87,7 @@ class PackingLists extends React.Component {
         <div>
           <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
-        <div id="add-list-errors">
+        <div id="add-errors">
           { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-list-form">
