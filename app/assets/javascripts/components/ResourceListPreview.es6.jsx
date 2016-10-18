@@ -48,7 +48,8 @@ class ResourceListPreview extends React.Component {
   handleEditList(lists) {
     this.setState({
       resource_lists: lists,
-      editResourceListForm: false
+      editResourceListForm: false,
+      anyErrors: false
     })
   }
 
@@ -84,8 +85,17 @@ class ResourceListPreview extends React.Component {
     return(
       <div>
         <h1>Resource Lists: </h1>
+        <div id="add-resource-list-button">
+          <input className="hollow button" type="button" value="Add Resource List" onClick={this.handleAddClick} />
+        </div>
+        <div id="add-errors">
+          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+        </div>
+        <div id="add-resource-list-form">
+          { this.state.addResourceList ? <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList} onErrors={this.handleNestedErrors} onListSubmit={  this.handleListSubmit}/> : null }
+        </div>
         <div id="edit-resource-list-form" >
-          { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList}/> : null }
+          { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <ul>
           {this.state.resource_lists.map((list, i) =>
@@ -100,15 +110,6 @@ class ResourceListPreview extends React.Component {
             </li>
           )}
         </ul>
-        <div id="add-resource-list-button">
-          <input className="hollow button" type="button" value="Add Resource List" onClick={this.handleAddClick} />
-        </div>
-        <div id="add-errors">
-          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
-        </div>
-        <div id="add-resource-list-form">
-          { this.state.addResourceList ? <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList} onErrors={this.handleNestedErrors} onListSubmit={  this.handleListSubmit}/> : null }
-        </div>
       </div>
     )
 }

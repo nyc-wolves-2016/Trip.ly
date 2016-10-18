@@ -30,7 +30,10 @@ class EditResourceListForm extends React.Component {
     })
     .done(function(response) {
       this.props.onEditList(response);
-    }.bind(this));
+    }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
 
   render() {

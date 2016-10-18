@@ -19,9 +19,12 @@ class ResourceListsController < ApplicationController
 
   def update
     resource_list = ResourceList.find_by(id: params[:id])
-    resource_list.update(list_params)
-    resource_lists = Trip.find(params[:trip_id]).resource_lists.as_json
-    render json: resource_lists
+    if resource_list.update(list_params)
+      resource_lists = Trip.find(params[:trip_id]).resource_lists.as_json
+      render json: resource_lists
+    else
+      render json: @errors = resource_list.errors.messages, status: 422
+    end
   end
 
   def destroy
