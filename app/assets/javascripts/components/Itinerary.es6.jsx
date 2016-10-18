@@ -74,12 +74,11 @@ class Itinerary extends React.Component {
   }
 
   handleEventEditSubmit(response) {
-    // debugger;
-    this.props.onResetErrors();
     this.setState({
       editEvent: false,
       ievents: response,
-      anyForms: false
+      anyForms: false,
+      anyErrors: false
     })
     this.forceUpdate();
   }
