@@ -83,17 +83,10 @@ class PackingList extends React.Component {
       <div>
         <h1>Packing List Name: {name}</h1>
         <div>
-<<<<<<< HEAD
-          <input id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
-        </div>
-        <div id="add-item-form">
-          { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/> : null }
-=======
           <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.onButtonClick}/>
         </div>
         <div className="hollow button" id="add-item-form" className="hidden">
           <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/>
->>>>>>> Add classes for styling to components
         </div>
         <div id="edit-item-form">
           { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems}/> : null }
