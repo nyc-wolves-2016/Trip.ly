@@ -240,7 +240,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt (~> 3.1.7)
   byebug
   devise
   dotenv-rails

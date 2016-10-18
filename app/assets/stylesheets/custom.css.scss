@@ -1,6 +1,12 @@
 @import 'settings';
 @import 'foundation';
 
+.h6 {
+  font-size: 14px;
+  font-weight: bold;
+  color: $dark-gray;
+}
+
 /*flash*/
 .alert-error {
     background-color: #f2dede;
@@ -35,14 +41,30 @@
 }
 
 /*sign in*/
+.google-sign-in img {
+  display: block;
+  margin: 0 auto;
+}
+
+.signup-or-separator {
+  height: 34px;
+  position: relative;
+  text-align:center;
+}
+
 .signup-or-separator hr {
-  margin-top: -15px;
+  margin-top: -13px;
 }
 
 .signup-or-separator-text {
   background-color: $white;
+
   display: inline-block;
-  padding: 5px;
+  padding: 3px;
+}
+
+.shared-links {
+  text-align: center;
 }
 
 .hollow.button {
