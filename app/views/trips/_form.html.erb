@@ -1,23 +1,23 @@
-<%= form_for @trip do |f| %>
-
-
-  <p>
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </p>
-
-  <p>
-    <%= f.label :start_date %><br>
-    <%= f.date_field :start_date %>
-  </p>
-
-  <p>
-    <%= f.label :end_date %><br>
-    <%= f.date_field :end_date %>
-  </p>
-
-  <p>
-    <%= f.submit %>
-  </p>
-
-<% end %>
+<div class="row">
+  <div class="large-8 column large-centered">
+    <%= form_for @trip do |f| %>
+      <div>
+        <%= f.label :city %>
+        <%= f.text_field :city %>
+      </div>
+      <div class="row">
+      <div class="large-6 column">
+        <%= f.label :start_date %>
+        <%= f.date_field :start_date %>
+      </div>
+      <div class="large-6 column">
+        <%= f.label :end_date %>
+        <%= f.date_field :end_date %>
+      </div>
+    </div>
+      <div>
+        <%= f.submit "Add a Trip", class: "expanded hollow button" %>
+      </div>
+    <% end %>
+  </div>
+</div>
