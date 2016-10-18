@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require autocomplete-rails
 //= require foundation
 //= require react
 //= require react_ujs
@@ -22,14 +20,11 @@
 //= require_tree .
 
 
-     function initAutocomplete() {
-       // Create the autocomplete object, restricting the search to geographical
-       // location types.
-       var autocomplete = new google.maps.places.Autocomplete(
+function initAutocomplete() {
+  var autocomplete = new google.maps.places.Autocomplete(
            (document.getElementById('trip_city')),
            {types: ['geocode']});
-
-     }
+}
 
 $(function(){ $(document).foundation(); });
 

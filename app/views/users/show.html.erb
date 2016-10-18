@@ -11,7 +11,6 @@
 <div class="row">
 
 
-
 <div class="row">
   <div class="small-10 medium-8 large-8 column small-centered medium-centered large-centered">
     <form class="trips-list" id="add-trip">
@@ -22,7 +21,7 @@
 
 
 
-<%= form_for @trip do |f| %>
+  <%= form_for @trip do |f| %>
   <% if @trip.errors.any? %>
   <div id="error_explanation">
     <p>
@@ -36,6 +35,8 @@
     </ul>
   </div>
   <% end %>
+
+
 
 <div id="new_trip_form" class="hidden">
   <p>
