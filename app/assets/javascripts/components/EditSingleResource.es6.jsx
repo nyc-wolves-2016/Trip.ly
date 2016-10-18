@@ -51,6 +51,9 @@ class EditSingleResource extends React.Component {
     .done(function(response) {
       this.props.onUpdateResources(response);
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
 
   render() {

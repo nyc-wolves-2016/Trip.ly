@@ -22,6 +22,7 @@ class ResourcesController < ApplicationController
 
   def update
     resource = Resource.find_by(id: params[:id])
+<<<<<<< HEAD
     resource_list = ResourceList.find(resource.resource_list_id)
     trip = Trip.find(resource_list.trip_id)
 
@@ -31,6 +32,14 @@ class ResourcesController < ApplicationController
     resource.update(resource_params)
     resources = ResourceList.find(params[:resource_list_id]).resources.as_json
     render json: resources
+=======
+    if resource.update(resource_params)
+      resources = ResourceList.find(params[:resource_list_id]).resources.as_json
+      render json: resources
+    else
+      render json: @errors = resource.errors.messages, status: 422
+    end
+>>>>>>> Add error handling for edit resource in resource list
   end
 
   def destroy

@@ -37,7 +37,8 @@ class ResourceList extends React.Component {
   handleUpdateResources(resources) {
     this.setState({
       rlresources: resources,
-      editResourceForm: false
+      editResourceForm: false,
+      anyErrors: false
     });
   }
 
@@ -88,7 +89,7 @@ class ResourceList extends React.Component {
           <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource} onErrors={this.handleNestedErrors}/>
         </div>
         <div id="edit-resource-form" >
-          { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} /> : null }
+          { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <li>
           {this.state.rlresources.map((resource, i) =>

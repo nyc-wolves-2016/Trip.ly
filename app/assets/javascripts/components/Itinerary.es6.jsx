@@ -97,7 +97,10 @@ class Itinerary extends React.Component {
 
           { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
 
-        <div id="add-list-errors">
+        <div>
+          <input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/>
+        </div>
+        <div id="add-errors">
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
 
