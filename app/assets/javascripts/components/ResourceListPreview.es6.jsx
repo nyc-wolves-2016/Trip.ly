@@ -19,7 +19,6 @@ class ResourceListPreview extends React.Component {
 
   componentDidMount() {
     this.setState({resource_lists: this.props.resource_lists});
-    this.props.onResetErrors();
   }
 
   handleNestedErrors(response) {
