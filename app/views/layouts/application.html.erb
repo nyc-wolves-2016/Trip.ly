@@ -1,36 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <link rel="icon" type="image/png" sizes="192x192"  href="images/favicon/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+    <link rel="manifest" href="images/favicon/manifest.json">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <title><%= content_for?(:title) ? yield(:title) : "Trip.ly" %></title>
+
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.1.0/jquery.simpleWeather.min.js"></script>
-    
+
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://use.fontawesome.com/1593c6697e.js"></script>
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/foundicons/3.0.0/foundation-icons.css" rel="stylesheet">
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <% if user_signed_in? %>
-          <li><a href="/users/<%= current_user.id %>">Dashboard</a></li>
-          <li><%= link_to "Log out", logout_path, method: "delete" %>
-        <% else %>
-          <li><%= link_to "Register", new_user_registration_path %></li>
-          <li><%= link_to "Sign in ", new_user_session_path %></li>
-          <li><%= link_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-    <div class="container">
-      <%= render 'layouts/messages' %>
-      <%= yield %>
-    </div>
+    <%= render "layouts/header" %>
+          <div class="off-canvas-content" data-off-canvas-content>
+              <%= render 'layouts/messages' %>
+              <%= yield %>
+
+          </div>
+          <%= render "layouts/footer" %>
+          <!-- Closing div tags for navigation menu -->
+        </div>
+      </div>
+
   </body>
 </html>

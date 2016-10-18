@@ -4,15 +4,15 @@ class PackingList extends React.Component {
     this.state = {
       editItemForm: false,
       item: {},
-      plitems: []
+      plitems: [],
+      addItemForm: false,
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
-    this.onButtonClick = this.onButtonClick.bind(this);
     this.handleItemSubmit = this.handleItemSubmit.bind(this);
-    this.handleItemDelete = this.handleItemDelete.bind(this);
     this.handleEditItem = this.handleEditItem.bind(this);
     this.handleUpdateItems = this.handleUpdateItems.bind(this);
     this.handleItemComplete = this.handleItemComplete.bind(this);
+    this.handleAddItemClick = this.handleAddItemClick.bind(this);
   }
 
   componentDidMount() {
@@ -30,7 +30,6 @@ class PackingList extends React.Component {
       this.setState({
         plitems: response
       })
-      // this.forceUpdate();
     }.bind(this))
   }
 
@@ -38,14 +37,12 @@ class PackingList extends React.Component {
     this.props.onReturnTripPage();
   }
 
-  onButtonClick() {
-    $("#add-item-form").removeClass("hidden");
-    $("#item-submit").addClass("hidden");
+  handleAddItemClick(){
+    this.setState({addItemForm: true})
   }
 
   handleItemSubmit(response){
-    this.state.plitems.push(response);
-    this.forceUpdate();
+    this.setState({plitems: response, addItemForm: false})
   }
 
   handleEditItem(event) {
@@ -66,7 +63,6 @@ class PackingList extends React.Component {
       plitems: items,
       editItemForm: false
     });
-    this.forceUpdate();
   }
 
   handleDelete(id) {
@@ -78,25 +74,19 @@ class PackingList extends React.Component {
     })
     .done(function(response) {
       this.setState({plitems: response});
-      this.handleItemDelete(response);
     }.bind(this));
-  }
-
-  handleItemDelete(response) {
-    this.forceUpdate();
   }
 
   render(){
     let { name } = this.props.list;
-    // debugger;
     return(
       <div>
         <h1>Packing List Name: {name}</h1>
         <div>
-          <input id="item-submit" type="button" value="Add Item" onClick={this.onButtonClick}/>
+          <input id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
         </div>
-        <div id="add-item-form" className="hidden">
-          <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/>
+        <div id="add-item-form">
+          { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit}/> : null }
         </div>
         <div id="edit-item-form">
           { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems}/> : null }
@@ -111,7 +101,7 @@ class PackingList extends React.Component {
             <div>
               <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
             </div>
-            <span style={{"text-decoration": item.packed ? "line-through" : ""}}>{item.name}</span>
+            <span style={{"textDecoration": item.packed ? "line-through" : ""}}>{item.name}</span>
           </li>
         )}
         </ul>

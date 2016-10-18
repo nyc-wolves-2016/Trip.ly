@@ -4,13 +4,17 @@ class PackingLists extends React.Component {
     this.state = {
       packing_lists: [],
       packing_list: [],
-      editList: false
+      editList: false,
+      addList: false,
+      errors: [],
+      anyErrors: false
     }
     this.handleClick = this.handleClick.bind(this);
-    this.onButtonClick = this.onButtonClick.bind(this);
     this.handleListSubmit = this.handleListSubmit.bind(this);
     this.handleEditClick = this.handleEditClick.bind(this);
+    this.handleAddClick = this.handleAddClick.bind(this);
     this.handleListUpdateSubmit = this.handleListUpdateSubmit.bind(this);
+    this.handleListSubmitErrors = this.handleListSubmitErrors.bind(this);
   }
 
   componentDidMount() {
@@ -28,12 +32,6 @@ class PackingLists extends React.Component {
     }).done(function(response) {
       this.props.onListClick(response);
     }.bind(this));
-  }
-
-
-  onButtonClick() {
-    $("#add-list-form").removeClass("hidden");
-    $("#list-submit").addClass("hidden");
   }
 
   handleEditClick(event) {
@@ -56,12 +54,18 @@ class PackingLists extends React.Component {
       editList: false,
       packing_lists: lists
     })
-    this.forceUpdate();
+  }
+
+  handleAddClick() {
+    this.setState({ addList: true })
   }
 
   handleListSubmit(response){
-    this.state.packing_lists.push(response);
-    this.forceUpdate();
+    this.setState({packing_lists: response, addList: false, anyErrors: false });
+  }
+
+  handleListSubmitErrors(errors){
+    this.setState({ errors: errors, anyErrors: true })
   }
 
   handleDelete(id) {
@@ -72,7 +76,6 @@ class PackingLists extends React.Component {
     })
     .done(function(response) {
       this.setState({packing_lists: response});
-      this.forceUpdate();
     }.bind(this));
   }
 
@@ -82,18 +85,19 @@ class PackingLists extends React.Component {
       <div>
         <h1>Packing Lists: </h1>
         <div>
-          <input id="list-submit" type="button" value="Add Packing List" onClick={this.onButtonClick}/>
+          <input id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>
-        <div id="add-list-form" className="hidden">
-          <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit}/>
+        <div id="add-list-errors">
+          { this.state.anyErrors ? <AddListErrors errors={this.state.errors}/> : null }
+        </div>
+        <div id="add-list-form">
+          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onListSubmitErrors={this.handleListSubmitErrors}/> : null }
         </div>
         <ul>
         { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit}/> : null }
           {this.state.packing_lists.map((list, i) =>
             <li key={i}>
             <div id="edit-packing-list-form">
-
-
               <input href={list.id} id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
             </div>
             <div>

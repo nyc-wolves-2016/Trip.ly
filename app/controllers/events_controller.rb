@@ -3,9 +3,9 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-        render json: @event.as_json
+      render json: @event.as_json
     else
-      @errors = @event.errors.messages
+      render json: @errors = @event.errors.messages
     end
   end
 

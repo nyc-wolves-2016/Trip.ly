@@ -2,7 +2,7 @@
 // All this logic will automatically be available in application.js.
 
 $(document).ready(function() {
-  $('.container').on('click', '#add-trip', function(event) {
+  $('.off-canvas-content').on('click', '#add-trip', function(event) {
 
     event.preventDefault();
     var url = $(this).attr('action');
