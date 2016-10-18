@@ -6,23 +6,15 @@ class TripsController < ApplicationController
 
   def show
     # binding.pry
-    if user_signed_in?
-      @user = current_user
-    end
-
     @trip_object = Trip.find(params[:id])
     @trip = Trip.find(params[:id]).as_json
 
-    if @user
-        @owner = Trip.find_by(user_id: @user.id).user
+    if !user_signed_in?
+      not_found
+    elsif @trip_object.user_id != current_user.id
+      not_found
     end
 
-
-    if @owner
-      if current_user.id != @owner.id
-        not_found
-      end
-    end
     @packing_lists = Trip.find(params[:id]).packing_lists.as_json
     @resource_lists = Trip.find(params[:id]).resource_lists.as_json
     @itinerary = Trip.find(params[:id]).itinerary.as_json
