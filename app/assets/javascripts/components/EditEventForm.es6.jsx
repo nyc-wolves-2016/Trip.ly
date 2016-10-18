@@ -29,6 +29,9 @@ class EditEventForm extends React.Component {
       // $(".event-edit").removeClass("hidden");
       // $(".edit-event-form").trigger("reset");
     }.bind(this))
+    .fail(function(response) {
+      this.props.onErrors(response.responseJSON);
+    }.bind(this))
   }
   render() {
 

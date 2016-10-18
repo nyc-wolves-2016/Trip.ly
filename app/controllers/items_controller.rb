@@ -3,6 +3,12 @@ class ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
+      packing_list = PackingList.find(@item.packing_list_id)
+      trip = Trip.find(packing_list.trip_id)
+
+      if !user_signed_in? || trip.user.id != current_user.id
+        not_found
+      end
       render json: PackingList.find(params[:packing_list_id]).items
     else
       render json: { errors: @item.errors.messages }, status: 422
@@ -23,6 +29,12 @@ class ItemsController < ApplicationController
 
   def update
     item = Item.find(params[:id])
+    packing_list = PackingList.find(item.packing_list_id)
+    trip = Trip.find(packing_list.trip_id)
+
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
     item.update(item_params)
     items = PackingList.find(params[:packing_list_id]).items.as_json
     render json: items
@@ -30,6 +42,12 @@ class ItemsController < ApplicationController
 
   def destroy
     @item = Item.find(params[:id])
+    packing_list = PackingList.find(@item.packing_list_id)
+    trip = Trip.find(packing_list.trip_id)
+
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
     @item.destroy
     render json: Item.where(packing_list_id: params[:packing_list_id])
   end

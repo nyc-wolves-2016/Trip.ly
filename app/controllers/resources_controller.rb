@@ -3,6 +3,12 @@ class ResourcesController < ApplicationController
   def create
     resource = Resource.new(resource_params)
     if resource.save
+      resource_list = ResourceList.find(resource.resource_list_id)
+      trip = Trip.find(resource_list.trip_id)
+
+      if !user_signed_in? || trip.user.id != current_user.id
+        not_found
+      end
       render json: resource.as_json
     else
       @errors = resource.errors.messages
@@ -16,6 +22,12 @@ class ResourcesController < ApplicationController
 
   def update
     resource = Resource.find_by(id: params[:id])
+    resource_list = ResourceList.find(resource.resource_list_id)
+    trip = Trip.find(resource_list.trip_id)
+
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
     resource.update(resource_params)
     resources = ResourceList.find(params[:resource_list_id]).resources.as_json
     render json: resources
@@ -23,6 +35,12 @@ class ResourcesController < ApplicationController
 
   def destroy
     resource = Resource.find_by(id: params[:id])
+    resource_list = ResourceList.find(resource.resource_list_id)
+    trip = Trip.find(resource_list.trip_id)
+
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
     resource.destroy
     render json: Resource.where(resource_list_id: params[:resource_list_id])
   end

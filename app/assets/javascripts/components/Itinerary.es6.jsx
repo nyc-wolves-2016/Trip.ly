@@ -4,7 +4,9 @@ class Itinerary extends React.Component {
     this.state = {
       ievents: [],
       event: {},
-      editEvent: false
+      addEvent: false,
+      editEvent: false,
+      anyForms: false
     };
     this.onButtonClick = this.onButtonClick.bind(this);
     this.handleEventSubmit = this.handleEventSubmit.bind(this);
@@ -13,6 +15,7 @@ class Itinerary extends React.Component {
     this.handleEventEditSubmit = this.handleEventEditSubmit.bind(this);
     this.handleEventDelete = this.handleEventDelete.bind(this);
     this.handleNestedErrors = this.handleNestedErrors.bind(this);
+    this.handleNestedForms = this.handleNestedForms.bind(this);
   }
 
   componentDidMount(){
@@ -20,6 +23,11 @@ class Itinerary extends React.Component {
       ievents: this.props.events
     })
     this.props.onResetErrors();
+    this.props.onResetForm();
+  }
+
+  handleNestedForms(response) {
+    this.props.onForm(response);
   }
 
   handleNestedErrors(response) {
@@ -30,7 +38,7 @@ class Itinerary extends React.Component {
     this.setState({
       ievents: response
     })
-    debugger;
+    // debugger;
     this.forceUpdate();
   }
 
@@ -39,13 +47,20 @@ class Itinerary extends React.Component {
   }
 
   onButtonClick() {
-    $("#add-event-form").removeClass("hidden");
-    $("#event-submit").addClass("hidden");
+    this.setState({
+      addEvent: true,
+      anyForms: true
+    })
   }
 
   handleEventSubmit(response){
     // debugger;
-    this.props.events.push(response);
+    this.props.onResetErrors();
+    this.setState({
+      ievents: response,
+      addEvent: false,
+      anyForms: false
+    });
     this.forceUpdate();
   }
 
@@ -53,15 +68,18 @@ class Itinerary extends React.Component {
     // debugger;
     this.setState({
       event: response,
-      editEvent: true
+      editEvent: true,
+      anyForms: true
     });
   }
 
   handleEventEditSubmit(response) {
     // debugger;
+    this.props.onResetErrors();
     this.setState({
       editEvent: false,
-      ievents: response
+      ievents: response,
+      anyForms: false
     })
     this.forceUpdate();
   }
@@ -71,22 +89,20 @@ class Itinerary extends React.Component {
     return(
       <div className="row">
         <h1>Itinerary</h1>
-        <ul>
-          {this.state.ievents.map((event, i ) =>
-          <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
-          )}
-        </ul>
-          { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit}/> : null }
+          { this.state.anyForms ? null : <ul>
+            {this.state.ievents.map((event, i ) =>
+            <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
+            )}
+          </ul> }
 
-        <div>
-          <input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/>
-        </div>
+          { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
+
         <div id="add-list-errors">
           { this.props.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
-          <div id="add-event-form" className="hidden">
-            <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/>
-          </div>
+
+          { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/></div> }
+
           <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )

@@ -3,7 +3,15 @@ class EventsController < ApplicationController
   def create
     @event = Event.new(event_params)
     if @event.save
-      render json: @event.as_json
+      itinerary = Itinerary.find(@event.itinerary_id)
+      trip = Trip.find(itinerary.trip_id)
+
+      if !user_signed_in? || trip.user.id != current_user.id
+        not_found
+      end
+
+      @events = Event.where(itinerary_id: @event.itinerary_id).sort_by{|event| event.date}
+      render json: @events.as_json
     else
       render json: @errors = @event.errors.messages, status: 422
     end
@@ -11,6 +19,12 @@ class EventsController < ApplicationController
 
   def destroy
     @event = Event.find_by(id: params[:id])
+    itinerary = Itinerary.find(@event.itinerary_id)
+    trip = Trip.find(itinerary.trip_id)
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
+
     if @event
       @event.destroy
       @events = Event.where(itinerary_id: params[:itinerary_id])
@@ -27,12 +41,19 @@ class EventsController < ApplicationController
 
   def update
     @event = Event.find_by(id: params[:id])
-    if @event
-      @event.update_attributes(event_params)
-      @events = Event.where(itinerary_id: params[:itinerary_id])
+
+    itinerary = Itinerary.find(@event.itinerary_id)
+    trip = Trip.find(itinerary.trip_id)
+
+    if !user_signed_in? || trip.user.id != current_user.id
+      not_found
+    end
+
+    if @event.update_attributes(event_params)
+      @events = Event.where(itinerary_id: params[:itinerary_id]).sort_by{|event| event.date}
       render json: @events.as_json
     else
-      @errors = @event.errors.messages
+      render json: @errors = @event.errors.messages, status: 422
     end
   end
 
