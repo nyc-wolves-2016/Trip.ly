@@ -58,14 +58,14 @@ class Event extends React.Component {
   // }
 
   render() {
-    let { name, location, details, contact_info, start_time, end_time, id } = this.props.data;
+    let { name, location, details, contact_info, start_date, start_time, end_time, id } = this.props.data;
     // TRY MOVING THE FORM/BUTTON NEXT TO THE EVENT COMPONENT IN ITINERARY
     return(
           <li>
             <input className="radio" type="radio" defaultChecked />
             <div className="relative">
               <label htmlFor="name">{name}</label>
-              <span className="date">{start_time}</span>
+              <span className="date">{start_date}</span>
               <span className="circle"></span>
             </div>
             <div className="content">
