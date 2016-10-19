@@ -5,7 +5,10 @@ class Holder extends React.Component {
     this.state = {
       packingPreview: true,
       resourcePreview: true,
-      itineraryPreview: true
+      itineraryPreview: true,
+      packing_lists: [],
+      resource_lists: [],
+      itinerary: {}
     }
 
     this.handleNested = this.handleNested.bind(this);
@@ -15,6 +18,33 @@ class Holder extends React.Component {
     this.handleAddPackingPreviewForm = this.handleAddPackingPreviewForm.bind(this);
     this.handleAddResourcePreviewForm = this.handleAddResourcePreviewForm.bind(this);
     this.handleResetHolder = this.handleResetHolder.bind(this);
+    this.handleNewPackingList = this.handleNewPackingList.bind(this);
+    this.handleNewResourceList = this.handleNewResourceList.bind(this);
+  }
+
+  componentDidMount() {
+    let { trip } = this.props.allLists;
+    $.ajax({
+      url: "/trips/" + trip.id + "/lists"
+    }).done(function(response){
+      this.setState({
+        packing_lists: response.packing_lists,
+        itinerary: response.itinerary,
+        resource_lists: response.resource_lists
+      })
+    }.bind(this));
+  }
+
+  handleNewPackingList(lists){
+    this.setState({
+      packing_lists: lists
+    });
+  }
+
+  handleNewResourceList(lists){
+    this.setState({
+      resource_lists: lists
+    });
   }
 
   handleNestedItinerary(response){
@@ -70,8 +100,9 @@ class Holder extends React.Component {
       <div className="row">
           <div className="large-8 column large-centered">
             { this.state.itineraryPreview ? <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/> : null }
-            { this.state.packingPreview ? <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists} onErrors={this.handleNestedErrors} errors={this.props.errors} onAddPackingPreviewForm={this.handleAddPackingPreviewForm} onResetHolder={this.handleResetHolder} /> : null }
-            { this.state.resourcePreview ? <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={resource_lists}  onErrors={this.handleNestedErrors} errors={this.props.errors} onAddResourcePreviewForm={this.handleAddResourcePreviewForm} onResetHolder={this.handleResetHolder} /> : null }
+            { this.state.packingPreview ? <PackingLists onNewPackingList={this.handleNewPackingList} onListClick={this.handleNested} trip={trip} packing_lists={this.state.packing_lists} onErrors={this.handleNestedErrors} errors={this.props.errors} onAddPackingPreviewForm={this.handleAddPackingPreviewForm} onResetHolder={this.handleResetHolder} /> : null }
+            { this.state.resourcePreview ? <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={this.state.resource_lists}  onErrors={this.handleNestedErrors}
+            onNewResourceList={this.handleNewResourceList} errors={this.props.errors} onAddResourcePreviewForm={this.handleAddResourcePreviewForm} onResetHolder={this.handleResetHolder} /> : null }
         </div>
       </div>
     )

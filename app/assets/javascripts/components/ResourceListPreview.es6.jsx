@@ -4,7 +4,6 @@ class ResourceListPreview extends React.Component {
     this.state = {
       editResourceListForm: false,
       resource_list: [],
-      resource_lists: [],
       addResourceList: false,
       anyErrors: false,
     }
@@ -19,9 +18,7 @@ class ResourceListPreview extends React.Component {
     this.handleHideForm = this.handleHideForm.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({resource_lists: this.props.resource_lists});
-  }
+
 
   handleNestedResetHolder() {
     this.props.onResetHolder();
@@ -49,7 +46,8 @@ class ResourceListPreview extends React.Component {
   }
 
   handleListSubmit(lists) {
-    this.setState({resource_lists: lists, addResourceList: false, anyErrors: false});
+    this.setState({addResourceList: false, anyErrors: false});
+    this.props.onNewResourceList(lists);
     this.props.onResetHolder();
   }
 
@@ -59,10 +57,10 @@ class ResourceListPreview extends React.Component {
 
   handleEditList(lists) {
     this.setState({
-      resource_lists: lists,
       editResourceListForm: false,
       anyErrors: false
     })
+    this.props.onNewResourceList(lists);
     this.props.onResetHolder();
   }
 
@@ -90,7 +88,7 @@ class ResourceListPreview extends React.Component {
       method: "delete"
     })
     .done(function(response) {
-      this.setState({ resource_lists: response });
+      this.props.onNewResourceList(response);
     }.bind(this));
   }
 
@@ -113,7 +111,7 @@ class ResourceListPreview extends React.Component {
         </div>
         <div id="resource-lists-list">
           <ul>
-            {this.state.resource_lists.map((list, i) =>
+            {this.props.resource_lists.map((list, i) =>
               <li key={i}>
                 <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
                 <div className="edit-list-button">

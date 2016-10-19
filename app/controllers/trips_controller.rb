@@ -23,6 +23,20 @@ class TripsController < ApplicationController
     @itinerary = Trip.find(params[:id]).itinerary.as_json
   end
 
+  def lists
+    @trip = Trip.find_by(id: params[:id])
+    if !user_signed_in?
+      not_found
+    elsif @trip.user_id != current_user.id
+      not_found
+    end
+
+    packing_lists = @trip.packing_lists.as_json
+    resource_lists = @trip.resource_lists.as_json
+    itinerary = @trip.itinerary.as_json
+    render json: {packing_lists: packing_lists, resource_lists: resource_lists, itinerary: itinerary}
+  end
+
   def create
     if !user_signed_in?
       not_found

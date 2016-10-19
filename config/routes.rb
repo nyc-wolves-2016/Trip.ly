@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   root to: "home#index"
 
   get "trips/share", to: "trips#share"
-  
+  get "trips/:id/lists", to: "trips#lists"
+
   devise_scope :user do
     get "/register", to: "devise/registrations#new"
     post "/register", to: "devise/registrations#create"

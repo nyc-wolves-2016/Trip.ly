@@ -2,7 +2,6 @@ class PackingLists extends React.Component {
   constructor(){
     super();
     this.state = {
-      packing_lists: [],
       packing_list: [],
       editList: false,
       addList: false,
@@ -18,11 +17,11 @@ class PackingLists extends React.Component {
     this.handleNestedResetHolder = this.handleNestedResetHolder.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      packing_lists: this.props.packing_lists
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     packing_lists: this.props.packing_lists
+  //   })
+  // }
 
   handleNestedResetHolder() {
     this.props.onResetHolder();
@@ -63,10 +62,10 @@ class PackingLists extends React.Component {
   handleListUpdateSubmit(lists){
     this.setState({
       editList: false,
-      packing_lists: lists,
       anyErrors: false
     });
     this.props.onResetHolder();
+    this.props.onNewPackingList(lists);
   }
 
   handleAddClick(event) {
@@ -75,8 +74,9 @@ class PackingLists extends React.Component {
   }
 
   handleListSubmit(lists){
-    this.setState({packing_lists: lists, addList: false, anyErrors: false });
+    this.setState({ addList: false, anyErrors: false });
     this.props.onResetHolder();
+    this.props.onNewPackingList(lists);
   }
 
   handleHideForm() {
@@ -90,7 +90,7 @@ class PackingLists extends React.Component {
       method: 'delete',
     })
     .done(function(response) {
-      this.setState({packing_lists: response});
+      this.props.onNewPackingList(response);
     }.bind(this));
   }
 
@@ -113,7 +113,7 @@ class PackingLists extends React.Component {
         </div>
         <div id="packing-lists-list">
           <ul>
-            {this.state.packing_lists.map((list, i) =>
+            {this.props.packing_lists.map((list, i) =>
               <li key={i}>
               <div id="edit-packing-list-form">
                 <input href={list.id} className="hollow button" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
