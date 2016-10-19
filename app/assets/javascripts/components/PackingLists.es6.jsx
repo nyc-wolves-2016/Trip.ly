@@ -15,13 +15,8 @@ class PackingLists extends React.Component {
     this.handleNestedErrors = this.handleNestedErrors.bind(this);
     this.handleHideForm = this.handleHideForm.bind(this);
     this.handleNestedResetHolder = this.handleNestedResetHolder.bind(this);
+    this.handleDisappearErrors = this.handleDisappearErrors.bind(this);
   }
-
-  // componentDidMount() {
-  //   this.setState({
-  //     packing_lists: this.props.packing_lists
-  //   })
-  // }
 
   handleNestedResetHolder() {
     this.props.onResetHolder();
@@ -30,6 +25,10 @@ class PackingLists extends React.Component {
   handleNestedErrors(response) {
     this.props.onErrors(response);
     this.setState({anyErrors: true});
+  }
+
+  handleDisappearErrors() {
+    this.setState({anyErrors: false})
   }
 
   handleClick(event){
@@ -97,7 +96,7 @@ class PackingLists extends React.Component {
   render() {
     let { packing_lists } = this.props;
     return(
-      <div>
+      <div className="trips-list medium-6 large-6 columns">
         <h1>Packing Lists: </h1>
         <div>
           <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
@@ -106,10 +105,10 @@ class PackingLists extends React.Component {
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-list-form">
-          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder}/> : null }
+          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder} onDisappearErrors={this.handleDisappearErrors}/> : null }
         </div>
         <div id="edit-list-form">
-          { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder}/> : null }
+          { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder} onDisappearErrors={this.handleDisappearErrors}/> : null }
         </div>
         <div id="packing-lists-list">
           <ul>
