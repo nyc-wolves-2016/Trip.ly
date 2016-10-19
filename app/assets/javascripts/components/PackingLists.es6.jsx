@@ -115,11 +115,11 @@ class PackingLists extends React.Component {
           <ul>
             {this.props.packing_lists.map((list, i) =>
               <li key={i}>
-              <div id="edit-packing-list-form">
-                <input href={list.id} id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
+              <div className="user-options" id="edit-packing-list-form">
+                <button href={list.id} className="fa fa-pencil-square-o" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} ></button>
               </div>
-              <div>
-                <button id="list-submit" class="fa fa-trash-o" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}></button>
+              <div className="user-options">
+                <button id="list-submit" className="fa fa-trash-o" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}></button>
               </div>
               <a href={list.id} onClick={this.handleClick}>{list.name}</a>
               </li>
