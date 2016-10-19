@@ -14,12 +14,18 @@ class PackingLists extends React.Component {
     this.handleAddClick = this.handleAddClick.bind(this);
     this.handleListUpdateSubmit = this.handleListUpdateSubmit.bind(this);
     this.handleNestedErrors = this.handleNestedErrors.bind(this);
+    this.handleHideForm = this.handleHideForm.bind(this);
+    this.handleNestedResetHolder = this.handleNestedResetHolder.bind(this);
   }
 
   componentDidMount() {
     this.setState({
       packing_lists: this.props.packing_lists
     })
+  }
+
+  handleNestedResetHolder() {
+    this.props.onResetHolder();
   }
 
   handleNestedErrors(response) {
@@ -73,6 +79,10 @@ class PackingLists extends React.Component {
     this.props.onResetHolder();
   }
 
+  handleHideForm() {
+    this.setState({addList: false, editList: false})
+  }
+
   handleDelete(id) {
     var url = "/trips/" + this.props.trip.id + "/packing_lists/" + id
     $.ajax({
@@ -96,10 +106,10 @@ class PackingLists extends React.Component {
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-list-form">
-          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors}/> : null }
+          { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder}/> : null }
         </div>
         <div id="edit-list-form">
-          { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors}/> : null }
+          { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder}/> : null }
         </div>
         <div id="packing-lists-list">
           <ul>
@@ -116,7 +126,6 @@ class PackingLists extends React.Component {
             )}
           </ul>
         </div>
-
       </div>
     )
 }

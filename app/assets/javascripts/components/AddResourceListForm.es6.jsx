@@ -6,6 +6,12 @@ class AddResourceListForm extends React.Component {
     }
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleNewListSubmit = this.handleNewListSubmit.bind(this);
+    this.handleReturnClick = this.handleReturnClick.bind(this);
+  }
+
+  handleReturnClick() {
+    this.props.onResetHolder();
+    this.props.onHideForm();
   }
 
   handleNameChange(event) {
@@ -36,10 +42,13 @@ class AddResourceListForm extends React.Component {
   render() {
     return(
       <div>
-        <form className="resource-list-form" onSubmit={this.handleNewListSubmit}>
-        <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
-        <input type="submit" value="Submit"/>
-        </form>
+        <div>
+          <form className="resource-list-form" onSubmit={this.handleNewListSubmit}>
+          <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
+          <input type="submit" value="Submit"/>
+          </form>
+        </div>
+        <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
   }

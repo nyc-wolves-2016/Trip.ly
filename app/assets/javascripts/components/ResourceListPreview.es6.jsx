@@ -15,10 +15,16 @@ class ResourceListPreview extends React.Component {
     this.handleEditList = this.handleEditList.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
     this.handleNestedErrors = this.handleNestedErrors.bind(this);
+    this.handleNestedResetHolder = this.handleNestedResetHolder.bind(this);
+    this.handleHideForm = this.handleHideForm.bind(this);
   }
 
   componentDidMount() {
     this.setState({resource_lists: this.props.resource_lists});
+  }
+
+  handleNestedResetHolder() {
+    this.props.onResetHolder();
   }
 
   handleNestedErrors(response) {
@@ -45,6 +51,10 @@ class ResourceListPreview extends React.Component {
   handleListSubmit(lists) {
     this.setState({resource_lists: lists, addResourceList: false, anyErrors: false});
     this.props.onResetHolder();
+  }
+
+  handleHideForm() {
+    this.setState({addResourceList: false, editResourceListForm: false});
   }
 
   handleEditList(lists) {
@@ -96,10 +106,10 @@ class ResourceListPreview extends React.Component {
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
         <div id="add-resource-list-form">
-          { this.state.addResourceList ? <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList} onErrors={this.handleNestedErrors} onListSubmit={  this.handleListSubmit}/> : null }
+          { this.state.addResourceList ? <AddResourceListForm trip={trip} onAddNewList={this.handleAddNewList} onErrors={this.handleNestedErrors} onListSubmit={  this.handleListSubmit} onResetHolder={this.handleNestedResetHolder} onHideForm={this.handleHideForm}/> : null }
         </div>
         <div id="edit-resource-list-form" >
-          { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList} onErrors={this.handleNestedErrors}/> : null }
+          { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList} onErrors={this.handleNestedErrors} onResetHolder={this.handleNestedResetHolder} onHideForm={this.handleHideForm}/> : null }
         </div>
         <div id="resource-lists-list">
           <ul>

@@ -2,6 +2,12 @@ class AddPackingListForm extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReturnClick = this.handleReturnClick.bind(this);
+  }
+
+  handleReturnClick() {
+    this.props.onResetHolder();
+    this.props.onHideForm();
   }
 
   handleSubmit(event) {
@@ -38,6 +44,7 @@ class AddPackingListForm extends React.Component {
             </div>
           </form>
         </div>
+        <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
   )}
 }
