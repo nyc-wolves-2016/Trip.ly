@@ -95,7 +95,7 @@ class Itinerary extends React.Component {
           </div>
 
             { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><button id="event-submit"  className="hollow button" onClick={this.onButtonClick}>Add Event</button></div> }
-            { this.state.anyForms ? null : <ul>
+            { this.state.anyForms ? null : <ul id="timeline">
               {this.state.ievents.map((event, i ) =>
               <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
               )}

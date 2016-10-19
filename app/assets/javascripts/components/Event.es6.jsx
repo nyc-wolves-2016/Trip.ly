@@ -61,27 +61,25 @@ class Event extends React.Component {
     let { name, location, details, contact_info, date, start_time, end_time, id } = this.props.data;
     // TRY MOVING THE FORM/BUTTON NEXT TO THE EVENT COMPONENT IN ITINERARY
     return(
-      <div>
-        <div>
-          <a className="event-edit" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleEditButtonClick}>Edit Event</a>
-          <a className="event-delete" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleDeleteButtonClick}>Delete Event</a>
-        </div>
-
           <li>
-            <p>Name: {name}</p>
-            <ul>
-              <li>
-                Date: {date}
-              </li>
-              <li>
-                Details: {details}
-              </li>
-              <li>
-                Start Time: {start_time}
-              </li>
-            </ul>
+            <input className="radio" type="radio" defaultChecked />
+            <div className="relative">
+              <label htmlFor="name">{name}</label>
+              <span className="date">{date}</span>
+              <span className="circle"></span>
+            </div>
+            <div className="content">
+            <div>
+              <a className="event-edit" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleEditButtonClick}>Edit Event</a>
+              <a className="event-delete" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleDeleteButtonClick}>Delete Event</a>
+            </div>
+              <p>{location}<br/>
+              {details}<br/>
+              <span className="start-time">{start_time}</span>
+              <span className="end-time">{end_time}</span>
+              <span className="contact-info">{contact_info}</span></p>
+            </div>
           </li>
-      </div>
     )
   }
 }
