@@ -38,11 +38,13 @@ class ResourceListPreview extends React.Component {
   }
 
   handleAddClick() {
-    this.setState( {addResourceList: true })
+    this.setState( {addResourceList: true });
+    this.props.onAddResourcePreviewForm();
   }
 
   handleListSubmit(lists) {
     this.setState({resource_lists: lists, addResourceList: false, anyErrors: false});
+    this.props.onResetHolder();
   }
 
   handleEditList(lists) {
@@ -51,6 +53,7 @@ class ResourceListPreview extends React.Component {
       editResourceListForm: false,
       anyErrors: false
     })
+    this.props.onResetHolder();
   }
 
   handleEditClick(event) {
@@ -64,6 +67,7 @@ class ResourceListPreview extends React.Component {
         editResourceListForm: true,
         resource_list: response[0]
       });
+      this.props.onAddResourcePreviewForm();
     }.bind(this));
   }
 
@@ -86,7 +90,7 @@ class ResourceListPreview extends React.Component {
       <div>
         <h1>Resource Lists: </h1>
         <div id="add-resource-list-button">
-          <input className="hollow button" type="button" value="Add Resource List" onClick={this.handleAddClick} />
+          <input className="hollow button" id="resource-list-submit" type="button" value="Add Resource List" onClick={this.handleAddClick} />
         </div>
         <div id="add-errors">
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
@@ -97,19 +101,21 @@ class ResourceListPreview extends React.Component {
         <div id="edit-resource-list-form" >
           { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList} onErrors={this.handleNestedErrors}/> : null }
         </div>
-        <ul>
-          {this.state.resource_lists.map((list, i) =>
-            <li key={i}>
-              <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
-              <div className="edit-list-button">
-                <input href={list.id} type="button" value="Edit List" onClick={this.handleEditClick}/>
-              </div>
-              <div className="delete-list-button">
-                <input href={list.id} type="button" value="Delete List" onClick={this.handleDelete}/>
-              </div>
-            </li>
-          )}
-        </ul>
+        <div id="resource-lists-list">
+          <ul>
+            {this.state.resource_lists.map((list, i) =>
+              <li key={i}>
+                <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
+                <div className="edit-list-button">
+                  <input href={list.id} id="resource-list-submit" type="button" value="Edit List" onClick={this.handleEditClick}/>
+                </div>
+                <div className="delete-list-button">
+                  <input href={list.id} type="button" value="Delete List" onClick={this.handleDelete}/>
+                </div>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     )
 }

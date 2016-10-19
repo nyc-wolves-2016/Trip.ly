@@ -47,6 +47,8 @@ class Holder extends React.Component {
       itineraryPreview: false,
       packingPreview: false
     })
+    $("#resource-list-submit").addClass('hidden');
+    $('#resource-lists-list').addClass('hidden');
   }
 
   handleResetHolder() {
@@ -56,7 +58,9 @@ class Holder extends React.Component {
       resourcePreview: true
     })
     $("#list-submit").removeClass('hidden');
+    $("#resource-list-submit").removeClass('hidden');
     $('#packing-lists-list').removeClass('hidden');
+    $('#resource-lists-list').removeClass('hidden');
   }
 
   render(){
@@ -68,7 +72,7 @@ class Holder extends React.Component {
           { this.state.itineraryPreview ? <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/> : null }
         </div>
           { this.state.packingPreview ? <PackingLists onListClick={this.handleNested} trip={trip} packing_lists={packing_lists} onErrors={this.handleNestedErrors} errors={this.props.errors} onAddPackingPreviewForm={this.handleAddPackingPreviewForm} onResetHolder={this.handleResetHolder}/> : null }
-          { this.state.resourcePreview ? <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={resource_lists}  onErrors={this.handleNestedErrors} errors={this.props.errors} onAddResourcePreviewForm={this.handleAddResourcePreviewForm}/> : null }
+          { this.state.resourcePreview ? <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={resource_lists}  onErrors={this.handleNestedErrors} errors={this.props.errors} onAddResourcePreviewForm={this.handleAddResourcePreviewForm} onResetHolder={this.handleResetHolder}/> : null }
         <div>
 
 
