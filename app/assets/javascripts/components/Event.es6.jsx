@@ -69,15 +69,14 @@ class Event extends React.Component {
               <span className="circle"></span>
             </div>
             <div className="content">
-            <div>
-              <a className="event-edit" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleEditButtonClick}>Edit Event</a>
-              <a className="event-delete" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleDeleteButtonClick}>Delete Event</a>
-            </div>
+              <a className="event-edit fa fa-pencil-square-o" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleEditButtonClick}></a>
+              <a className="event-delete fa fa-trash-o" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleDeleteButtonClick}></a>
               <p>{location}<br/>
               {details}<br/>
-              <span className="start-time">{start_time}</span>
-              <span className="end-time">{end_time}</span>
-              <span className="contact-info">{contact_info}</span></p>
+                <span className="start-time">{start_time}</span>
+                <span className="end-time">{end_time}</span>
+                <span className="contact-info">{contact_info}</span>
+              </p>
             </div>
           </li>
     )
