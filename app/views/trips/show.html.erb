@@ -2,6 +2,10 @@
   <div id="weather">
     <p class="hidden"><%= @trip_object.city %></p>
   </div>
+<% else %>
+  <div id="userbanner">
+    <h1 class="userwelcome"><%= @trip_object.name %></h1>
+  </div>
 <% end %>
 
 
