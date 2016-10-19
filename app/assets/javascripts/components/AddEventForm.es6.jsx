@@ -49,12 +49,12 @@ class AddEventForm extends React.Component {
           <div className="row">
             <div className="large-6 columns">
               <label>Start Time
-                <input type="datetime" ref="startTimeBox" name="event[start_time]" placeholder="Start Time" />
+                <input type="datetime-local" ref="startTimeBox" name="event[start_time]" placeholder="Start Time" />
               </label>
             </div>
             <div className="large-6 columns">
               <label>End Time
-                <input type="datetime" ref="endTimeBox" name="event[end_time]" placeholder="End Time" />
+                <input type="datetime-local" ref="endTimeBox" name="event[end_time]" placeholder="End Time" />
               </label>
             </div>
           </div>
