@@ -5,7 +5,8 @@ class Holder extends React.Component {
     this.state = {
       packingPreview: true,
       resourcePreview: true,
-      itineraryPreview: true
+      itineraryPreview: true,
+      // packing_lists: []
     }
 
     this.handleNested = this.handleNested.bind(this);
@@ -16,6 +17,10 @@ class Holder extends React.Component {
     this.handleAddResourcePreviewForm = this.handleAddResourcePreviewForm.bind(this);
     this.handleResetHolder = this.handleResetHolder.bind(this);
   }
+
+  // componentDidMount() {
+  //   this.setState({packing_lists: this.props.allLists.packing_lists})
+  // }
 
   handleNestedItinerary(response){
     this.props.onItineraryClick(response);
