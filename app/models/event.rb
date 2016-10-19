@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
   belongs_to :itinerary
 
-  validates :name, :date, presence: true
+  validates :name, :start_time, :end_time, :location, :details, presence: true
 end
