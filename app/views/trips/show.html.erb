@@ -10,12 +10,13 @@
 
 
 <div class="row">
-  <div class="large-8 large-centered">
-<a class="hollow button float-right" href="mailto:?subject=Check out my <%= @trip_object.name %> trip details on Trip.ly!&amp;body=Check out my trip itinerary and resources for <%= @trip_object.name %> at  http://trip-ly.herokuapp.com/trips/share?key=<%= @trip_object.key%>"
-   title="Share by Email">
-Share Trip Details
-</a>
-</div>
+  <div class="small-11 small-centered large-6 column large-centered share-container">
+    <div class="share-button">
+      <a class="button" id="button-padding" href="mailto:?subject=Check out my <%= @trip_object.name %> trip details on Trip.ly!&amp;body=Check out my trip itinerary and resources for <%= @trip_object.name %> at  http://trip-ly.herokuapp.com/trips/share?key=<%= @trip_object.key%>"
+         title="Share by Email"><i class="fa fa-envelope" aria-hidden="true"></i> <strong>Share Trip Details</strong>
+      </a>
+    </div>
+  </div>
 </div>
 
 <%= react_component 'Trip', { trip: @trip, packing_lists: @packing_lists, resource_lists: @resource_lists, itinerary: @itinerary } %>

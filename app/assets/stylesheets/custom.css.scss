@@ -121,6 +121,18 @@ textarea {
     left: 6px;
     top: 8px;
   }
+  .fa-suitcase {
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    font-size: 1em;
+  }
+  .fa-info-circle {
+    position: absolute;
+    left: 7px;
+    top: 8px;
+    font-size: 1em;
+  }
   .trip-date {
     font-size: .75em;
   }
@@ -128,4 +140,27 @@ textarea {
 
 .past a {
   color: $blue;
+}
+
+.container {
+  padding-bottom: 30px;
+  width: 100%;
+  position: relative;
+}
+
+.share-button {
+  // float:right;
+  position: absolute;
+  right: 0;
+  height: 40px;
+}
+
+.fa-envelope {
+  font-size: 3.5em;
+  font-family: "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+}
+
+.share-container {
+  position: relative;
+  z-index: 5;
 }
