@@ -6,8 +6,8 @@ class UsersController < ApplicationController
     elsif @user.id != current_user.id
       not_found
     end
-  
-    @trip = Trip.new
 
+    @trip = Trip.new
+    # @errors = @trip.errors.full_messages
   end
 end
