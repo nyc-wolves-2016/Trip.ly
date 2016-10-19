@@ -1,0 +1,13 @@
+<% if @errors %>
+<div id="error_explanation">
+  <!-- <p>
+    <%= pluralize(@errors.count, "error") %> prohibited
+    this trip from being saved:
+  <p> -->
+  <ul>
+    <% @errors.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

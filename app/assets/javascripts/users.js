@@ -15,3 +15,21 @@ function initAutocomplete() {
            (document.getElementById('trip_city')),
            {types: ['geocode']});
 }
+
+$(document).ready(function() {
+
+  $('.container').on('click', '#edit-trip', function(event) {
+    event.preventDefault();
+    debugger;
+    var url = $(this).attr('action');
+
+    $.ajax({
+      method: 'GET',
+      url: url
+    }).done(function(response){
+      $('.greeting').after(response);
+      $('#edit-trip').remove();
+      $('.trips-list').remove();
+    });
+  });
+});
