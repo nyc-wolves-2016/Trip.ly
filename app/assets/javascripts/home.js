@@ -6,7 +6,7 @@ $(function() {
     document.getElementById("homepage-video").play();
     document.getElementById('homepage-video').addEventListener('ended',myHandler,false);
 
-    $("div.hidden").fadeIn(4000).removeClass("hidden");
+    $("div.hidden").fadeIn(5000).removeClass("hidden");
 
     function myHandler(e) {
       setTimeout(function(){

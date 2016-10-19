@@ -87,22 +87,26 @@ class Itinerary extends React.Component {
     let { trip_id, id, name } = this.props.itinerary;
     return(
       <div className="row">
-        <h1>Itinerary</h1>
-          { this.state.anyForms ? null : <ul>
-            {this.state.ievents.map((event, i ) =>
-            <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
-            )}
-          </ul> }
+        <div className="large-8 column large-centered">
+          <h1>Itinerary</h1>
 
-          { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
+          <div id="add-errors">
+            { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+          </div>
 
-        <div id="add-errors">
-          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+            { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><button id="event-submit"  className="hollow button" onClick={this.onButtonClick}>Add Event</button></div> }
+            { this.state.anyForms ? null : <ul>
+              {this.state.ievents.map((event, i ) =>
+              <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
+              )}
+            </ul> }
+
+            { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
+
+
+
+              <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
         </div>
-
-          { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><button id="event-submit"  className="hollow button" onClick={this.onButtonClick}>Add Event</button></div> }
-
-          <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
   }

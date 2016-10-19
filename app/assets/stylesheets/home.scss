@@ -14,7 +14,7 @@
 
 #homepage-video-content {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 25%;
   right: 25%;
   bottom: 50%;
@@ -22,9 +22,11 @@
   color: $white;
   text-align: center;
   text-transform: capitalize;
+  font-size: 1.3em;
 }
 #homepage-video-content h1 {
     text-shadow: 2px 2px 4px #000000;
+
 }
 
 @media screen and (max-width: 39.9375em) {
@@ -36,6 +38,7 @@
     color: $white;
     text-align: center;
     text-transform: capitalize;
+    font-size: 1em;
   }
 }
 

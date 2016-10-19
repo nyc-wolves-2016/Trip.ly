@@ -27,11 +27,17 @@ class AddPackingListForm extends React.Component {
 
   render() {
     return(
-      <div>
-        <form className="list-form" ref="listForm"  onSubmit={this.handleSubmit}>
-          <input type="text" ref="nameBox" name="list[name]" placeholder="Name" />
-          <input type="submit" value="Submit"/>
-        </form>
+      <div className="row">
+        <div className="small-10 small-centered medium-8 medium-centered large-8 large-centered column">
+          <form className="list-form" ref="listForm"  onSubmit={this.handleSubmit}>
+            <div className="input-group">
+              <input className="input-group-field" type="text" ref="nameBox" name="list[name]" placeholder="Name" />
+              <div className="input-group-button">
+                <input className="hollow button" type="submit" value="Submit"/>
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
   )}
 }
