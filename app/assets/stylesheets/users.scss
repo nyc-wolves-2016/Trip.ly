@@ -4,10 +4,6 @@
 @import 'settings';
 @import 'foundation';
 
-.user-options li{
-  display: inline-block;
-}
-
 .user-profile {
   // background: url("/images/ocean-pano.jpeg") no-repeat;
   // background-size: 100%;
@@ -20,12 +16,17 @@
   // color: $white;
 }
 
-.upcoming, .past {
+.trips-list ul {
   display: inline-block;
-  // background-color: map-get($foundation-palette, primary);
-  // color: $white;
-  font-weight: bold;
-  width: 100%;
+  margin: 0;
   list-style-type: none;
   padding: 0;
+}
+
+.trips-list h5 {
+  font-weight: bold;
+}
+
+.user-options {
+  display: inline-block;
 }
