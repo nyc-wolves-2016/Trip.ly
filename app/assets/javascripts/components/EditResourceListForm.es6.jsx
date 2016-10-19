@@ -5,11 +5,17 @@ class EditResourceListForm extends React.Component {
       name: ""
     }
     this.handleUpdateList = this.handleUpdateList.bind(this);
-    this.handleNameChange = this.handleNameChange.bind(this)
-;  }
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleReturnClick = this.handleReturnClick.bind(this);
+  }
 
   componentDidMount(){
     this.setState({name: this.props.resource_list.name})
+  }
+
+  handleReturnClick() {
+    this.props.onResetHolder();
+    this.props.onHideForm();
   }
 
   handleNameChange(event) {
@@ -38,10 +44,13 @@ class EditResourceListForm extends React.Component {
 
   render() {
     return(
+      <div>
         <form className="edit-resource-list-form" onSubmit={this.handleUpdateList}>
         <input type="text" name="name" value={this.state.name} placeholder="Name" onChange={this.handleNameChange} />
         <input type="submit" value="Update"/>
         </form>
+        <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
+      </div>
     )
   }
 }

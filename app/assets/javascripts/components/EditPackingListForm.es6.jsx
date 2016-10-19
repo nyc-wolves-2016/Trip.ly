@@ -6,10 +6,16 @@ class EditPackingListForm extends React.Component {
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
+    this.handleReturnClick = this.handleReturnClick.bind(this);
   }
 
   componentDidMount() {
     this.setState({name: this.props.packing_list.name})
+  }
+
+  handleReturnClick() {
+    this.props.onResetHolder();
+    this.props.onHideForm();
   }
 
   handleNameChange(event) {
@@ -45,6 +51,7 @@ class EditPackingListForm extends React.Component {
           <input type="text" value={this.state.name} name="name" placeholder="Name" onChange={this.handleNameChange}/>
           <input type="submit" value="Update"/>
         </form>
+        <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
   )}
 }
