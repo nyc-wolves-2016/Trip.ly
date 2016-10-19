@@ -36,5 +36,5 @@ trips.each  do |trip|
 end
 
 Itinerary.all.each do |itinerary|
-    2.times { Event.create!(itinerary: itinerary, name: Faker::GameOfThrones.city, date: Faker::Date.between(2.days.ago, Date.today), start_time: Time.parse("#{rand(1..22)}:00")) }
+    2.times { Event.create!(itinerary: itinerary, name: Faker::GameOfThrones.city, start_time: Faker::Time.between(3.days.ago, Date.today, :all), end_time: Faker::Time.between(2.days.ago, Date.today, :all)) }
 end

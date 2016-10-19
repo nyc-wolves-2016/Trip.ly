@@ -68,7 +68,7 @@
           <li>
             <div class="past name"><a href="/trips/<%= trip.id %>"><%= trip.name %></a>
             <form class="user-options" id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-              <button class="fa fa-pencil-square-o" type="button" type="submit" value= "Edit"></button>
+              <button class="fa fa-pencil-square-o" type="submit" value= "Edit"></button>
             </form>
                  <form class="user-options" id="delete-trip" method="post" action="<%= trip_path(trip) %>">
                    <input type="hidden" name="_method" value="delete">
