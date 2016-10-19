@@ -9,7 +9,8 @@ class ResourcesController < ApplicationController
       if !user_signed_in? || trip.user.id != current_user.id
         not_found
       end
-      render json: resource.as_json
+      resources = ResourceList.find(params[:resource_list_id]).resources.as_json
+      render json: resources
     else
       render json: @errors = resource.errors.messages, status: 422
     end
@@ -28,7 +29,7 @@ class ResourcesController < ApplicationController
     if !user_signed_in? || trip.user.id != current_user.id
       not_found
     end
-    
+
     if resource.update(resource_params)
       resources = ResourceList.find(params[:resource_list_id]).resources.as_json
       render json: resources

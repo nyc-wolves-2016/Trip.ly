@@ -5,7 +5,8 @@ class ResourceList extends React.Component {
       editResourceForm: false,
       resource: {},
       rlresources: [],
-      anyErrors: false
+      anyErrors: false,
+      addResourceForm: false
     }
     this.handleReturnClick = this.handleReturnClick.bind(this);
     this.handleAddNewResource = this.handleAddNewResource.bind(this);
@@ -13,6 +14,7 @@ class ResourceList extends React.Component {
     this.handleUpdateResources = this.handleUpdateResources.bind(this);
     this.handleDeleteResource = this.handleDeleteResource.bind(this);
     this.handleNestedErrors = this.handleNestedErrors.bind(this);
+    this.handleAddResourceClick = this.handleAddResourceClick.bind(this);
   }
 
   componentDidMount() {
@@ -28,10 +30,15 @@ class ResourceList extends React.Component {
     this.props.onReturnTripPage();
   }
 
-  handleAddNewResource(new_resource) {
-    this.props.resources.push(new_resource);
-    this.forceUpdate();
-    this.setState({anyErrors: false})
+  handleAddResourceClick() {
+    this.setState({addResourceForm: true})
+    $("#resources-list").addClass('hidden')
+  }
+
+  handleAddNewResource(resources) {
+    this.setState({rlresources: resources, addResourceForm: false, anyErrors: false})
+    $("#resources-list").removeClass('hidden')
+
   }
 
   handleUpdateResources(resources) {
@@ -40,11 +47,7 @@ class ResourceList extends React.Component {
       editResourceForm: false,
       anyErrors: false
     });
-  }
-
-  handleButtonClick() {
-    $("#add-resource-form").removeClass("hidden");
-    $("#add-resource-button").addClass("hidden");
+    $("#resources-list").removeClass('hidden')
   }
 
   handleEditResource(event) {
@@ -58,6 +61,7 @@ class ResourceList extends React.Component {
       this.setState({ editResourceForm: true,
                       resource: response
       });
+      $("#resources-list").addClass('hidden')
     }.bind(this))
   }
 
@@ -80,18 +84,18 @@ class ResourceList extends React.Component {
       <div>
         <h2>Name: {name}</h2>
         <div id="add-resource-button">
-          <input type="button" value="Add Resource" onClick={this.handleButtonClick} />
+          <button onClick={this.handleAddResourceClick}>Add Resource</button>
         </div>
         <div id="add-errors">
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
         </div>
-        <div id="add-resource-form" className="hidden">
-          <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource} onErrors={this.handleNestedErrors}/>
+        <div id="add-resource-form" >
+          { this.state.addResourceForm ? <AddSingleResource resource_list={this.props.rlist} onAddNewResource={this.handleAddNewResource} onErrors={this.handleNestedErrors}/> : null }
         </div>
         <div id="edit-resource-form" >
           { this.state.editResourceForm ? <EditSingleResource resource_list={this.props.rlist} resource={this.state.resource} onUpdateResources={this.handleUpdateResources} onErrors={this.handleNestedErrors}/> : null }
         </div>
-        <li>
+        <div id="resources-list">
           {this.state.rlresources.map((resource, i) =>
             <div key={i}>
               {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
@@ -103,7 +107,7 @@ class ResourceList extends React.Component {
               </div>
             </div>
           ) }
-        </li>
+        </div>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
