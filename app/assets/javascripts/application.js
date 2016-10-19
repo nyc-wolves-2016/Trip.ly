@@ -21,11 +21,6 @@
 
 
 
-function initAutocomplete() {
-  var autocomplete = new google.maps.places.Autocomplete(
-           (document.getElementById('trip_city')),
-           {types: ['geocode']});
-}
 
 $(function(){ $(document).foundation(); });
 

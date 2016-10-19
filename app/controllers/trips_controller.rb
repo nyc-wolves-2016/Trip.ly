@@ -9,7 +9,6 @@ class TripsController < ApplicationController
   end
 
   def show
-
     @trip_object = Trip.find_by(id: params[:id])
     @trip = @trip_object.as_json
 

@@ -6,7 +6,8 @@ class UsersController < ApplicationController
     elsif @user.id != current_user.id
       not_found
     end
-
+  
     @trip = Trip.new
+
   end
 end

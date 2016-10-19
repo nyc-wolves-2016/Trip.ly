@@ -40,7 +40,7 @@
 
 
 
-<div id="new_trip_form" class="hidden">
+<div id="new_trip_form" class="<%= 'hidden' unless @trip.errors.any? %>">
   <p>
     <%= f.label :city %><br>
     <%= f.text_field :city %>
@@ -109,3 +109,5 @@
 
 </div>
 </div>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=<%="#{ENV['GOOGLE_AUTOCOMPLETE_KEY']}"%>&amp;libraries=places&amp;callback=initAutocomplete"
+    async defer></script>
