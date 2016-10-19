@@ -97,7 +97,7 @@ class Holder extends React.Component {
     let { trip, packing_lists, itinerary, resource_lists } = this.props.allLists;
 
     return(
-      <div className="row">
+      <div className="row container">
           <div className="large-8 column large-centered">
             { this.state.itineraryPreview ? <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/> : null }
             <div className="row">

@@ -114,14 +114,18 @@ class ResourceListPreview extends React.Component {
           { this.state.editResourceListForm ? <EditResourceListForm resource_list={this.state.resource_list} trip={trip} onEditList = {this.handleEditList} onErrors={this.handleNestedErrors} onResetHolder={this.handleNestedResetHolder} onHideForm={this.handleHideForm} onDisappearErrors={this.handleDisappearErrors}/> : null }
         </div>
         <div id="resource-lists-list">
-          <ul>
+          <ul className="list-display">
             {this.props.resource_lists.map((list, i) =>
               <li key={i}>
+                <div className="name"><a href={list.id} onClick={this.handleClick}>{list.name}</a>
                 <div className="user-options">
                   <button className="fa fa-pencil-square-o" href={list.id} id="resource-list-submit" type="button" onClick={this.handleEditClick}></button>
                   <button className="fa fa-trash-o" href={list.id} type="button" onClick={this.handleDelete}></button>
                 </div>
-                <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
+                <div className="list-circle">
+                  <i className="fa fa-info-circle fa-lg"></i>
+                </div>
+                </div>
               </li>
             )}
           </ul>

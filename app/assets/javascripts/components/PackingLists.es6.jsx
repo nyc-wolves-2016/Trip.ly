@@ -111,17 +111,20 @@ class PackingLists extends React.Component {
           { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors} onHideForm={this.handleHideForm} onResetHolder={this.handleNestedResetHolder} onDisappearErrors={this.handleDisappearErrors}/> : null }
         </div>
         <div id="packing-lists-list">
-          <ul>
+          <ul className="list-display">
             {this.props.packing_lists.map((list, i) =>
               <li key={i}>
-              <div className="user-options" id="edit-packing-list-form">
-                <button href={list.id} className="fa fa-pencil-square-o" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} ></button>
+                <div className="name"><a href={list.id} onClick={this.handleClick}>{list.name}</a>
+                <div className="user-options" id="edit-packing-list-form">
+                  <button href={list.id} className="fa fa-pencil-square-o" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} ></button>
+
+                  <button id="list-submit" className="fa fa-trash-o" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}></button>
+                </div>
+                <div className="list-circle">
+                  <i className="fa fa-suitcase fa-lg"></i>
+                </div>
               </div>
-              <div className="user-options">
-                <button id="list-submit" className="fa fa-trash-o" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}></button>
-              </div>
-              <a href={list.id} onClick={this.handleClick}>{list.name}</a>
-              </li>
+            </li>
             )}
           </ul>
         </div>
