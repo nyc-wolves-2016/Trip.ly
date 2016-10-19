@@ -40,12 +40,24 @@ class EditEventForm extends React.Component {
     return (
       <div>
           <form className="edit-event-form" ref="editEventForm" onSubmit={this.handleSubmit}>
-          <input type="text" ref="nameBox" name="event[name]" defaultValue={name} placeholder="Name" />
-          <input type="text" ref="locationBox" name="event[location]" defaultValue={location} placeholder="Location" />
-          <input type="text" ref="detailsBox" name="event[details]" defaultValue={details} placeholder="Details" />
-          <input type="text" ref="contactInfoBox" name="event[contact_info]" defaultValue={contact_info} placeholder="Contact Information" />
-          <input type="datetime" ref="startTimeBox" name="event[start_time]" defaultValue={start_time} placeholder="Start Time" />
-          <input type="datetime" ref="endTimeBox" name="event[end_time]" defaultValue={end_time} placeholder="End Time" />
+          <label>Name
+            <input type="text" ref="nameBox" name="event[name]" defaultValue={name} placeholder="Name" />
+          </label>
+          <label>Location
+            <input type="text" ref="locationBox" name="event[location]" defaultValue={location} placeholder="Location" />
+          </label>
+          <label>Details
+            <input type="text" ref="detailsBox" name="event[details]" defaultValue={details} placeholder="Details" />
+          </label>
+          <label>Contact Information
+            <input type="text" ref="contactInfoBox" name="event[contact_info]" defaultValue={contact_info} placeholder="Contact Information" />
+          </label>
+          <label>Start Time
+            <input type="datetime" ref="startTimeBox" name="event[start_time]" defaultValue={start_time} placeholder="Start Time" />
+          </label>
+          <label>End Time
+            <input type="datetime" ref="endTimeBox" name="event[end_time]" defaultValue={end_time} placeholder="End Time" />
+          </label>
           <input type="submit" value="Submit"/>
         </form>
       </div>
