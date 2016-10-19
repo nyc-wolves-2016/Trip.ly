@@ -100,7 +100,7 @@ class ResourceListPreview extends React.Component {
     let { trip } = this.props;
     return(
       <div className="trips-list medium-6 large-6 columns">
-        <h1>Resource Lists: </h1>
+        <h5>Resource Lists</h5>
         <div id="add-resource-list-button">
           <input className="hollow button" id="resource-list-submit" type="button" value="Add Resource List" onClick={this.handleAddClick} />
         </div>

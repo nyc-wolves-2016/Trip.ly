@@ -81,10 +81,11 @@ class ResourceList extends React.Component {
   render(){
     let { name } = this.props.rlist;
     return(
-      <div>
+      <div className="row">
+        <div className="small-10 small-centered medium-8 medium centeredlarge-8 large-centered column">
         <h2>Name: {name}</h2>
         <div id="add-resource-button">
-          <button onClick={this.handleAddResourceClick}>Add Resource</button>
+          <button className="hollow button" onClick={this.handleAddResourceClick}>Add Resource</button>
         </div>
         <div id="add-errors">
           { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
@@ -98,17 +99,17 @@ class ResourceList extends React.Component {
         <div id="resources-list">
           {this.state.rlresources.map((resource, i) =>
             <div key={i}>
+            <div className="user-options">
+              <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
+              <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
+            </div>
               {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
-              <div>
-                <input href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} />
-              </div>
-              <div>
-                <input href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}/>
-              </div>
+
             </div>
           ) }
         </div>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
+        </div>
       </div>
     )
   }

@@ -97,7 +97,7 @@ class PackingLists extends React.Component {
     let { packing_lists } = this.props;
     return(
       <div className="trips-list medium-6 large-6 columns">
-        <h1>Packing Lists: </h1>
+        <h5>Packing Lists</h5>
         <div>
           <input className="hollow button" id="list-submit" type="button" value="Add Packing List" onClick={this.handleAddClick}/>
         </div>

@@ -42,15 +42,16 @@ class AddResourceListForm extends React.Component {
 
   render() {
     return(
-      <div>
-        <div>
+        <div className="row">
           <form className="resource-list-form" onSubmit={this.handleNewListSubmit}>
-          <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
-          <input type="submit" value="Submit"/>
+          <label for="name">Name
+            <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
+          </label>
+          <button className="hollow button" type="submit" value="Submit">Submit</button>
           </form>
-        </div>
+
         <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
-      </div>
+        </div>
     )
   }
 

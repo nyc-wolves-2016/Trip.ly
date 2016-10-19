@@ -97,7 +97,7 @@ class PackingList extends React.Component {
     let { name } = this.props.list;
     return(
       <div>
-        <h1>Packing List Name: {name}</h1>
+        <h5>Packing List Name: {name}</h5>
         <div>
           <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
         </div>
