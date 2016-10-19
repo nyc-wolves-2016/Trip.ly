@@ -8,6 +8,7 @@ class AddPackingListForm extends React.Component {
   handleReturnClick() {
     this.props.onResetHolder();
     this.props.onHideForm();
+    this.props.onDisappearErrors();
   }
 
   handleSubmit(event) {
