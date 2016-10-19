@@ -94,7 +94,7 @@ class Itinerary extends React.Component {
             { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
           </div>
 
-            { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><input id="event-submit"  className="hollow button" value="Add Event" onClick={this.onButtonClick}/></div> }
+            { this.state.addEvent ? <AddEventForm data={this.props} onEventSubmit={this.handleEventSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : <div><button id="event-submit"  className="hollow button" onClick={this.onButtonClick}>Add Event</button></div> }
             { this.state.anyForms ? null : <ul>
               {this.state.ievents.map((event, i ) =>
               <Event key={i} onEventDelete={this.handleEventDelete} onEventEditClick={this.handleEventEdit} data={event} events={this.state.ievents} itinerary={this.props}/>
@@ -102,6 +102,8 @@ class Itinerary extends React.Component {
             </ul> }
 
             { this.state.editEvent ? <EditEventForm event={this.state.event} trip={trip_id} onEventEditSubmit={this.handleEventEditSubmit} onErrors={this.handleNestedErrors} errors={this.props.errors} anyErrors={this.props.anyErrors}/> : null }
+
+
 
               <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
         </div>
