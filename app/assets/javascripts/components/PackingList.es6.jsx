@@ -48,9 +48,9 @@ class PackingList extends React.Component {
     this.setState({addItemForm: true})
   }
 
-  handleItemSubmit(response){
+  handleItemSubmit(items){
     this.setState({
-      plitems: response,
+      plitems: items,
       addItemForm: false,
       anyErrors: false
     })
