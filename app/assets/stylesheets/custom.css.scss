@@ -83,3 +83,49 @@ textarea {
 .content a {
   padding-right: 5px;
 }
+
+// List styling
+.list-display {
+    width: 80%;
+    li {
+      padding-bottom: 20px;
+      }
+  .name {
+    font-size: 1.25em;
+    border-bottom: 2px solid map-get($foundation-palette, primary);
+    position: relative;
+  }
+  .list-circle {
+    width: 35px;
+    height: 35px;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: $white;
+    color: map-get($foundation-palette, primary);
+    position: absolute;
+    top: 45%;
+    right: 0;
+    border: 2px solid map-get($foundation-palette, primary);
+  }
+  .past {
+    border-bottom: 2px solid $blue;
+  }
+  .past-circle{
+    border: 2px solid $blue;
+  }
+  .past-icon {
+    color: $blue;
+  }
+  .fa-plane {
+    position: absolute;
+    left: 6px;
+    top: 8px;
+  }
+  .trip-date {
+    font-size: .75em;
+  }
+}
+
+.past a {
+  color: $blue;
+}
