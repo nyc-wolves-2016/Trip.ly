@@ -113,7 +113,7 @@ class ResourceListPreview extends React.Component {
         </div>
         <div id="resource-lists-list">
           <ul>
-            {this.state.resource_lists.map((list, i) =>
+            {this.props.resource_lists.map((list, i) =>
               <li key={i}>
                 <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
                 <div className="edit-list-button">

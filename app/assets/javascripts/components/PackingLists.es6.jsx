@@ -75,8 +75,9 @@ class PackingLists extends React.Component {
   }
 
   handleListSubmit(lists){
-    this.setState({packing_lists: lists, addList: false, anyErrors: false });
+    this.setState({ addList: false, anyErrors: false });
     this.props.onResetHolder();
+    this.props.onNewPackingListAdd(lists);
   }
 
   handleHideForm() {
@@ -113,7 +114,7 @@ class PackingLists extends React.Component {
         </div>
         <div id="packing-lists-list">
           <ul>
-            {this.state.packing_lists.map((list, i) =>
+            {this.props.packing_lists.map((list, i) =>
               <li key={i}>
               <div id="edit-packing-list-form">
                 <input href={list.id} className="hollow button" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
