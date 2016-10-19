@@ -95,7 +95,7 @@ class ResourceListPreview extends React.Component {
   render() {
     let { trip } = this.props;
     return(
-      <div>
+      <div className="trips-list medium-6 large-6 columns">
         <h1>Resource Lists: </h1>
         <div id="add-resource-list-button">
           <input className="hollow button" id="resource-list-submit" type="button" value="Add Resource List" onClick={this.handleAddClick} />
@@ -113,13 +113,11 @@ class ResourceListPreview extends React.Component {
           <ul>
             {this.props.resource_lists.map((list, i) =>
               <li key={i}>
+                <div className="user-options">
+                  <button className="fa fa-pencil-square-o" href={list.id} id="resource-list-submit" type="button" onClick={this.handleEditClick}></button>
+                  <button className="fa fa-trash-o" href={list.id} type="button" onClick={this.handleDelete}></button>
+                </div>
                 <a  href={list.id} onClick={this.handleClick}>{list.name}</a>
-                <div className="edit-list-button">
-                  <input href={list.id} id="resource-list-submit" type="button" value="Edit List" onClick={this.handleEditClick}/>
-                </div>
-                <div className="delete-list-button">
-                  <input href={list.id} type="button" value="Delete List" onClick={this.handleDelete}/>
-                </div>
               </li>
             )}
           </ul>
