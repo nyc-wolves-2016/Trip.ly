@@ -38,6 +38,8 @@ class Holder extends React.Component {
       itineraryPreview: false,
       resourcePreview: false
     })
+    $("#list-submit").addClass('hidden');
+    $('#packing-lists-list').addClass('hidden');
   }
 
   handleAddResourcePreviewForm() {
@@ -53,6 +55,8 @@ class Holder extends React.Component {
       packingPreview: true,
       resourcePreview: true
     })
+    $("#list-submit").removeClass('hidden');
+    $('#packing-lists-list').removeClass('hidden');
   }
 
   render(){
