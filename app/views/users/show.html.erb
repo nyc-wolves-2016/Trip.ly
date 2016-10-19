@@ -40,7 +40,7 @@
 
 
 
-<div id="new_trip_form" class="hidden">
+<div id="new_trip_form" class="<%= 'hidden' unless @trip.errors.any? %>">
   <p>
     <%= f.label :city %><br>
     <%= f.text_field :city %>
