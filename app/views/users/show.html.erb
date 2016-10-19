@@ -67,40 +67,42 @@
   <div class="small-10 small-centered medium-8 medium-centered large-8 large-centered">
     <div class="trips-list medium-6 large-6 columns">
       <div class="upcoming">
-        <ul><h5>Upcoming Trips</h5>
+        <h5>Upcoming Trips</h5>
+        <ul>
           <% upcoming_trips(@user).sort_by{|trip| trip.start_date }.each do |trip| %>
-            <li class="user-options">
-              <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-                <button class="fa fa-pencil-square-o" type="image" value="Edit" alt="Edit"> Edit</button>
+            <li>
+              <form class="user-options" id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
+                <button class="fa fa-pencil-square-o" type="image" value="Edit" alt="Edit"></button>
               </form>
               <!-- <%= button_to 'Delete', trip_path(trip),
                    method: :delete,
                    data: { confirm: 'Are you sure?' } %> -->
-              <form id="delete-trip" method="post" action="<%= trip_path(trip) %>">
+              <form class="user-options" id="delete-trip" method="post" action="<%= trip_path(trip) %>">
                 <input type="hidden" name="_method" value="delete">
-                <button class="fa fa-trash-o" data-confirm="Are you sure?" type="submit" value="Delete"> Delete</button>
+                <button class="fa fa-trash-o" data-confirm="Are you sure?" type="submit" value="Delete"></button>
               </form>
-              <a href="/trips/<%= trip.id %>"><%= trip.name %> - <%= trip.start_date %></a>
+              <a href="/trips/<%= trip.id %>"><%= trip.start_date %>: <%= trip.name %></a>
             </li>
           <% end %>
         <ul>
       </div>
     </div>
     <div class="trips-list medium-6 large-6 columns">
-      <ul class="past"><h5>Past Trips</h5>
+      <h5>Past Trips</h5>
+      <ul class="past">
         <% past_trips(@user).sort_by{|trip| trip.start_date }.each do |trip| %>
           <li >
-            <form id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
-              <button class="fa fa-pencil-square-o" type="button" type="submit" value= "Edit">Edit</button>
+            <form class="user-options" id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
+              <button class="fa fa-pencil-square-o" type="button" type="submit" value= "Edit"></button>
             </form>
             <!-- <%= button_to 'Delete', trip_path(trip),
                  method: :delete,
                  data: { confirm: 'Are you sure?' } %> -->
-                 <form id="delete-trip" method="post" action="<%= trip_path(trip) %>">
+                 <form class="user-options" id="delete-trip" method="post" action="<%= trip_path(trip) %>">
                    <input type="hidden" name="_method" value="delete">
-                   <button class="fa fa-trash-o" data-confirm="Are you sure?" type="submit" value="Delete"> Delete</button>
+                   <button class="fa fa-trash-o" data-confirm="Are you sure?" type="submit" value="Delete"></button>
                  </form>
-            <a href="/trips/<%= trip.id %>"><%= trip.name %> - <%= trip.start_date %></a>
+            <a href="/trips/<%= trip.id %>"><%= trip.start_date %>: <%= trip.name %></a>
           </li>
         <% end %>
       <ul>
