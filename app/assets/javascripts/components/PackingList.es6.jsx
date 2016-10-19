@@ -46,6 +46,7 @@ class PackingList extends React.Component {
 
   handleAddItemClick(){
     this.setState({addItemForm: true})
+    $("#items-list").addClass('hidden')
   }
 
   handleItemSubmit(items){
@@ -54,6 +55,7 @@ class PackingList extends React.Component {
       addItemForm: false,
       anyErrors: false
     })
+    $("#items-list").removeClass('hidden')
   }
 
   handleEditItem(event) {
@@ -66,6 +68,7 @@ class PackingList extends React.Component {
       this.setState({ editItemForm: true,
                       item: response
                     })
+      $("#items-list").addClass('hidden')
     }.bind(this))
   }
 
@@ -75,6 +78,7 @@ class PackingList extends React.Component {
       editItemForm: false,
       anyErrors: false
     });
+    $("#items-list").removeClass('hidden')
   }
 
   handleDelete(id) {
@@ -106,20 +110,22 @@ class PackingList extends React.Component {
         <div id="edit-item-form">
           { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems} onErrors={this.handleNestedErrors}/> : null }
         </div>
-        <ul>
-          {this.state.plitems.map((item, i) =>
-          <li key={i}>
-            { !item.packed ? <div><a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a></div> : null }
-            <div>
-              <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
-            </div>
-            <div>
-              <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
-            </div>
-            <span style={{"textDecoration": item.packed ? "line-through" : ""}}>{item.name}</span>
-          </li>
-        )}
-        </ul>
+        <div id="items-list">
+          <ul>
+            {this.state.plitems.map((item, i) =>
+            <li key={i}>
+              { !item.packed ? <div><a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a></div> : null }
+              <div>
+                <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
+              </div>
+              <div>
+                <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
+              </div>
+              <span style={{"textDecoration": item.packed ? "line-through" : ""}}>{item.name}</span>
+            </li>
+          )}
+          </ul>
+        </div>
         <button onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
     )
