@@ -50,6 +50,7 @@ class PackingLists extends React.Component {
         editList: true,
         packing_list: response[0]
       })
+      this.props.onAddPackingPreviewForm();
     }.bind(this))
   }
 
@@ -58,15 +59,18 @@ class PackingLists extends React.Component {
       editList: false,
       packing_lists: lists,
       anyErrors: false
-    })
+    });
+    this.props.onResetHolder();
   }
 
-  handleAddClick() {
-    this.setState({ addList: true })
+  handleAddClick(event) {
+    this.setState({ addList: true });
+    this.props.onAddPackingPreviewForm();
   }
 
   handleListSubmit(lists){
     this.setState({packing_lists: lists, addList: false, anyErrors: false });
+    this.props.onResetHolder();
   }
 
   handleDelete(id) {
@@ -94,20 +98,24 @@ class PackingLists extends React.Component {
         <div id="add-list-form">
           { this.state.addList ? <AddPackingListForm data={this.props} onListSubmit={this.handleListSubmit} onErrors={this.handleNestedErrors}/> : null }
         </div>
-        <ul>
-        { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors}/> : null }
-          {this.state.packing_lists.map((list, i) =>
-            <li key={i}>
-            <div id="edit-packing-list-form">
-              <input href={list.id} className="hollow button" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
-            </div>
-            <div>
-              <input className="hollow button" id="delete-list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
-            </div>
-            <a href={list.id} onClick={this.handleClick}>{list.name}</a>
-            </li>
-          )}
-        </ul>
+        <div id="edit-list-form">
+          { this.state.editList ? <EditPackingListForm packing_list={this.state.packing_list}  onListUpdateSubmit={this.handleListUpdateSubmit} onErrors={this.handleNestedErrors}/> : null }
+        </div>
+        <div id="packing-lists-list">
+          <ul>
+            {this.state.packing_lists.map((list, i) =>
+              <li key={i}>
+              <div id="edit-packing-list-form">
+                <input href={list.id} className="hollow button" id="edit-list-submit" type="button" value="Edit List" onClick={this.handleEditClick} />
+              </div>
+              <div>
+                <input className="hollow button" id="list-submit" type="button" value="Delete List" onClick={this.handleDelete.bind(this, list.id, list)} data={this.props}/>
+              </div>
+              <a href={list.id} onClick={this.handleClick}>{list.name}</a>
+              </li>
+            )}
+          </ul>
+        </div>
       </div>
     )
 }

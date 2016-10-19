@@ -86,7 +86,7 @@ class Trip extends React.Component {
         { this.state.holder ? <Holder onListClick={this.handleListClick}
         onItineraryClick={this.handleItineraryClick} onResourceListClick={this.handleResourceListClick} allLists={this.props} onErrors={this.handleErrors} errors={this.state.errors} /> : null }
         { this.state.itinerary ? <Itinerary onReturnTripPage={this.handleReturnTripPage} events={this.state.events} itinerary={this.props.itinerary} onErrors={this.handleErrors} errors={this.state.errors} anyForms={this.state.anyForms} onForm={this.handleForms} onResetForm={this.handleResetForms} /> : null }
-        { this.state.packingList ? <PackingList onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items} onErrors={this.handleErrors} errors={this.state.errors} /> : null }
+        { this.state.packingList ? <PackingList     onReturnTripPage={this.handleReturnTripPage} list={this.state.list} items={this.state.items} onErrors={this.handleErrors} errors={this.state.errors} /> : null }
         { this.state.resourceList ? <ResourceList
           onReturnTripPage={this.handleReturnTripPage}
           rlist={this.state.rlist}
