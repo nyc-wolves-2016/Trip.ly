@@ -85,14 +85,8 @@ class TripsController < ApplicationController
 
   def share
     @trip = Trip.find_by(key: params[:key])
-    if !user_signed_in?
-      not_found
-    elsif @trip.user_id != current_user.id
-      not_found
-    else
-      @itinerary = @trip.itinerary.as_json
-      @resources = @trip.all_resources.as_json
-    end
+    @itinerary = @trip.itinerary.as_json
+    @resources = @trip.all_resources.as_json
   end
 
   private
