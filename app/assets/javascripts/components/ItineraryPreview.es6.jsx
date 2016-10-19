@@ -16,6 +16,6 @@ class ItineraryPreview extends React.Component {
 
   render() {
     return(
-        <h1 onClick={this.handleClick}>Itinerary</h1>
+        <h5 className="expanded large button" onClick={this.handleClick}><strong>Your Itinerary</strong></h5>
     )}
 }

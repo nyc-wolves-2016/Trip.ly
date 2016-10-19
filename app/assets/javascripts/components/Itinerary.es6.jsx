@@ -88,7 +88,7 @@ class Itinerary extends React.Component {
     return(
       <div className="row">
         <div className="large-8 column large-centered">
-          <h1>Itinerary</h1>
+          <h5>Itinerary</h5>
 
           <div id="add-errors">
             { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
