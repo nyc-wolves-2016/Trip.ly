@@ -18,7 +18,7 @@ class Holder extends React.Component {
     this.handleAddPackingPreviewForm = this.handleAddPackingPreviewForm.bind(this);
     this.handleAddResourcePreviewForm = this.handleAddResourcePreviewForm.bind(this);
     this.handleResetHolder = this.handleResetHolder.bind(this);
-    this.handleNewPackingListAdd = this.handleNewPackingListAdd.bind(this);
+    this.handleNewPackingList = this.handleNewPackingList.bind(this);
   }
 
   componentDidMount() {
@@ -34,7 +34,7 @@ class Holder extends React.Component {
     }.bind(this));
   }
 
-  handleNewPackingListAdd(lists){
+  handleNewPackingList(lists){
     this.setState({
       packing_lists: lists
     });
@@ -93,7 +93,7 @@ class Holder extends React.Component {
       <div className="row">
           <div className="large-8 column large-centered">
             { this.state.itineraryPreview ? <ItineraryPreview onItineraryClick={this.handleNestedItinerary} trip={trip}/> : null }
-            { this.state.packingPreview ? <PackingLists onNewPackingListAdd={this.handleNewPackingListAdd} onListClick={this.handleNested} trip={trip} packing_lists={this.state.packing_lists} onErrors={this.handleNestedErrors} errors={this.props.errors} onAddPackingPreviewForm={this.handleAddPackingPreviewForm} onResetHolder={this.handleResetHolder} /> : null }
+            { this.state.packingPreview ? <PackingLists onNewPackingList={this.handleNewPackingList} onListClick={this.handleNested} trip={trip} packing_lists={this.state.packing_lists} onErrors={this.handleNestedErrors} errors={this.props.errors} onAddPackingPreviewForm={this.handleAddPackingPreviewForm} onResetHolder={this.handleResetHolder} /> : null }
             { this.state.resourcePreview ? <ResourceListPreview onResourceListClick={this.handleNestedResource} trip={trip} resource_lists={this.state.resource_lists}  onErrors={this.handleNestedErrors} errors={this.props.errors} onAddResourcePreviewForm={this.handleAddResourcePreviewForm} onResetHolder={this.handleResetHolder} /> : null }
         </div>
       </div>

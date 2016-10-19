@@ -2,7 +2,6 @@ class PackingLists extends React.Component {
   constructor(){
     super();
     this.state = {
-      packing_lists: [],
       packing_list: [],
       editList: false,
       addList: false,
@@ -18,11 +17,11 @@ class PackingLists extends React.Component {
     this.handleNestedResetHolder = this.handleNestedResetHolder.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      packing_lists: this.props.packing_lists
-    })
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     packing_lists: this.props.packing_lists
+  //   })
+  // }
 
   handleNestedResetHolder() {
     this.props.onResetHolder();
@@ -63,10 +62,10 @@ class PackingLists extends React.Component {
   handleListUpdateSubmit(lists){
     this.setState({
       editList: false,
-      packing_lists: lists,
       anyErrors: false
     });
     this.props.onResetHolder();
+    this.props.onNewPackingList(lists);
   }
 
   handleAddClick(event) {
@@ -77,7 +76,7 @@ class PackingLists extends React.Component {
   handleListSubmit(lists){
     this.setState({ addList: false, anyErrors: false });
     this.props.onResetHolder();
-    this.props.onNewPackingListAdd(lists);
+    this.props.onNewPackingList(lists);
   }
 
   handleHideForm() {
@@ -91,7 +90,7 @@ class PackingLists extends React.Component {
       method: 'delete',
     })
     .done(function(response) {
-      this.setState({packing_lists: response});
+      this.props.onNewPackingList(response);
     }.bind(this));
   }
 
