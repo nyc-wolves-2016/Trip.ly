@@ -48,6 +48,7 @@ class TripsController < ApplicationController
           flash[:success] = "Trip Added!"
           redirect_to @trip
         else
+          @errors = @trip.errors.full_messages
           render '/users/show'
         end
     end
@@ -79,7 +80,8 @@ class TripsController < ApplicationController
       flash[:success] = "Trip Updated!"
       redirect_to "/users/#{current_user.id}"
     else
-      render "/trips/show"
+      @errors = @trip.errors.full_messages
+      render "/users/show"
     end
   end
 
