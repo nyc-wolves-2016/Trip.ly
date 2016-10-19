@@ -73,9 +73,9 @@ class Event extends React.Component {
               <a className="event-delete fa fa-trash-o" href={"/trips/" + this.props.itinerary.itinerary.trip_id + "/itineraries/" + this.props.itinerary.itinerary.id + "/events/" + id } onClick={this.handleDeleteButtonClick}></a>
               <p>{location}<br/>
               {details}<br/>
-                <span className="start-time">{start_time}</span>
+                <span className="start-time">{start_time}</span> -
                 <span className="end-time">{end_time}</span>
-                <span className="contact-info">{contact_info}</span>
+                <div className="contact-info">{contact_info}</div>
               </p>
             </div>
           </li>

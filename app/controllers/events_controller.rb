@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    # event.start_time = date + event_params[time]
     if @event.save
       itinerary = Itinerary.find(@event.itinerary_id)
       trip = Trip.find(itinerary.trip_id)
