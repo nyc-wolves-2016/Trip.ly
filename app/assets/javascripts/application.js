@@ -12,8 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
-//= require autocomplete-rails
 //= require foundation
 //= require react
 //= require react_ujs
@@ -22,20 +20,12 @@
 //= require_tree .
 
 
-var placeSearch, autocomplete;
 
-     function initAutocomplete() {
-       // Create the autocomplete object, restricting the search to geographical
-       // location types.
-       autocomplete = new google.maps.places.Autocomplete(
-           /** @type {!HTMLInputElement} */(document.getElementById('trip_city')),
+function initAutocomplete() {
+  var autocomplete = new google.maps.places.Autocomplete(
+           (document.getElementById('trip_city')),
            {types: ['geocode']});
-
-       // When the user selects an address from the dropdown, populate the address
-       // fields in the form.
-       autocomplete.addListener('place_changed', fillInAddress);
-     }
-
+}
 
 $(function(){ $(document).foundation(); });
 
@@ -52,10 +42,10 @@ $(document).ready(function() {
       html += '<li class="heading">'+weather.alt.temp+'&deg;C</li></ul>';
 
       for(var i=0;i<6;i++) {
-        html += '<ul class="test"><li class="test">'+weather.forecast[i].day+'</li>';
+        html += '<ul class="test"><li class="bold">'+weather.forecast[i].day+'</li>';
         html += '<li>'+weather.forecast[i].high+'F</li>';
         html += '<li>'+weather.forecast[i].low+'F</li>';
-        html += '<li><img src="'+weather.forecast[i].thumbnail+'"></li></ul>';
+        html += '<li class="weather-icon"><img src="'+weather.forecast[i].thumbnail+'"></li></ul>';
 
       }
 
