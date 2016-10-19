@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161017211753) do
+ActiveRecord::Schema.define(version: 20161019220847) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,11 @@ ActiveRecord::Schema.define(version: 20161017211753) do
     t.string   "location"
     t.text     "details"
     t.text     "contact_info"
-    t.date     "date",         null: false
-    t.time     "start_time"
-    t.time     "end_time"
     t.integer  "itinerary_id"
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.index ["itinerary_id"], name: "index_events_on_itinerary_id", using: :btree
   end
 
