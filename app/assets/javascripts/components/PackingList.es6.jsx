@@ -96,37 +96,37 @@ class PackingList extends React.Component {
   render(){
     let { name } = this.props.list;
     return(
-      <div>
-        <h5>Packing List Name: {name}</h5>
-        <div>
-          <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
-        </div>
-        <div id="add-errors">
-          { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
-        </div>
-        <div className="hollow button" id="add-item-form" >
-          { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit} onErrors={this.handleNestedErrors}/> : null }
-        </div>
-        <div id="edit-item-form">
-          { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems} onErrors={this.handleNestedErrors}/> : null }
-        </div>
-        <div id="items-list">
-          <ul>
-            {this.state.plitems.map((item, i) =>
-            <li key={i}>
-              { !item.packed ? <div><a id="edit-item-submit" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}>Complete Item</a></div> : null }
-              <div>
-                <input href={item.id} id="edit-item-submit" type="button" value="Edit Item" onClick={this.handleEditItem}/>
-              </div>
-              <div>
-                <input id="delete-item-submit" type="button" value="Delete Item" onClick={this.handleDelete.bind(this, item.id, item)} />
-              </div>
-              <span style={{"textDecoration": item.packed ? "line-through" : ""}}>{item.name}</span>
-            </li>
-          )}
-          </ul>
-        </div>
-        <button onClick={this.handleReturnClick}>Return To Trip</button>
+      <div className="row">
+        <div className="small-10 small-centered medium-8 medium centeredlarge-8 large-centered column">
+          <h5>Packing List Name: {name}</h5>
+          <div>
+            <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
+          </div>
+          <div id="add-errors">
+            { this.state.anyErrors ? <AddErrors errors={this.props.errors}/> : null }
+          </div>
+          <div id="add-item-form" >
+            { this.state.addItemForm ? <AddItemForm data={this.props.list} onItemSubmit={this.handleItemSubmit} onErrors={this.handleNestedErrors}/> : null }
+          </div>
+          <div id="edit-item-form">
+            { this.state.editItemForm ? <EditItemForm packing_list={this.props.list} item={this.state.item} onUpdateItems={this.handleUpdateItems} onErrors={this.handleNestedErrors}/> : null }
+          </div>
+          <div id="items-list">
+            <ul>
+              {this.state.plitems.map((item, i) =>
+              <li key={i}>
+                <div className="user-options">
+                  { !item.packed ? <button id="edit-item-submit" className="fa fa-check" href={"/trips/" + this.props.list.trip_id + "/packing_lists/" + this.props.list.id + "/items/" + item.id + "/complete"} onClick={this.handleItemComplete}></button> : null }
+                  <button className="fa fa-pencil-square-o" href={item.id} id="edit-item-submit" onClick={this.handleEditItem}></button>
+                  <button className="fa fa-trash-o" id="delete-item-submit" onClick={this.handleDelete.bind(this, item.id, item)}></button>
+                </div>
+                <span style={{"textDecoration": item.packed ? "line-through" : ""}}>{item.name}</span>
+              </li>
+            )}
+            </ul>
+          </div>
+          <button onClick={this.handleReturnClick}>Return To Trip</button>
+          </div>
       </div>
     )
   }
