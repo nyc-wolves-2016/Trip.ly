@@ -57,7 +57,7 @@ class EditEventForm extends React.Component {
           <label>End Time
             <input type="datetime-local" ref="endTimeBox" name="event[end_time]" defaultValue={end_time} placeholder="End Time" />
           </label>
-          <input type="submit" value="Submit"/>
+          <input className="expanded hollow button" type="submit" value="Submit"/>
         </form>
       </div>
     )
