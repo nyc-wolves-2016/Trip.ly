@@ -50,14 +50,15 @@ class AddSingleResource extends React.Component {
 
   render() {
     return(
-    <div>
-    <h3>Add a resource:</h3>
-      <form className="new-resource-form" onSubmit={this.handleNewResourceSubmit}>
-          <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
-          <input type="text" name="link" placeholder="Link" onChange={this.handleLinkChange} />
-          <textarea type="text" name="details" onChange={this.handleDetailsChange}></textarea>
-        <input className="expanded hollow button" type="submit" value="Submit"/>
-      </form>
+    <div className="row">
+      <div className="large-6 column">
+          <form className="new-resource-form" onSubmit={this.handleNewResourceSubmit}>
+              <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
+              <input type="text" name="link" placeholder="Link" onChange={this.handleLinkChange} />
+              <textarea type="text" name="details" onChange={this.handleDetailsChange}>Details</textarea>
+            <button className="expanded hollow button" type="submit" value="Submit">Submit</button>
+          </form>
+        </div>
     </div>
     )
   }

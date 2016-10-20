@@ -35,7 +35,7 @@ class AddPackingListForm extends React.Component {
   render() {
     return(
       <div className="row">
-        <div className="small-10 small-centered medium-8 medium-centered large-8 large-centered column">
+        <div>
           <form className="list-form" ref="listForm"  onSubmit={this.handleSubmit}>
             <div className="input-group">
               <input className="input-group-field" type="text" ref="nameBox" name="list[name]" placeholder="Name" />
