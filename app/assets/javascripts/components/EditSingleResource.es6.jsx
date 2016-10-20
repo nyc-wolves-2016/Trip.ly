@@ -59,9 +59,15 @@ class EditSingleResource extends React.Component {
   render() {
     return(
       <form className="edit-resource-form" onSubmit={this.handleEditResourceSubmit}>
+        <label>Name
           <input type="text" name="name" value={this.state.name} placeholder="Name" onChange={this.handleNameChange} />
+        </label>
+        <label>Link
           <input type="text" name="link" placeholder="Link" onChange={this.handleLinkChange} value={this.state.link}/>
+        </label>
+        <label>Details
           <textarea type="text" name="details" onChange={this.handleDetailsChange} value={this.state.details}></textarea>
+        </label>
         <input className="expanded hollow button" type="submit" value="Update"/>
       </form>
     )
