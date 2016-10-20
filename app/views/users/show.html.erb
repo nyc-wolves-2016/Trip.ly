@@ -55,7 +55,7 @@
                   <i class="fa fa-plane fa-lg"></i>
                 </div>
                 </div>
-              <div class="trip-date"><%= trip.start_date.strftime("%B %Y") %></div>
+              <div class="trip-date"><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></div>
             </li>
           <% end %>
         </ul>
@@ -78,7 +78,7 @@
                    <i class="past-icon fa fa-plane fa-lg"></i>
                  </div>
             </div>
-            <div class="trip-date"><%= trip.start_date.strftime("%B %Y") %></div>
+            <div class="trip-date"><%= trip.start_date.strftime("%B %e, %Y") %> - <%= trip.end_date.strftime("%B %e, %Y") %></div>
           </li>
         <% end %>
       </ul>
