@@ -68,7 +68,7 @@ class AddEventForm extends React.Component {
               <label>Contact Information
                 <textarea ref="contactInfoBox" name="event[contact_info]" placeholder="Contact Information"></textarea>
               </label>
-              <p className="help-text">* Required field</p>
+              <p className="help-text">* All fields required</p>
             </div>
           </div>
           <div className="row">&nbsp;</div>

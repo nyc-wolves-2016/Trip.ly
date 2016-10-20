@@ -2,6 +2,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    # event.start_time = date + event_params[time]
     if @event.save
       itinerary = Itinerary.find(@event.itinerary_id)
       trip = Trip.find(itinerary.trip_id)
@@ -10,7 +11,23 @@ class EventsController < ApplicationController
         not_found
       end
 
-      @events = Event.where(itinerary_id: @event.itinerary_id).sort_by{|event| event.date}
+      @events = itinerary.events.sort_by{ |event| event.start_time }.map do |event|
+        event_hash = {}
+        event.attributes.each do |key, value|
+          if key == "start_time"
+            date = value.strftime("%a %b %e, %Y")
+            time = value.strftime("%l:%M %P")
+            event_hash[key] = time
+            event_hash[:start_date] = date
+          elsif key == "end_time"
+            time = value.strftime("%l:%M %P")
+            event_hash[key] = time
+          else
+            event_hash[key] = value
+          end
+        end
+        event_hash
+      end
       render json: @events.as_json
     else
       render json: @errors = @event.errors.messages, status: 422
@@ -50,7 +67,23 @@ class EventsController < ApplicationController
     end
 
     if @event.update_attributes(event_params)
-      @events = Event.where(itinerary_id: params[:itinerary_id]).sort_by{|event| event.date}
+      @events = itinerary.events.sort_by{ |event| event.start_time }.map do |event|
+        event_hash = {}
+        event.attributes.each do |key, value|
+          if key == "start_time"
+            date = value.strftime("%a %b %e, %Y")
+            time = value.strftime("%l:%M %P")
+            event_hash[key] = time
+            event_hash[:start_date] = date
+          elsif key == "end_time"
+            time = value.strftime("%l:%M %P")
+            event_hash[key] = time
+          else
+            event_hash[key] = value
+          end
+        end
+        event_hash
+      end
       render json: @events.as_json
     else
       render json: @errors = @event.errors.messages, status: 422
