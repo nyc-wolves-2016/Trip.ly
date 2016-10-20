@@ -45,12 +45,17 @@ class EditResourceListForm extends React.Component {
 
   render() {
     return(
-      <div>
+      <div className="row">
         <form className="edit-resource-list-form" onSubmit={this.handleUpdateList}>
-        <input type="text" name="name" value={this.state.name} placeholder="Name" onChange={this.handleNameChange} />
-        <input type="submit" value="Update"/>
+          <div className="input-group">
+            <input className="input-group-field" type="text" name="name" value={this.state.name} placeholder="Name" onChange={this.handleNameChange} />
+            <div className="input-group-button">
+              <button className="hollow button" type="submit" value="Submit">Update</button>
+            </div>
+          </div>
         </form>
         <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
+
       </div>
     )
   }

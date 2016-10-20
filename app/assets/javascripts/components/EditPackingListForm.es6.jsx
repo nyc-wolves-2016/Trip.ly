@@ -47,10 +47,14 @@ class EditPackingListForm extends React.Component {
   render() {
     let { name } = this.props
     return(
-      <div>
+      <div className="row">
         <form className="list-form" ref="listForm"  onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.name} name="name" placeholder="Name" onChange={this.handleNameChange}/>
-          <input type="submit" value="Update"/>
+          <div className="input-group">
+              <input className="input-group-field" type="text" value={this.state.name} name="name" placeholder="Name" onChange={this.handleNameChange}/>
+            <div className="input-group-button">
+                <button className="hollow button" type="submit" value="Submit">Update</button>
+            </div>
+          </div>
         </form>
         <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
       </div>
