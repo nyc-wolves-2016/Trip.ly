@@ -27,15 +27,14 @@ class ShareItinerary extends React.Component {
       }
 
     return(
-      <div className= { displayItit }>
-        <h2>Itinerary</h2>
-        <ul>
-        {this.state.events.map((event, i ) =>
-        <ShareEvent key={i} data={event}/>
-        )}
-        </ul>
-
-      </div>
+        <div className= { displayItit }>
+          <h2>Itinerary</h2>
+          <ul>
+          {this.state.events.map((event, i ) =>
+          <ShareEvent key={i} data={event}/>
+          )}
+          </ul>
+        </div>
     )
   }
 }
