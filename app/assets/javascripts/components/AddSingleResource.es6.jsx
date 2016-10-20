@@ -56,7 +56,7 @@ class AddSingleResource extends React.Component {
           <input type="text" name="name" placeholder="Name" onChange={this.handleNameChange} />
           <input type="text" name="link" placeholder="Link" onChange={this.handleLinkChange} />
           <textarea type="text" name="details" onChange={this.handleDetailsChange}></textarea>
-        <input type="submit" value="Submit"/>
+        <input className="expanded hollow button" type="submit" value="Submit"/>
       </form>
     </div>
     )

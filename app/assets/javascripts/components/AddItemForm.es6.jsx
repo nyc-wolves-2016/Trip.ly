@@ -30,7 +30,7 @@ class AddItemForm extends React.Component {
       <div>
         <form className="item-form" ref="itemForm"  onSubmit={this.handleSubmit}>
           <input type="text" ref="nameBox" name="item[name]" placeholder="Name" />
-          <input type="submit" value="Submit"/>
+          <input className="expanded hollow button" type="submit" value="Submit"/>
         </form>
       </div>
     )

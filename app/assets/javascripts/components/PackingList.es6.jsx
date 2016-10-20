@@ -47,6 +47,7 @@ class PackingList extends React.Component {
   handleAddItemClick(){
     this.setState({addItemForm: true})
     $("#items-list").addClass('hidden')
+    $("#item-submit").addClass('hidden')
   }
 
   handleItemSubmit(items){
@@ -56,6 +57,7 @@ class PackingList extends React.Component {
       anyErrors: false
     })
     $("#items-list").removeClass('hidden')
+    $("#item-submit").removeClass("hidden")
   }
 
   handleEditItem(event) {
@@ -69,6 +71,7 @@ class PackingList extends React.Component {
                       item: response
                     })
       $("#items-list").addClass('hidden')
+      $("#item-submit").addClass("hidden")
     }.bind(this))
   }
 
@@ -79,6 +82,7 @@ class PackingList extends React.Component {
       anyErrors: false
     });
     $("#items-list").removeClass('hidden')
+    $("#item-submit").removeClass("hidden")
   }
 
   handleDelete(id) {

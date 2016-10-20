@@ -41,7 +41,7 @@ class EditItemForm extends React.Component {
       <div>
         <form className="item-form" onSubmit={this.handleSubmit}>
           <input type="text" name="name" placeholder="Name" value={this.state.name} onChange={this.handleNameChange}/>
-          <input type="submit" value="Submit"/>
+          <input className="expanded hollow button" type="submit" value="Submit"/>
         </form>
       </div>
     )
