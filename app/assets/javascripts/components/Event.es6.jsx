@@ -5,17 +5,14 @@ class Event extends React.Component {
       events: []
     }
     this.handleEditButtonClick = this.handleEditButtonClick.bind(this);
-    // this.handleDelete = this.handleDelete.bind(this);
     this.handleDeleteButtonClick = this.handleDeleteButtonClick.bind(this);
 
   }
 
   componentDidMount() {
-    // debugger;
     this.setState({
       events: this.props.events
     })
-    // debugger;
   }
 
   handleEditButtonClick(event) {
@@ -32,7 +29,6 @@ class Event extends React.Component {
 
   handleDeleteButtonClick(event) {
     event.preventDefault();
-    // debugger;
     var url = $(event.target).attr('href');
     var event = this.props.data
     $.ajax({
@@ -41,21 +37,11 @@ class Event extends React.Component {
       data: event
     })
     .done(function(response){
-      // debugger;
-      // this.props.handleEventDelete(response);
       this.props.onEventDelete(response);
-      // debugger;
-      // this.forceUpdate();
     }.bind(this))
   }
 
-  // handleDelete(response){
-  //   this.setState({
-  //     events: response
-  //   });
-  //   // debugger;
-  //   this.forceUpdate();
-  // }
+
 
   render() {
     let { name, location, details, contact_info, start_date, start_time, end_time, id } = this.props.data;
@@ -74,8 +60,8 @@ class Event extends React.Component {
               <p>{location}<br/>
               {details}<br/>
                 <span className="start-time">{start_time}</span> -
-                <span className="end-time">{end_time}</span>
-                <div className="contact-info">{contact_info}</div>
+                <span className="end-time">{end_time}</span><br/>
+                <span className="contact-info">{contact_info}</span>
               </p>
             </div>
           </li>
