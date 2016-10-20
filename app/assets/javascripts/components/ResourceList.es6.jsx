@@ -33,12 +33,13 @@ class ResourceList extends React.Component {
   handleAddResourceClick() {
     this.setState({addResourceForm: true})
     $("#resources-list").addClass('hidden')
+    $("#add-resource-button").addClass("hidden")
   }
 
   handleAddNewResource(resources) {
     this.setState({rlresources: resources, addResourceForm: false, anyErrors: false})
     $("#resources-list").removeClass('hidden')
-
+    $("#add-resource-button").removeClass("hidden")
   }
 
   handleUpdateResources(resources) {
@@ -48,6 +49,7 @@ class ResourceList extends React.Component {
       anyErrors: false
     });
     $("#resources-list").removeClass('hidden')
+    $("#add-resource-button").removeClass("hidden")
   }
 
   handleEditResource(event) {
@@ -62,6 +64,7 @@ class ResourceList extends React.Component {
                       resource: response
       });
       $("#resources-list").addClass('hidden')
+      $("#add-resource-button").addClass("hidden")
     }.bind(this))
   }
 
