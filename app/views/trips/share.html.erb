@@ -1,11 +1,21 @@
 
 <div id="userbanner">
-  <h1 class="userwelcome"><%= @trip.user.first_name %>'s Trip to <%= @trip.name %></h1>
+  <h1 class="greeting userwelcome"><%= @trip.user.first_name %>'s Trip to <%= @trip.name %></h1>
 </div>
 
 <div class="row">
   <div class="small-10 small-centered medium-8 medium-centered large-8 large-centered">
-    <%= react_component 'ShareItinerary', { itinerary: @itinerary } %>
-    <%= react_component 'ShareResourceList', { resources: @resources } %>
+    <% if @itinerary_object.events.any? %>
+      <%= react_component 'ShareItinerary', { itinerary: @itinerary } %>
+    <% else %>
+    <h2>Itinerary</h2>
+      <p>No itinerary details.</p>
+    <% end %>
+    <% if @resources_object.any? %>
+      <%= react_component 'ShareResourceList', { resources: @resources } %>
+    <% else %>
+    <h2>Resources</h2>
+      <p>No resources.</p>
+    <% end %>
   </div>
 </div>
