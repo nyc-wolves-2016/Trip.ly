@@ -4,13 +4,6 @@
 
 
 
-<!-- <div class="user-profile row">
-  <div class="large-8 large-centered column">
-    <h1 class="greeting center-text">Welcome, <%= @user.first_name %></h1>
-  </div>
-</div> -->
-
-
 <div class="row">
 
 <div class="row <%= 'hidden' if @trip.errors.any? %>">
@@ -28,13 +21,19 @@
 
 </div>
 
-<div id="new_trip_form" class="<%= 'hidden' unless @trip.errors.any? %>">
+<div id="new_trip_form" class="<%= 'hidden' unless @trip.errors.any? && !@update %>">
 
   <%= render 'trips/form' %>
 
 </div>
 
-<div class="row">
+<div id="new_trip_form" class="<%= 'hidden' unless @trip.errors.any? && @update %>">
+
+  <%= render 'trips/edit_form' %>
+
+</div>
+
+<div class="row <%= 'hidden' if @trip.errors.any? %>">
   <div class="small-10 small-centered medium-8 medium-centered large-8 large-centered">
     <div class="list trips-list medium-6 large-6 columns">
       <div class="upcoming">
@@ -44,7 +43,7 @@
             <li>
 
               <div class="name"><a href="/trips/<%= trip.id %>"><%= trip.name %></a>
-                <form class="user-options" id="edit-trip" method="GET" action="/trips/<%= trip.id %>/edit">
+                <form id="edit-trip" class="user-options"  method="GET" action="/trips/<%= trip.id %>/edit">
                   <button class="fa fa-pencil-square-o" type="image" value="Edit" alt="Edit"></button>
                 </form>
                 <form class="user-options" id="delete-trip" method="post" action="<%= trip_path(trip) %>">

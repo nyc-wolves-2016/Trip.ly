@@ -45,7 +45,6 @@ class TripsController < ApplicationController
         @trip = @user.trips.new(trip_params)
         if @trip.save
           Itinerary.create(trip_id: @trip.id)
-          flash[:success] = "Trip Added!"
           redirect_to @trip
         else
           @errors = @trip.errors.full_messages
@@ -61,7 +60,7 @@ class TripsController < ApplicationController
     elsif @trip.user_id != current_user.id
       not_found
     else
-      render "trips/_form", layout: false
+      render "trips/_edit_form", layout: false
     end
   end
 
@@ -77,11 +76,11 @@ class TripsController < ApplicationController
     end
 
     if @trip.update(trip_params)
-      flash[:success] = "Trip Updated!"
       redirect_to "/users/#{current_user.id}"
     else
       @errors = @trip.errors.full_messages
-      render "/users/show"
+      @update = true 
+      render "users/show"
     end
   end
 
