@@ -20,12 +20,6 @@ class ShareItinerary extends React.Component {
 
   render() {
 
-      if (this.state.events.length === 0) {
-        var displayItit = "hidden"
-      } else {
-        var displayItit = ""
-      }
-
     return(
         <div className= { displayItit }>
           <h2>Itinerary</h2>

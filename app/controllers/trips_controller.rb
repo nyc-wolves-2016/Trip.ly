@@ -79,7 +79,7 @@ class TripsController < ApplicationController
       redirect_to "/users/#{current_user.id}"
     else
       @errors = @trip.errors.full_messages
-      @update = true 
+      @update = true
       render "users/show"
     end
   end
@@ -99,6 +99,8 @@ class TripsController < ApplicationController
 
   def share
     @trip = Trip.find_by(key: params[:key])
+    @itinerary_object = @trip.itinerary
+    @resources_object = @trip.all_resources
     @itinerary = @trip.itinerary.as_json
     @resources = @trip.all_resources.as_json
   end
