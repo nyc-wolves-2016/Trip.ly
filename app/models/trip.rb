@@ -16,7 +16,7 @@ class Trip < ApplicationRecord
   end
 
   def two_months?
-    self.start_date - Date.today < 60
+    self.start_date - Date.today < 60 && self.end_date > Time.now
   end
 
   def all_resources

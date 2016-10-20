@@ -47,7 +47,7 @@ $(document).ready(function() {
       $("#weather").html(html);
     },
     error: function(error) {
-      $("#weather").html('<p>'+error+'</p>');
+      $("#weather").append("<h1 class='hiya userwelcome'>"+location+"</h1>");
     }
   });
 });

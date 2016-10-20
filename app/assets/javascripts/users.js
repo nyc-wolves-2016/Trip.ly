@@ -11,16 +11,13 @@ $(document).ready(function() {
 
   $('.name').on('click', '#edit-trip', function(event) {
     event.preventDefault();
-    debugger;
     var url = $(this).attr('action');
 
     $.ajax({
       method: 'GET',
       url: url
     }).done(function(response){
-      debugger;
       $('#userbanner').after(response);
-      // $('#edit-trip').remove();
       $('.trips-list').addClass('hidden');
     });
   });
