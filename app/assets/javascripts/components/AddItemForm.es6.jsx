@@ -27,13 +27,6 @@ class AddItemForm extends React.Component {
 
   render() {
     return(
-<<<<<<< HEAD
-      <div>
-        <form className="item-form" ref="itemForm"  onSubmit={this.handleSubmit}>
-          <input type="text" ref="nameBox" name="item[name]" placeholder="Name" />
-          <input className="expanded hollow button" type="submit" value="Submit"/>
-        </form>
-=======
       <div className="row">
         <div className="large-6 column">
           <form className="item-form" ref="itemForm"  onSubmit={this.handleSubmit}>
@@ -45,7 +38,6 @@ class AddItemForm extends React.Component {
           </div>
           </form>
         </div>
->>>>>>> Style forms
       </div>
     )
   }
