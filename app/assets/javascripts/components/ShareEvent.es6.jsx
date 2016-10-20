@@ -15,8 +15,8 @@ class ShareEvent extends React.Component {
               <p>{location}<br/>
               {details}<br/>
                 <span className="start-time">{start_time}</span> -
-                <span className="end-time">{end_time}</span>
-                <div className="contact-info">{contact_info}</div>
+                <span className="end-time">{end_time}</span><br/>
+                <span className="contact-info">{contact_info}</span>
               </p>
             </div>
           </li>

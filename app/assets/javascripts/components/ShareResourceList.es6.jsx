@@ -9,7 +9,7 @@ class ShareResourceList extends React.Component {
         <ul>
           {resources.map((resource, i) =>
             <div key={i}>
-              {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
+              {resource.link === "" ? <p key={i}>{resource.name}<br/><span className="resource-details">{resource.details}</span></p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
             </div>
           ) }
         </ul>

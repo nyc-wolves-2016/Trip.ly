@@ -21,7 +21,7 @@ class ShareItinerary extends React.Component {
   render() {
 
     return(
-        <div className= { displayItit }>
+        <div >
           <h2>Itinerary</h2>
           <ul id="timeline">
             {this.state.events.map((event, i ) =>
