@@ -83,7 +83,7 @@ class ResourceList extends React.Component {
     return(
       <div className="row">
         <div className="small-10 small-centered medium-8 medium centeredlarge-8 large-centered column">
-        <h2>Name: {name}</h2>
+        <h5 className="list-header">{name}</h5>
         <div id="add-resource-button">
           <button className="hollow button" onClick={this.handleAddResourceClick}>Add Resource</button>
         </div>
@@ -99,16 +99,19 @@ class ResourceList extends React.Component {
         <div id="resources-list">
           {this.state.rlresources.map((resource, i) =>
             <div key={i}>
-            <div className="user-options">
-              <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
-              <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
-            </div>
-              {resource.link === "" ? <p key={i}>{resource.name}<br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <br/><span className="resource-details">{resource.details}</span></p>}
+
+              {resource.link === "" ? <p key={i}>{resource.name} <div className="user-options">
+                <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
+                <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
+              </div><br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <div className="user-options">
+                <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
+                <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
+              </div> <br/><span className="resource-details">{resource.details}</span></p>}
 
             </div>
           ) }
         </div>
-        <button onClick={this.handleReturnClick}>Return To Trip</button>
+        <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
         </div>
       </div>
     )

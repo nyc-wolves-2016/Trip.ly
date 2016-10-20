@@ -98,7 +98,7 @@ class PackingList extends React.Component {
     return(
       <div className="row">
         <div className="small-10 small-centered medium-8 medium centeredlarge-8 large-centered column">
-          <h5>Packing List Name: {name}</h5>
+          <h5 className="list-header">{name}</h5>
           <div>
             <input className="hollow button" id="item-submit" type="button" value="Add Item" onClick={this.handleAddItemClick}/>
           </div>
@@ -125,7 +125,7 @@ class PackingList extends React.Component {
             )}
             </ul>
           </div>
-          <button onClick={this.handleReturnClick}>Return To Trip</button>
+          <button className="hollow button" onClick={this.handleReturnClick}>Return To Trip</button>
           </div>
       </div>
     )
