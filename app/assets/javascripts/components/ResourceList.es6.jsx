@@ -106,7 +106,7 @@ class ResourceList extends React.Component {
               {resource.link === "" ? <p key={i}>{resource.name} <div className="user-options">
                 <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
                 <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
-              </div><br/>{resource.details}</p> : <p key={i}><a href={resource.link}> {resource.name} </a> <div className="user-options">
+              </div><br/><span className="resource-details">{resource.details}</span></p> : <p key={i}><a href={resource.link}> {resource.name} </a> <div className="user-options">
                 <button className="fa fa-pencil-square-o" href={resource.id} type="button" value="Edit Resource" onClick={this.handleEditResource} ></button>
                 <button className="fa fa-trash-o" href={resource.id} type="button" value="Delete Resource" onClick={this.handleDeleteResource}> </button>
               </div> <br/><span className="resource-details">{resource.details}</span></p>}
