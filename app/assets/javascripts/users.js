@@ -6,6 +6,7 @@ $(document).ready(function() {
     event.preventDefault();
       $('#new_trip_form').removeClass('hidden');
       $('#add-trip').addClass('hidden');
+      $('.trips-list').addClass('hidden');
   });
 
   $('.name').on('click', '#edit-trip', function(event) {
