@@ -1,5 +1,11 @@
-<h1><%= @trip.user.first_name %>'s Trip to <%= @trip.name %></h1>
 
+<div id="userbanner">
+  <h1 class="userwelcome"><%= @trip.user.first_name %>'s Trip to <%= @trip.name %></h1>
+</div>
 
-<%= react_component 'ShareItinerary', { itinerary: @itinerary } %>
-<%= react_component 'ShareResourceList', { resources: @resources } %>
+<div class="row">
+  <div class="small-10 small-centered medium-8 medium-centered large-8 large-centered">
+    <%= react_component 'ShareItinerary', { itinerary: @itinerary } %>
+    <%= react_component 'ShareResourceList', { resources: @resources } %>
+  </div>
+</div>
