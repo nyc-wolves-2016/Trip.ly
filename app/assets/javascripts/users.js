@@ -7,18 +7,8 @@ $(document).ready(function() {
       $('#new_trip_form').removeClass('hidden');
       $('#add-trip').addClass('hidden');
   });
-});
 
-
-function initAutocomplete() {
-  var autocomplete = new google.maps.places.Autocomplete(
-           (document.getElementById('trip_city')),
-           {types: ['geocode']});
-}
-
-$(document).ready(function() {
-
-  $('.container').on('click', '#edit-trip', function(event) {
+  $('.name').on('click', '#edit-trip', function(event) {
     event.preventDefault();
     debugger;
     var url = $(this).attr('action');
@@ -27,9 +17,17 @@ $(document).ready(function() {
       method: 'GET',
       url: url
     }).done(function(response){
-      $('.greeting').after(response);
-      $('#edit-trip').remove();
-      $('.trips-list').remove();
+      debugger;
+      $('#userbanner').after(response);
+      // $('#edit-trip').remove();
+      $('.trips-list').addClass('hidden');
     });
   });
 });
+
+
+function initAutocomplete() {
+  var autocomplete = new google.maps.places.Autocomplete(
+           (document.getElementById('trip_city')),
+           {types: ['geocode']});
+}
